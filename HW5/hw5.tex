@@ -1,0 +1,395 @@
+%!TEX program = xelatex
+\documentclass[UTF8,zihao=5]{ctexart}
+
+
+\title{{\bfseries 第五次作业}}
+\author{周涵宇 2018011600}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}
+
+\usepackage{fontspec}
+\setmainfont{Cambria Math}
+% \setmonofont{JetBrains Mono}
+\setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+
+\usepackage{bm}
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+
+\newcommand{\trans}[0]{^\mathrm{T}}
+\newcommand{\tran}[1]{#1^\mathrm{T}}
+\newcommand{\hermi}[0]{^\mathrm{H}}
+
+\newcommand*{\av}[1]{\left\langle{#1}\right\rangle}
+
+\newcommand*{\avld}[1]{\frac{\overline{D}#1}{Dt}}
+
+\newcommand*{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand*{\pdcd}[3]
+{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1}
+
+\begin{equation*}
+    \begin{bmatrix}
+        \bm{g_1}&\bm{g_2}&\bm{g_3}&\bm{g_4}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \bm{e_1}&\bm{e_2}&\bm{e_3}&\bm{e_4}
+    \end{bmatrix}
+    \begin{bmatrix}
+        5&1&-1&-2\\
+        3&2& 3& 3\\
+        1&0& 4& 0\\
+        0&1& 0& 5\\
+    \end{bmatrix}   
+\end{equation*}
+
+由于$\bm{g_i\cdot g^j}=\delta_{ij}$
+
+\begin{equation*}
+    \begin{bmatrix}
+        \bm{g^1}\\\bm{g^2}\\\bm{g^3}\\\bm{g^4}
+    \end{bmatrix}
+    =
+    \left[\begin{array}{cccc} \frac{1}{3} & -\frac{1}{3} & \frac{1}{3} & \frac{1}{3}\\ -\frac{15}{28} & \frac{5}{4} & -\frac{15}{14} & -\frac{27}{28}\\ -\frac{1}{12} & \frac{1}{12} & \frac{1}{6} & -\frac{1}{12}\\ \frac{3}{28} & -\frac{1}{4} & \frac{3}{14} & \frac{11}{28} \end{array}\right]
+    \begin{bmatrix}
+        \bm{e_1}\\\bm{e_2}\\\bm{e_3}\\\bm{e_4}
+    \end{bmatrix}
+\end{equation*}
+
+即
+$$
+\bm{g^1}=
+ \frac{1}{3}\bm{e_1}
+-\frac{1}{3}\bm{e_2}
++\frac{1}{3}\bm{e_3}
++\frac{3}{3}\bm{e_4}
+$$
+$$
+\bm{g^2}=
+-\frac{15}{28}\bm{e_1}
++\frac{5}{4}\bm{e_2}
+-\frac{15}{14}\bm{e_3}
+-\frac{27}{28}\bm{e_4}
+$$
+$$
+\bm{g^3}=
+-\frac{1}{12}\bm{e_1}
++\frac{1}{12}\bm{e_2}
++\frac{1}{6}\bm{e_3}
+-\frac{1}{12}\bm{e_4}
+$$
+$$
+\bm{g^4}=
+ \frac{3}{28}\bm{e_1}
+-\frac{1}{4}\bm{e_2}
++\frac{3}{14}\bm{e_3}
++\frac{11}{28}\bm{e_4}
+$$
+
+\subsection*{2}
+
+已知，在正交坐标系$e_{i'}$
+
+$$
+I_1=trB=B^{i'}_{\cdot i'}=B^{\cdot i'}_{i'}
+$$
+
+坐标转换即为
+$$
+I_1=B^{j}_{\cdot k}\beta_{j}^{i'}\beta_{i'}^{k}
+=B^{j}_{\cdot k}\delta_{j}^{k}=B^{k}_{\cdot k}
+$$
+
+同理也有
+
+$$
+I_1=B^{\cdot i'}_{i'}=B^{\cdot i}_{i}
+$$
+
+根据指标升降关系和度量张量的对称性同时有
+$$
+I_1=B^{ij}g_{ij}==B_{ij}g^{ij}
+$$
+
+
+
+$$
+I_2=\frac{1}{2}(tr^2B-trB^2)=
+\frac{1}{2}\left(
+    B^{i'}_{\cdot i'}B^{j'}_{\cdot j'}
+    -B^{i'}_{\cdot j'}B^{j'}_{\cdot i'}
+\right)
+$$
+
+由第一不变量的结论并坐标变换
+
+$$
+I_2=\frac{1}{2}(tr^2B-trB^2)=
+\frac{1}{2}\left(
+    B^{i}_{\cdot i}B^{j}_{\cdot j}
+    -B^{k}_{\cdot l}B^{m}_{\cdot n}
+    \beta_{k}^{i'}\beta_{j'}^{l}
+    \beta_{m}^{j'}\beta^{n}_{i'}
+\right)
+=
+\frac{1}{2}\left(
+    B^{i}_{\cdot i}B^{j}_{\cdot j}
+    -B^{k}_{\cdot l}B^{m}_{\cdot n}
+    \delta_{k}^{n}
+    \delta_{m}^{l}
+\right)
+=
+\frac{1}{2}\left(
+    B^{i}_{\cdot i}B^{j}_{\cdot j}
+    -B^{k}_{\cdot k}B^{m}_{\cdot m}
+\right)
+$$
+
+由正交坐标
+
+$$
+I_3=e^{i'j'k'}e_{r's't'}B^{r'}_{\cdot i'}B^{s'}_{\cdot j'}B^{t'}_{\cdot k'}
+=\epsilon^{i'j'k'}\epsilon_{r's't'}B^{r'}_{\cdot i'}B^{s'}_{\cdot j'}B^{t'}_{\cdot k'}
+$$
+
+以上$\epsilon$是Eddington张量的分量，其满足坐标变换规则，简单坐标变换即有
+
+$$
+I_3
+=\epsilon^{ijk}\epsilon_{rst}B^{r}_{\cdot i}B^{s}_{\cdot j}B^{t}_{\cdot k}
+$$
+
+同时代入指标升降发现$\epsilon$和$B$的上下标缩并可任意互换上下位置，则
+
+$$
+I_3
+=\epsilon_{ijk}\epsilon^{rst}B_{r}^{\cdot i}B_{s}^{\cdot j}B_{t}^{\cdot k}
+=\epsilon_{ijk}\epsilon_{rst}B^{ri}B^{sj}B^{tk}
+=\epsilon^{ijk}\epsilon^{rst}B_{ri}B_{sj}B_{tk}
+$$
+
+由于$\epsilon_{ijk}=\sqrt{g}e_{ijk},\epsilon^{ijk}=\frac{1}{\sqrt{g}}e^{ijk}$
+
+$$
+I_3
+=e^{ijk}e_{rst}B^{r}_{\cdot i}B^{s}_{\cdot j}B^{t}_{\cdot k}=\det{B^i_{\cdot j}}
+$$
+
+$$
+I_3
+=\epsilon_{ijk}\epsilon^{rst}B_{r}^{\cdot i}B_{s}^{\cdot j}B_{t}^{\cdot k}=\det{B_i^{\cdot j}}
+$$
+
+$$
+I_3
+=g\epsilon_{ijk}\epsilon_{rst}B^{ri}B^{sj}B^{tk}=g\det{B^{ij}}
+$$
+
+$$
+I_3
+=\frac{1}{g}\epsilon^{ijk}\epsilon^{rst}B_{ri}B_{sj}B_{tk}=\frac{1}{g}\det{B_{ij}}
+$$
+
+\subsection*{3}
+
+由于
+$x^1=x^{1'}\sin{x^{3'}}$，
+$x^2=x^{2'}$，
+$x^3=x^{1'}\cos{x^{3'}}$
+则
+
+$$
+\beta^{i}_{j'}
+=
+\frac{\partial x^i}{\partial x^{j'}}
+=
+\begin{bmatrix}
+    \sin{x^{3'}}&0&x^{1'}\cos{x^{3'}}\\
+    0&1&0\\
+    \cos{x^{3'}}&0&-x^{1'}\sin{x^{3'}}\\
+\end{bmatrix}_{ij}
+$$
+
+$$
+\beta^{i'}_{j}
+=
+\begin{bmatrix}
+    \sin{x^{3'}}&0&\cos{x^{3'}}\\
+    0&1&0\\
+    \cos{x^{3'}}/x^{1'}&0&-\sin{x^{3'}}/x^{1'}\\
+\end{bmatrix}_{ij}
+$$
+
+\subsection*{4}
+
+已知第二类Christoffel符号和度量张量分量：
+
+$$
+\Gamma^p_{ij}=\frac{1}{2}g^{kp}\left(
+\pd{g_{ik}}{x^j}+\pd{g_{jk}}{x^i}
+-\pd{g_{ij}}{x^k}
+\right)
+$$
+
+则已知Christoffel符号在斜角直线坐标下是0数组，但其在其他坐标下不是0，因此不是满足张量
+与坐标不变的关系（0张量和非零一定不等），因此Christoffel符号不是张量分量。
+
+现假设分量对坐标的偏导$\pd{u^i}{x^j}$是张量分量，则由协变导数的计算公式：
+
+$$
+u^i_{;j}=\pd{u^i}{x^j}+u^{m}\Gamma^i_{jm}
+$$
+
+由于协变导数是梯度的分量，其是张量分量，由于加和关系，假设坐标偏导是张量分量则有
+$u^{m}\Gamma^i_{jm}$是张量分量，由于$u^m$是张量分量，根据商法则即$\Gamma^i_{jm}$是
+张量分量。这与上面的结论矛盾，因此分量对坐标的偏导不是张量分量。
+
+同样，按照相同思路讨论公式
+
+$$
+u_{i;j}=\pd{u_i}{x^j}-u_{m}\Gamma^m_{ji}
+$$
+
+则同样得到$\pd{u_i}{x^j}$也不是张量分量。
+
+\subsection*{5}
+
+可知在柱坐标中：
+
+$$
+g_{11}=1, g_{22}=x^{1}x^{1}, g_{33}=1
+$$
+
+其余度量分量都是0
+
+则可知
+$$
+\Gamma_{ij,k}=\frac{1}{2}\left(
+\pd{g_{ik}}{x^j}+\pd{g_{jk}}{x^i}
+-\pd{g_{ij}}{x^k}
+\right)
+$$
+
+
+$$
+\Gamma_{22,1}=\frac{1}{2}\left(
+    -\pd{g_{22}}{x^1}
+    \right)=-x^{1}
+$$
+
+$$
+\Gamma_{21,2}=\Gamma_{12,2}=\frac{1}{2}\left(
+\pd{g_{22}}{x^1}
+\right)=x^{1}
+$$
+
+同理，在球坐标中已知：
+$$
+g_{11}=1, 
+g_{22}=x^{1}x^{1}\sin^2{x^{3}}, 
+g_{33}=x^{1}x^{1}
+$$
+
+则可知
+$$
+\Gamma_{ij,k}=\frac{1}{2}\left(
+\pd{g_{ik}}{x^j}+\pd{g_{jk}}{x^i}
+-\pd{g_{ij}}{x^k}
+\right)
+$$
+
+其中
+
+则可知
+$$
+\Gamma_{22,1}=\frac{1}{2}\left(
+-\pd{g_{22}}{x^1}
+\right)=-x^{1}\sin^2{x^{3}}
+$$
+
+$$
+\Gamma_{12,2}=\Gamma_{21,2}=\frac{1}{2}\left(
+    \pd{g_{22}}{x^1}
+    \right)=x^{1}\sin^2{x^{3}}
+$$
+
+$$
+\Gamma_{22,3}=\frac{1}{2}\left(
+-\pd{g_{22}}{x^3}
+\right)=-x^{1}x^{1}\sin{x^{3}}\cos{x^{3}}
+$$
+
+$$
+\Gamma_{23,2}=\Gamma_{32,2}=\frac{1}{2}\left(
+    \pd{g_{22}}{x^1}
+    \right)=x^{1}x^{1}\sin{x^{3}}\cos{x^{3}}
+$$
+
+$$
+\Gamma_{33,1}=\frac{1}{2}\left(
+-\pd{g_{33}}{x^1}
+\right)=-x^{1}
+$$
+
+$$
+\Gamma_{13,3}=\Gamma_{31,3}=\frac{1}{2}\left(
+    \pd{g_{33}}{x^1}
+    \right)=x^{1}
+$$
+
+\subsection*{6.}
+
+\begin{equation*}
+    \begin{split}
+        \sqrt{g}_{,i}
+        =&\bm{[g_1,g_2,g_3]}_{,i}
+        \\=&
+        \bm{(\pd{g_{1}}{x_i}\times g_2)\cdot g_3}
+        +\bm{(g_{1}\times \pd{g_{2}}{x_i})\cdot g_3}
+        +\bm{(g_{1}\times g_2)\cdot \pd{g_{3}}{x_i}}
+        \\=&
+        \bm{(\Gamma^{k}_{1i}g_k\times g_2)\cdot g_3}
+        +\bm{(g_{1}\times \Gamma^{k}_{2i}g_k)\cdot g_3}
+        +\bm{(g_{1}\times g_2)\cdot \Gamma^{k}_{3i}g_k}
+        \\=&
+        \bm{(\Gamma^{1}_{1i}g_1\times g_2)\cdot g_3}
+        +\bm{(g_{1}\times \Gamma^{2}_{2i}g_2)\cdot g_3}
+        +\bm{(g_{1}\times g_2)\cdot \Gamma^{3}_{3i}g_3}
+        \\=&
+        \Gamma^{j}_{ji}\sqrt{g}
+    \end{split}
+\end{equation*}
+
+则
+
+$$
+\Gamma^{j}_{ji}=\frac{1}{\sqrt{g}}\pd{\sqrt{g}}{x_i}
+=\pd{\ln{\sqrt{g}}}{x_i}
+$$
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,357 @@
+%!TEX program = xelatex
+\documentclass[UTF8,zihao=5]{ctexart}
+
+
+\title{{\bfseries 第四次作业}}
+\author{周涵宇 2018011600}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}
+
+\usepackage{fontspec}
+\setmainfont{Cambria Math}
+% \setmonofont{JetBrains Mono}
+\setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+
+\usepackage{bm}
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+
+\newcommand{\trans}[0]{^\mathrm{T}}
+\newcommand{\tran}[1]{#1^\mathrm{T}}
+\newcommand{\hermi}[0]{^\mathrm{H}}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1}
+
+首先，任何二阶二维反对称张量在标准正交基下，都可表示为：
+
+$$
+\bm{A}=b(\bm{e_2e_1-e_1e_2})
+$$
+
+同时有
+$$
+|\bm{A}|=\sqrt{b^2+b^2}=\sqrt{2}|b|
+$$
+
+特征方程即为求解：
+
+$$
+\lambda^2+b^2=0
+$$
+
+则特征值为$\pm i|b|$
+
+使$a=|b|$
+则可得所求证。
+
+\subsection*{2}
+
+不妨扩展为三维得到$\bm{e_3}$，其分量都是0。
+
+由于定义好的旋转是唯一的，仅需证明对任意矢量旋转满足旋转的定义，
+即可证明其就是唯一的旋转。
+
+设任意二维矢量$\bm{u}=u_i\bm{e_i}$
+
+则$\bm{R}(\theta)=\bm{I}\cos\theta-
+\bm{\epsilon}\sin\theta$
+可知：
+
+$$
+\bm{R\cdot u}=\bm{e_1}(u_1\cos\theta-u_2\sin\theta)
++\bm{e_2}(u_1\sin\theta+u_2\cos\theta)
+$$
+
+因此：
+
+$$
+||\bm{R\cdot u}|| = u_1^2(\cos^2\theta+\sin^2\theta)
++u_2^2(\cos^2\theta+\sin^2\theta)
++2u_1u_2(\sin\theta\cos\theta-\cos\theta\sin\theta)
+=u_1^2+u_2^2=||\bm{u}||
+$$
+
+即满足长度不变；
+
+
+$$
+\bm{(R\cdot u)\cdot u}
+=(u_1^2+u_2^2)\cos\theta=||\bm{u}||^2\cos\theta
+$$
+
+因此夹角大小和$\theta$一样。
+
+$$
+\bm{u\times (R\cdot u)}
+=\bm{e_3}(u_1^2+u_2^2)\sin\theta
+$$
+
+即当$\theta\in[0,\pi]$，上式大于等于0，满足旋转方向的定义。
+
+以上性质是所定义旋转的充分必要条件。
+
+最后讨论其矩阵形式。由于
+
+$$
+[\bm{I}]=\begin{bmatrix}
+    1&0\\0&1
+\end{bmatrix},\ \ 
+[\bm{\epsilon}]=\begin{bmatrix}
+    0&1\\-1&0
+\end{bmatrix},\ \ 
+$$
+
+则可知
+
+$$
+[\bm{R}(\theta)]=\bm{I}\cos\theta-
+\bm{\epsilon}\sin\theta=
+\begin{bmatrix}
+    \cos\theta&-\sin\theta\\\sin\theta&\cos\theta
+\end{bmatrix}
+$$
+
+\subsection*{3}
+
+三维反对称张量特征分解可知：
+$\theta\bm{L}$为
+$$
+\bm{V^{-1}\cdot D\cdot V}
+$$
+
+其中$\bm{D}=\bm{e_1e_1}i\theta-\bm{e_2e_2}i\theta$
+
+则根据指数函数性质可知
+
+$$
+e^{\theta\bm{L}}
+=\bm{V^{-1}}e^{\bm{D}}\bm{V}
+=\bm{V^{-1}}\bm{M}\bm{V}
+$$
+
+其中
+
+$$
+\bm{M}=\bm{e_1e_1}(\cos\theta+i\sin\theta)
++\bm{e_2e_2}(\cos\theta-i\sin\theta)
++\bm{e_3e_3}
+=\bm{I}+\frac{\sin\theta}{\theta}\bm{D}
++\frac{1-\cos\theta}{\theta^2}\bm{D}^2
+$$
+
+则
+
+$$
+e^{\theta\bm{L}}
+=\bm{I}+\sin\theta\bm{L}+(1-\cos\theta)\bm{L}^2
+$$
+
+选取任意矢量$\bm{u}$
+
+则作用于指数形式后：
+
+\begin{equation*}
+    \begin{split}
+        \bm{v}=e^{\theta\bm{L}}\cdot\bm{u}
+        =\bm{u}+\sin\theta(\bm{r}\times\bm{u})
+        +(1-\cos\theta)\bm{L}\cdot(\bm{r}\times\bm{u})
+        =\bm{u}+\sin\theta(\bm{r}\times\bm{u})
+        +(1-\cos\theta)\bm{r}\times(\bm{r}\times\bm{u})
+    \end{split}
+\end{equation*}
+
+不妨记$\bm{r}$为$\bm{e_3}$，
+$\bm{u}$的方向（单位化）为$\bm{e_1}$，
+$\bm{r\times u}$的方向（单位化）为$\bm{e_2}$，
+$\sqrt{\bm{u\cdot u}}=u$。
+$\bm{e_i}$是三维空间的正交标准基。
+因此
+
+\begin{equation*}
+    \begin{split}
+        \bm{v}
+        =u\bm{e_1}+u\sin\theta\bm{e_2}
+        -u(1-\cos\theta)\bm{e_1}
+        =u(\cos\theta \bm{e_1}+\sin\theta \bm{e_2})
+    \end{split}
+\end{equation*}
+
+以上表达可以验证：
+
+$
+\bm{v}\cdot\bm{v}=u
+$
+，
+$
+\bm{v}\cdot\bm{u}=u^2\cos\theta
+$
+，
+以及$\bm{u}\times\bm{v}=u^2\sin\theta\bm{e_3}$
+
+根据2的讨论，以上满足三维绕$\bm{r}$旋转$\theta$
+的充分必要条件，因此指数形式就是有限转动的精确表达。
+
+\subsection*{4}
+
+此处课上已经通过小转动到有限转动的几何关系证明，此处
+按照指数表达形式证明。
+
+$\bm{L}$一定可以特征分解：
+
+$$
+\bm{L}=\bm{V^{-1}\cdot E\cdot V},\ \ 
+\bm{E}=\bm{e_1}\bm{e_1}i-\bm{e_2}\bm{e_2}i
+$$
+
+则
+
+\begin{equation*}
+\begin{split}
+\lim_{n\rightarrow\infty}{
+\left(
+    \bm{I}
+    +
+    \frac{\theta}{n}
+    \bm{L}
+\right)^n
+}
+=&
+\lim_{n\rightarrow\infty}{
+    \bm{V^{-1}}\cdot 
+    \left(
+        \bm{I}
+        +
+        \frac{\theta}{n}
+        \bm{E}
+    \right)^n
+    \cdot \bm{V}
+}
+\\=&
+\bm{V^{-1}}\cdot 
+\lim_{n\rightarrow\infty}{
+    \left(
+        \bm{I}
+        +
+        \frac{\theta}{n}
+        \bm{E}
+    \right)^n
+}\cdot \bm{V}
+\\=&
+\bm{V^{-1}}\cdot 
+\lim_{n\rightarrow\infty}{
+    \left(
+        \bm{e_1e_1}(1+\frac{i\theta}{n})
+        +\bm{e_2e_2}(1-\frac{i\theta}{n})
+        +\bm{e_3e_3}(1)
+    \right)^n
+}\cdot \bm{V}
+\\=&
+\bm{V^{-1}}\cdot 
+    \left(
+        \bm{e_1e_1}
+        \lim_{n\rightarrow\infty}
+        {(1+\frac{i\theta}{n})^n}
+        +\bm{e_2e_2}
+        \lim_{n\rightarrow\infty}
+        {(1-\frac{i\theta}{n})^n}
+        +\bm{e_3e_3}(1)
+    \right)\cdot \bm{V}
+\\=&
+\bm{V^{-1}}\cdot 
+\left(
+    \bm{e_1e_1}
+    e^{i\theta}
+    +\bm{e_2e_2}
+    e^{-i\theta}
+    +\bm{e_3e_3}e^0
+\right)\cdot \bm{V}
+\\=&
+\bm{V^{-1}}\cdot 
+\exp\left(
+    \bm{e_1e_1}
+    i\theta
+    -\bm{e_2e_2}
+    i\theta
+\right)\cdot \bm{V}
+\\=&
+e^{\theta \bm{L}}
+\end{split}
+\end{equation*}
+
+根据3的结果，以上就是$R(\theta\bm{r})$。
+
+\subsection*{5}
+
+可以按照级数定义考虑：
+
+$$
+e^{\bm{A}}=\sum_{n=0}^\infty{
+    \frac{\bm{A}^n}{n!}
+}
+$$
+
+则由于反对称性：
+
+$$
+\tran{(e^{\bm{A}})}=\sum_{n=0}^\infty{
+    \frac{\bm{A}^n}{n!}(-1)^n
+}
+$$
+
+则
+
+\begin{equation*}
+\begin{split}
+    e^{\bm{A}}\cdot\tran{(e^{\bm{A}})}
+    =\sum_{m,n=0}^\infty{
+        \frac{\bm{A}^{m+n}}{m!n!}(-1)^n
+    }
+\end{split}
+\end{equation*}
+
+讨论：
+
+当$m+n=2k+1,\ k=0,1,2...$，求和内部共有$2k+2$项对应。其中$m,n$互换两两成对，且必有一个
+奇数一个偶数。分母相等
+而符号相反，求和是0。
+
+当$m+n=2k+2,\ k=0,1,2...$，求和内部共有
+$2k+3$项，其中$k+1$项是负号，$k+2$项是正号。
+
+此处考虑二项式定理，当$m+n=2k+2$：
+
+$$
+0=(1-1)^{2k+2}=\sum_{m=0}^{2k+2}
+\frac{(2k+2)!}{m!n!}1^m(-1)^n
+$$
+
+因此以上是0（事实上和$m+n$是奇数还是偶数没有关系）。
+
+综上，级数仅有零次项，即
+
+\begin{equation*}
+    \begin{split}
+        e^{\bm{A}}\cdot\tran{(e^{\bm{A}})}
+        =\bm{I}
+\end{split}
+\end{equation*}
+
+因此其是正交张量，有
+
+$$
+(e^{\bm{A}})^{-1}=e^{\bm{-A}}=\tran{(e^{\bm{A}})}
+$$
+
+\end{document}

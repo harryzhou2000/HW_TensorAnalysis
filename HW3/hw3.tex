@@ -1,0 +1,193 @@
+%!TEX program = xelatex
+\documentclass[UTF8,zihao=5]{ctexart}
+
+
+\title{{\bfseries 第三次作业-2}}
+\author{周涵宇 2018011600}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}
+
+\usepackage{fontspec}
+\setmainfont{Cambria Math}
+% \setmonofont{JetBrains Mono}
+\setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+
+\usepackage{bm}
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+
+\newcommand{\trans}[0]{^\mathrm{T}}
+\newcommand{\hermi}[0]{^\mathrm{H}}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1}
+
+考虑$\bm{A,B,C,D}\in\mathbb{R}^3$，其向量积不妨
+在正交标准基$\bm{g_i}$下按照Ricci符号展开：
+
+\begin{equation*}
+    \begin{split}
+        \bm{E}&=\bm{(A\times B)\times(C\times D)}\\
+        &=\bm{g_i}e_{ijk}e_{jst}e_{kmn}A_sB_tC_mD_n\\
+    \end{split}
+\end{equation*}
+
+Ricci符号满足：
+
+\begin{equation*}
+    e_{ijk}e_{ist}=\delta_{js}\delta_{kt}-\delta_{jt}\delta_{ks}
+\end{equation*}
+
+则有：
+
+\begin{equation*}
+    \begin{split}
+        \bm{E}&=\bm{(A\times B)\times(C\times D)}\\
+        &=\bm{g_i}(\delta_{ks}\delta_{it}-\delta_{is}\delta_{kt})e_{kmn}A_sB_tC_mD_n
+        =\bm{g_i}e_{kmn}A_kB_iC_mD_n-\bm{g_i}e_{tmn}A_iB_tC_mD_n
+        =\bm{[A,C,D]B}-\bm{[B,C,D]A}\\
+        &=\bm{g_i}(\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm})e_{jst}A_sB_tC_mD_n
+        =\bm{g_i}e_{jst}A_sB_tC_iD_j-\bm{g_i}e_{jst}A_sB_tC_jD_i
+        =\bm{[A,B,D]C}-\bm{[A,B,C]D}\\
+    \end{split}
+\end{equation*}
+
+即为所求
+
+\subsection*{2}
+
+已知三维下单位正交基（以下不区分上下标）：
+
+$$
+\det(\bm{A})=\det([A])=e_{ijk}e_{rst}A_{ir}A_{js}A_{kt}
+=e_{ijk}A_{1i}A_{2j}A_{3t}=e_{ijk}A_{i1}A_{j2}A_{t3}
+$$
+
+\begin{equation*}
+    e^{ijk}e_{rst}=\left|
+    \begin{matrix}
+        \delta^i_r&\delta^i_s&\delta^i_i\\
+        \delta^j_r&\delta^j_s&\delta^j_i\\
+        \delta^k_r&\delta^k_s&\delta^k_i\\
+    \end{matrix}
+    \right|
+\end{equation*}
+
+\begin{equation*}
+    e^{ijk}e_{rst}e^{rmn}e_{}=\left|
+    \begin{matrix}
+        \delta^i_r&\delta^i_s&\delta^i_i\\
+        \delta^j_r&\delta^j_s&\delta^j_i\\
+        \delta^k_r&\delta^k_s&\delta^k_i\\
+    \end{matrix}
+    \right|
+\end{equation*}
+
+则
+
+
+\begin{equation*}
+    \begin{split}
+        det(\bm{A})&=
+        e_{ijk}e_{rst}A_{ir}A_{js}A_{kt}\\
+        &=e_{ijk}e_{rst}
+        (B_{i1}C_{1r}+B_{i2}C_{2r}+B_{i3}C_{3r})
+        (B_{j1}C_{1s}+B_{j2}C_{2s}+B_{j3}C_{3s})
+        (B_{k1}C_{1t}+B_{k2}C_{2t}+B_{k3}C_{3t})\\
+    \end{split}
+\end{equation*}
+
+观察上式，分别交换右端项中的$ij,jk,ki,rs,st,tr$，同时对
+$ijk,rst$分别轮换，得到一系相等的式子，将其求和只剩下6项，发现
+其都是乘积中$1,2,3$分别出现两次，整理后得到
+
+\begin{equation*}
+    \begin{split}
+        det(\bm{A})&=
+        e_{ijk}e_{rst}B_{i1}B_{j2}B_{t3}C_{1r}C_{2s}C_{3t}\\
+        &=\det(\bm{B})\det(\bm{C})
+    \end{split}
+\end{equation*}
+
+因此得到所求关系。
+
+\subsection*{3}
+
+不妨找到正交基$\bm{g_i}$是$\bm{B}$的特征向量，对应特征值$\lambda_i$。
+
+\subsubsection*{a}
+
+\begin{equation*}
+    \begin{split}
+        \bm{[B\cdot u,v,w]}
+        =&\left[\sum_i{\lambda_iu_i\bm{g_i}},\bm{v},\bm{w}\right]\\
+        =&\lambda_1[u_1\bm{g_1,v,w}]
+            +\lambda_2[u_2\bm{g_2,v,w}]
+            +\lambda_3[u_3\bm{g_3,v,w}]\\
+    \end{split}
+\end{equation*}
+（上式及以下取消求和约定）
+
+上式$v,w$展开后共27项，与$\bm{[u,B\cdot v,w]},\bm{[u,v,B\cdot w]}$
+三组展开求和后，
+考察每项$[u_i\bm{g_i},v_j\bm{g_j},v_k\bm{g_k}]$，发现其在第一组展开中
+系数是$\lambda_i$，第二、第三组中分别是$\lambda_j,\lambda_k$，易知对于
+正交基$i,j,k$不同时才非0，这部分系数都是$I_1$，不妨将其余部分补全为$I_1$的系数，
+求和后得到$I_1[\bm{u},\bm{v},\bm{w}]$，即为所求证。
+
+\subsubsection*{b}
+
+\begin{equation*}
+    \begin{split}
+        \bm{[B\cdot u,B\cdot v,w]}
+        =&\left[\sum_i{\lambda_iu_i\bm{g_i}},\sum_i{\lambda_iv_i\bm{g_i}},\bm{w}\right]\\
+        =
+        &\lambda_1\lambda_1[u_1\bm{g_1},v_1\bm{g_1,w}]
+        +\lambda_1\lambda_2[u_1\bm{g_1},v_2\bm{g_2,w}]
+        +\lambda_1\lambda_3[u_1\bm{g_1},v_3\bm{g_3,w}]\\+
+        &\lambda_2\lambda_1[u_2\bm{g_2},v_1\bm{g_1,w}]
+        +\lambda_2\lambda_2[u_2\bm{g_2},v_2\bm{g_2,w}]
+        +\lambda_2\lambda_3[u_2\bm{g_2},v_3\bm{g_3,w}]\\+
+        &\lambda_3\lambda_1[u_3\bm{g_3},v_1\bm{g_1,w}]
+        +\lambda_3\lambda_2[u_3\bm{g_3},v_2\bm{g_2,w}]
+        +\lambda_3\lambda_3[u_3\bm{g_3},v_3\bm{g_3,w}]\\
+    \end{split}
+\end{equation*}
+
+上式中将$w$也展开同样是27项，三组求和则
+$[u_i\bm{g_i},v_j\bm{g_j},v_k\bm{g_k}]$的系数是
+$\lambda_i\lambda_j+\lambda_j\lambda_k+\lambda_k\lambda_i$
+发现只有$i,j,k$不同时才非0，此时系数就是$I_2$，因此将剩余的系数都改成
+$I_2$，求和（利用混合积线性）得到三组求和等于$I_2[\bm{u},\bm{v},\bm{w}]$
+
+\subsubsection*{c}
+
+设$\bm{C} = \bm{u}\bm{g_1}+\bm{v}\bm{g_2}+\bm{w}\bm{g_3}$
+
+则容易根据行列式的定义$det(\bm{C})=\bm{[u,v,w]}$
+
+$$
+\bm{[B\cdot \bm{u},B\cdot \bm{v},B\cdot \bm{w}]}=det(\bm{B}\cdot \bm{C})
+$$
+
+根据2的结论，
+
+$$
+\bm{[B\cdot \bm{u},B\cdot \bm{v},B\cdot \bm{w}]}=det(\bm{B})det(\bm{C})
+=I_3\bm{[u,v,w]}
+$$
+
+为所求。
+
+\end{document}

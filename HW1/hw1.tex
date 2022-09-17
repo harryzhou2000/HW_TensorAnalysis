@@ -1,0 +1,247 @@
+%!TEX program = xelatex
+\documentclass[UTF8,c5size]{ctexart}
+
+
+\title{{\bfseries 第一次作业}}
+\author{周涵宇 2018011600}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}
+
+\usepackage{fontspec}
+\setmainfont{Cambria Math}
+% \setmonofont{JetBrains Mono}
+\setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{array}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1}
+
+证明：
+
+首先明确，已知由于单位正交基下混合积定义的轮换性质
+
+$$
+[\bm{u},\bm{v},\bm{w}]=
+(\bm{u}\times\bm{v})\bullet\bm{w}
+=(\bm{v}\times\bm{w})\bullet\bm{u}
+=(\bm{w}\times\bm{u})\bullet\bm{v}
+$$
+
+因此以下讨论只取轮换等价中的一个情况。
+
+~\\
+
+先讨论充分性
+
+如果$\bm{u},\bm{v},\bm{w}$共面，则不妨设
+
+$$
+\bm{w}=a_1\bm{u}+a_2\bm{v}
+$$
+
+(上式及其轮换形式中必有一个成立，仅讨论此种)
+
+则
+
+$$
+[\bm{u},\bm{v},\bm{w}]=
+(\bm{u}\times\bm{v})\bullet\bm{w}
+=(\bm{u}\times\bm{v})\bullet(a_1\bm{u}+a_2\bm{v})
+=a_1(\bm{u}\times\bm{v})\bullet\bm{u}+
+a_2(\bm{u}\times\bm{v})\bullet\bm{v}
+$$
+
+容易知道根据叉积的性质，上式最后两项都是0，则
+
+$$
+[\bm{u},\bm{v},\bm{w}]=0
+$$
+
+以上是充分性的逆否命题，因此得证。
+
+~\\
+
+再讨论必要性
+
+已知$[\bm{u},\bm{v},\bm{w}]=0$
+
+假设$\bm{u},\bm{v},\bm{w}$非共面，根据可知
+
+$$
+\bm{w}=a_1\bm{u}+a_2\bm{v}+\bm{w'}
+$$
+
+且
+$
+\bm{w'}\neq 0, 
+\bm{w'}\bullet\bm{u}=\bm{w'}\bullet\bm{u}=0
+$。
+
+即，必有$\bm{w}$在$span(\bm{u},\bm{v})$的正交空间
+中的投影$\bm{w'}$非零。
+
+又空间只有3维，$span(\bm{u}\times\bm{v})$
+就是$span(\bm{u},\bm{v})$的正交空间
+（子空间的正交空间的唯一性可以通过构造正交基
+证明）
+
+因此
+
+$$
+\left|[\bm{u},\bm{v},\bm{w}]\right|
+=\left|\bm{w'}\bullet(\bm{u}\times\bm{v})\right|
+=|\bm{w'}||\bm{u}\times\bm{v}|
+$$
+
+根据已知以上最后相乘两项都非0，
+则知$[\bm{u},\bm{v},\bm{w}]\neq 0$。
+
+因此必要条件成立。
+
+\subsection*{2}
+
+不妨取三维标准正交基$\bm{e_i}$讨论分量，给出
+
+\begin{equation*}
+    \begin{split}
+        \bm{u}\times(\bm{v}\times\bm{w})&=
+        e_{rsi}e^{ijk}u^sv_jw_k\bm{e^r}\\
+        &=
+        \left|
+        \begin{matrix}
+            \delta^i_r&\delta^i_s&\delta^i_i\\
+            \delta^j_r&\delta^j_s&\delta^j_i\\
+            \delta^k_r&\delta^k_s&\delta^k_i\\
+        \end{matrix}
+        \right|u^sv_jw_k\bm{e^r}\\
+        &=
+        (\delta^i_r\delta^j_s\delta^k_i-\delta^i_r\delta^j_i\delta^k_s
+        +\delta^i_s\delta^j_i\delta^k_r-\delta^i_s\delta^j_r\delta^k_i
+        +\delta^i_i\delta^j_r\delta^k_s-\delta^i_i\delta^j_s\delta^k_r)
+        u^sv_jw_k\bm{e^r}\\
+        &=
+        (\delta^k_r\delta^j_s-\delta^j_r\delta^k_s
+        +\delta^j_s\delta^k_r-\delta^k_s\delta^j_r
+        +3\delta^j_r\delta^k_s-3\delta^j_s\delta^k_r)
+        u^sv_jw_k\bm{e^r}\\
+        &=
+        (\delta^j_r\delta^k_s-\delta^j_s\delta^k_r)
+        u^sv_jw_k\bm{e^r}\\
+        &=u^kv_rw_k\bm{e^r}-u^jv_jw_r\bm{e^r}\\
+        &=(\bm{u}\bullet\bm{w})\bm{v}-(\bm{u}\bullet\bm{v})\bm{w}
+    \end{split}
+\end{equation*}
+
+\subsection*{3}
+
+不妨取三维标准正交基$\bm{e_i}$讨论分量，给出
+
+\begin{equation*}
+    \begin{split}
+        (\bm{a}\times\bm{b})\bullet(\bm{c}\times\bm{d})&=
+        e^{ijk}e_{ist}a_jb_kc^sd^t\\
+        &=(\delta^j_s\delta^k_t-\delta^j_t\delta^k_s)a_jb_kc^sd^t\\
+        &=a_sb_tc^sd^t-a_tb_sc^sd^t\\
+        &=(\bm{a}\bullet\bm{c})(\bm{b}\bullet\bm{d})-
+        (\bm{a}\bullet\bm{b})(\bm{c}\bullet\bm{d})
+    \end{split}
+\end{equation*}
+
+\subsection*{4}
+
+不妨记$\bm{a},\bm{b},\bm{c}=\bm{a_{(1)}},\bm{a_{(2)}},\bm{a_{(3)}}$,  \ \ 
+$\bm{u},\bm{v},\bm{w}=\bm{u_{(1)}},\bm{u_{(2)}},\bm{u_{(3)}}$
+
+则已知在正交标准系下，可知
+
+\begin{equation*}
+    \begin{split}
+        \text{左侧}&=det([a_{(i)k}])det([u_{(j)k}])\\
+        &=det([a_{(i)k}][u_{(j)k}])=det([a_{(i)k}u_{(j)k}])\\
+        &=det([\bm{a_{(i)}}\bullet\bm{u_{(j)}}])\\
+        &=\text{右侧}
+    \end{split}
+\end{equation*}
+
+以上推导应用了矩阵乘法和其行列式运算的交换性，以及混合积的行列式写法。
+
+\subsection*{5}
+
+加法:
+
+$$
+\bm{x}+\bm{y}=(x_1+2y_1,x_2+2y_2,x_3+2y_3)
+$$
+
+则考虑:
+
+\begin{equation*}
+    \begin{split}
+        (\bm{x}+\bm{y})+\bm{z}&=(x_1+2y_1+2z_1,x_2+2y_2+2z_2,x_3+2y_3+2z_3)\\
+        \bm{x}+(\bm{y}+\bm{z})&=(x_1+2y_1+4z_1,x_2+2y_2+4z_2,x_3+2y_3+4z_3)
+    \end{split}
+\end{equation*}
+
+不满足分配律，不构成群。
+
+数乘:
+
+\begin{equation*}
+    \alpha\bm{x}=(\alpha x_1, x_2, \alpha x_3)
+\end{equation*}
+
+若$x_2\neq 0$且$\alpha= 0$则$\bm{x}\neq 0\text{(对于一般的加法定义的0矢量)}$，
+因此不满足数乘的归零要求。
+
+
+\subsection*{6}
+
+设图中$A,B,C$点全部在单位球上。
+
+根据几何考虑$\angle A$的表达:
+
+\begin{equation*}
+    \begin{split}
+        \cos{A}=\bm{n_{AOC}}\bullet\bm{n_{AOB}}=
+        \frac{\bm{OB}\times\bm{OA}}{\left\|\bm{OB}\times\bm{OA}\right\|}
+        \bullet
+        \frac{\bm{OC}\times\bm{OA}}{\left\|\bm{OC}\times\bm{OA}\right\|}
+        =
+        \frac{\bm{OB}\times\bm{OA}}{\sin{\gamma}}
+        \bullet
+        \frac{\bm{OC}\times\bm{OA}}{\sin{\beta}}
+    \end{split}
+\end{equation*}
+
+则有:
+
+\begin{equation*}
+    \begin{split}
+        \text{右侧}&=(\bm{OA}\bullet\bm{OB})(\bm{OA}\bullet\bm{OC})+\sin{\gamma}\frac{\bm{OB}\times\bm{OA}}{\sin{\gamma}}
+        \bullet
+        \sin{\beta}\frac{\bm{OC}\times\bm{OA}}{\sin{\beta}}
+        \\&=(\bm{OA}\bullet\bm{OB})(\bm{OA}\bullet\bm{OC})+
+        (\bm{OB}\times\bm{OA})
+        \bullet
+        (\bm{OC}\times\bm{OA})
+        \\&=(\bm{OA}\bullet\bm{OB})(\bm{OA}\bullet\bm{OC})+
+        (\bm{OB}\bullet\bm{OC})(\bm{OA}\bullet\bm{OA})-(\bm{OA}\bullet\bm{OB})
+        \\&=\bm{OB}\bullet\bm{OC}=\cos{\alpha}=\text{右侧}
+    \end{split}
+\end{equation*}
+
+\end{document}

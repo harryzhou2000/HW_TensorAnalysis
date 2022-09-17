@@ -1,0 +1,354 @@
+%!TEX program = xelatex
+\documentclass[UTF8,zihao=5]{ctexart}
+
+
+\title{{\bfseries 第1次作业}}
+\author{周涵宇 2022310984}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}
+
+\usepackage{fontspec}
+\setmainfont{Cambria Math}
+% \setmonofont{JetBrains Mono}
+\setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+
+\usepackage{bm}
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+
+\newcommand{\trans}[0]{^\mathrm{T}}
+\newcommand{\tran}[1]{#1^\mathrm{T}}
+\newcommand{\hermi}[0]{^\mathrm{H}}
+
+\newcommand*{\av}[1]{\left\langle{#1}\right\rangle}
+
+\newcommand*{\avld}[1]{\frac{\overline{D}#1}{Dt}}
+
+\newcommand*{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand*{\pdcd}[3]
+{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1.1}
+
+
+首先证明：
+
+\begin{equation*}
+    e^{ijk}e_{rst}=
+    \left|
+    \begin{matrix}
+        \delta^i_r & \delta^i_s & \delta^i_t \\
+        \delta^j_r & \delta^j_s & \delta^j_t \\
+        \delta^k_r & \delta^k_s & \delta^k_t \\
+    \end{matrix}
+    \right|
+    \equiv 
+    \delta^i_r\delta^j_s\delta^k_t +
+    \delta^i_s\delta^j_t\delta^k_r +
+    \delta^i_t\delta^j_r\delta^k_s -
+    \delta^i_t\delta^j_s\delta^k_r -
+    \delta^i_s\delta^j_r\delta^k_t -
+    \delta^i_r\delta^j_t\delta^k_s
+\end{equation*}
+
+考虑左侧为$\pm 1$的情况：
+当$i,j,k$与$r,s,t$分别是$1,2,3$时，容易发现右侧是单位阵的行列式，等于左侧。
+对$i,j,k$或者$r,s,t$循环移位时，由于相当于行列式交换两次行或者列，左右都不变。
+对$i,j,k$或者$r,s,t$任意交换时，由于行列式交换一次行或者列，左右都变号。
+因此所有非零的情况左右相等
+
+考虑左侧为$0$：当$i,j,k$或者$r,s,t$一定有任意的重复，可知有两列或者两行重复，左右都是0。
+
+总之，上述恒等式是成立的。
+对上述恒等式$k,t$指标缩并，得到：
+
+\begin{equation*}
+    \begin{aligned}
+        e^{ijk}e_{rsk}=&
+    \delta^i_r\delta^j_s\delta^k_k +
+    \delta^i_s\delta^j_k\delta^k_r +
+    \delta^i_k\delta^j_r\delta^k_s -
+    \delta^i_k\delta^j_s\delta^k_r -
+    \delta^i_s\delta^j_r\delta^k_k -
+    \delta^i_r\delta^j_k\delta^k_s\\
+    =&
+    3\delta^i_r\delta^j_s +
+    \delta^i_s\delta^j_r +
+    \delta^j_r\delta^i_s -
+    \delta^j_s\delta^i_r -
+    3\delta^i_s\delta^j_r -
+    \delta^i_r\delta^j_s 
+    \\
+    =&\delta^i_r\delta^j_s -
+    \delta^i_s\delta^j_r 
+    \end{aligned}
+\end{equation*}
+
+进一步缩并可得：
+\begin{equation*}
+    \begin{aligned}
+        e^{ijk}e_{rjk}
+    =&\delta^i_r\delta^j_j -
+    \delta^i_j\delta^j_r \\
+    =&2\delta^i_r
+    \end{aligned}
+\end{equation*}
+
+进一步缩并可得：
+\begin{equation*}
+    \begin{aligned}
+        e^{ijk}e_{ijk}
+    =&2\delta^i_i
+    =&6
+    \end{aligned}
+\end{equation*}
+
+\subsection*{1.2}
+在直角坐标展开，根据第一题，有：
+\begin{equation*}
+    \begin{aligned}
+        \bm{u}\times(\bm{v}\times\bm{w})
+        =&
+        u^i\bm{e}_i\times(v^r\bm{e}_r\times w^s\bm{e}_s)\\
+        =&
+        u^i\bm{e}_i\times(v^r w^s e_{rsj}\bm{e}^j)\\
+        =&
+        u^i v^r w^s e_{rsj}e_{ijk}\bm{e}^k\\
+        =&
+        u^i v^r w^s (\delta^k_r\delta^i_s-\delta^k_s\delta^i_r)
+        \bm{e}^k\\
+        =&
+        u^i v^k w^i \bm{e}^k- u^i v^i w^k\bm{e}^k\\
+        =&
+        (\bm{u}\cdot\bm{w})\bm{v}-(\bm{u}\cdot\bm{v})\bm{w}
+    \end{aligned}
+\end{equation*}
+
+同样：
+\begin{equation*}
+    \begin{aligned}
+        (\bm{u}\times\bm{v})\cdot(\bm{w}\times\bm{a})
+        =&
+        u^iv^je_{ijk}w^ra^se_{rsk}\\
+        =&
+        u^iv^jw^ra^s(\delta^i_r\delta^j_s -
+        \delta^i_s\delta^j_r)\\
+        =&
+        u^iv^jw^ia^j-u^iv^jw^ja^i\\
+        =&
+        (\bm{u}\cdot\bm{w})(\bm{v}\cdot\bm{a})-
+        (\bm{u}\cdot\bm{a})(\bm{v}\cdot\bm{w})
+    \end{aligned}
+\end{equation*}
+
+\subsection*{1.3}
+证明：
+
+已知单位正交基下混合积定义的轮换性质
+$$
+[\bm{u},\bm{v},\bm{w}]=
+(\bm{u}\times\bm{v})\bullet\bm{w}
+=(\bm{v}\times\bm{w})\bullet\bm{u}
+=(\bm{w}\times\bm{u})\bullet\bm{v}
+$$
+
+因此以下讨论只取轮换等价中的一个情况。
+
+~\\
+
+先讨论充分性
+
+如果$\bm{u},\bm{v},\bm{w}$共面，则不妨设
+
+$$
+\bm{w}=a_1\bm{u}+a_2\bm{v}
+$$
+
+(上式及其轮换形式中必有一个成立，仅讨论此种)
+
+则
+
+$$
+[\bm{u},\bm{v},\bm{w}]=
+(\bm{u}\times\bm{v})\bullet\bm{w}
+=(\bm{u}\times\bm{v})\bullet(a_1\bm{u}+a_2\bm{v})
+=a_1(\bm{u}\times\bm{v})\bullet\bm{u}+
+a_2(\bm{u}\times\bm{v})\bullet\bm{v}
+$$
+
+容易知道根据叉积的性质，上式最后两项都是0，则
+
+$$
+[\bm{u},\bm{v},\bm{w}]=0
+$$
+
+以上是充分性的逆否命题，因此得证。
+
+~\\
+
+再讨论必要性
+
+已知$[\bm{u},\bm{v},\bm{w}]=0$
+
+假设$\bm{u},\bm{v},\bm{w}$非共面，根据可知
+
+$$
+\bm{w}=a_1\bm{u}+a_2\bm{v}+\bm{w'}
+$$
+
+且
+$
+\bm{w'}\neq 0, 
+\bm{w'}\bullet\bm{u}=\bm{w'}\bullet\bm{u}=0
+$。
+
+即，必有$\bm{w}$在$span(\bm{u},\bm{v})$的正交空间
+中的投影$\bm{w'}$非零。
+
+又空间只有3维，$span(\bm{u}\times\bm{v})$
+就是$span(\bm{u},\bm{v})$的正交空间
+（子空间的正交空间的唯一性可以通过构造正交基
+证明）
+
+因此
+
+$$
+\left|[\bm{u},\bm{v},\bm{w}]\right|
+=\left|\bm{w'}\bullet(\bm{u}\times\bm{v})\right|
+=|\bm{w'}||\bm{u}\times\bm{v}|
+$$
+
+根据已知以上最后相乘两项都非0，
+则知$[\bm{u},\bm{v},\bm{w}]\neq 0$，矛盾。
+
+因此必要条件成立。
+
+\subsection*{1.7}
+
+当$\bm{u},\bm{v},\bm{w}$线性相关，左右都是0，显然成立，以下讨论线性无关情况。
+
+记$\bm{u},\bm{v},\bm{w}=\bm{g}_1, \bm{g}_2, \bm{g}_3$
+则一定有逆变基矢量$\bm{g}^1, \bm{g}^2, \bm{g}^3$，使得$\bm{g}^i\cdot\bm{g}_j=\delta^i_j$。
+则讨论$\bm{a},\bm{b},\bm{c}$的逆变分量展开情况：
+\begin{equation*}
+    \begin{aligned}
+        [\bm{a},\bm{b},\bm{c}]
+        =&[a_i\bm{g}^i,b_j\bm{g}^j,c_k\bm{g}^k]\\
+    \end{aligned}
+\end{equation*}
+
+考虑上式右端展开爱因斯坦求和有27项，其中非零的，只有$i,j,k$不等的情况，因此：
+\begin{equation*}
+    \begin{aligned}
+        [\bm{a},\bm{b},\bm{c}]
+        =&[a_i\bm{g}^i,b_j\bm{g}^j,c_k\bm{g}^k]\\
+        =&(
+            a_1b_2c_3 + a_2b_3c_1 + a_3b_1c_2
+            -a_3b_2c_1 - a_2b_1c_3 - a_1b_3c_2
+        )
+        [\bm{g}^1, \bm{g}^2, \bm{g}^3]\\
+        =&\left|
+            \begin{matrix}
+                a_1 &a_2 &a_3\\
+                b_1 &b_2 &b_3\\
+                c_1 &c_2 &c_3\\
+            \end{matrix}
+        \right|[\bm{g}^1, \bm{g}^2, \bm{g}^3]
+    \end{aligned}
+\end{equation*}
+
+由于已知
+\begin{equation*}
+    \begin{aligned}
+        \bm{g}^1=&
+        \frac{1}{\sqrt{g}}(\bm{g}_2\times\bm{g}_3)\\
+        \bm{g}^2=&
+        \frac{1}{\sqrt{g}}(\bm{g}_3\times\bm{g}_1)\\
+        \bm{g}^3=&
+        \frac{1}{\sqrt{g}}(\bm{g}_1\times\bm{g}_2)\\
+    \end{aligned}
+\end{equation*}
+
+因此，根据叉积公式（第二题）：
+\begin{equation*}
+    \begin{aligned}
+        [\bm{g}^1, \bm{g}^2, \bm{g}^3]=&
+        \frac{1}{g^{\frac{3}{2}}}
+        \left(
+            (\bm{g}_2\times\bm{g}_3)\times
+            (\bm{g}_3\times\bm{g}_1)
+        \right)\cdot
+        (\bm{g}_1\times\bm{g}_2)\\
+        =&
+        \frac{1}{g^{\frac{3}{2}}}
+        \left[
+            \left(
+                (\bm{g}_2\times\bm{g}_3)\cdot\bm{g}_1
+            \right)\bm{g}_3-
+            \left(
+                (\bm{g}_3\times\bm{g}_1)\cdot\bm{g}_3
+            \right)\bm{g}_1
+        \right]\cdot
+        (\bm{g}_1\times\bm{g}_2)\\
+        =&
+        \frac{1}{g^{\frac{3}{2}}}
+            [\bm{g}_1,\bm{g}_2,\bm{g}_3]\bm{g}_3\cdot
+        (\bm{g}_1\times\bm{g}_2)\\
+        =&
+        \frac{1}{g^{\frac{3}{2}}}
+            [\bm{g}_1,\bm{g}_2,\bm{g}_3][\bm{g}_1,\bm{g}_2,\bm{g}_3]\\
+        =&
+        \frac{1}{\sqrt{g}}
+    \end{aligned}
+\end{equation*}
+
+因此，关于$[\bm{a},\bm{b},\bm{c}]$的展开可得：
+\begin{equation*}
+    \begin{aligned}
+        [\bm{a},\bm{b},\bm{c}]
+        =&\left|
+            \begin{matrix}
+                a_1 &a_2 &a_3\\
+                b_1 &b_2 &b_3\\
+                c_1 &c_2 &c_3\\
+            \end{matrix}
+        \right|\frac{1}{\sqrt{g}}\\
+        \Rightarrow\ 
+        [\bm{a},\bm{b},\bm{c}][\bm{g}_1,\bm{g}_2,\bm{g}_3]
+        =&\left|
+            \begin{matrix}
+                a_1 &a_2 &a_3\\
+                b_1 &b_2 &b_3\\
+                c_1 &c_2 &c_3\\
+            \end{matrix}
+        \right|
+    \end{aligned}
+\end{equation*}
+
+又根据逆变分量的计算方法：
+\begin{equation*}
+    \begin{aligned}
+        a_i&=\bm{a}\cdot\bm{g}_i\\
+        b_i&=\bm{b}\cdot\bm{g}_i\\
+        c_i&=\bm{c}\cdot\bm{g}_i\\
+    \end{aligned}
+\end{equation*}
+
+带入上式即为所求证公式。
+
+
+\end{document}

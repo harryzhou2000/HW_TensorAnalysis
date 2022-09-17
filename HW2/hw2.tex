@@ -1,0 +1,340 @@
+%!TEX program = xelatex
+\documentclass[UTF8,c5size]{ctexart}
+
+
+\title{{\bfseries 第二次作业}}
+\author{周涵宇 2018011600}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}
+
+\usepackage{fontspec}
+\setmainfont{Cambria Math}
+% \setmonofont{JetBrains Mono}
+\setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+
+\usepackage{bm}
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+
+\newcommand{\trans}[0]{^\mathrm{T}}
+\newcommand{\hermi}[0]{^\mathrm{H}}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1}
+
+以下讨论都是在$\mathbb{R}^3$中
+
+\subsubsection*{i}
+
+C1：共轭对称
+
+此处实空间则退化为对称性，交换定义式右端的$x$和$y$发现与此前恒等，则证明。
+
+C2：数乘线性
+
+右端对$x$或者$y$而言都是一次项，无其他幂次，因此满足数乘线性。
+
+C3：分配律
+
+右端对$x$或者$y$而言都是一次项，每一项满足分配律，线性和后仍然满足。
+
+C4：正定性
+
+通过配方可以将其化为正定二次型
+$$
+(x_1+x_2)(y_1+y_2)+x_1y_1+x_2y_2+x_3y_3
+$$
+
+容易看到当$\bm{x}=\bm{y}$上式都是平方项，因此大于等于0且
+向量为0的时候才是0。
+
+此处采用更加
+数值的方法：
+
+$$
+\bm{I'(x,y)}
+=
+[\bm{x}]\trans
+\begin{bmatrix}
+    2&1&0\\
+    1&2&0\\
+    0&0&1\\
+\end{bmatrix}
+[\bm{y}]=[\bm{x}]\trans
+A
+[\bm{y}]
+$$
+
+只需证明矩阵$A$的正定性，由于其严格对角占优且对角线为正则为正定。
+
+或者，其特征值有$1,1,3$都是正数因此是正定的。
+
+综上，满足内积的定义。
+
+\subsubsection*{ii}
+
+根据线性代数，所有的内积一定有对应双线性函数
+
+\begin{equation}
+\bm{I(x,y)}
+=
+[\bm{x}]\trans
+M
+[\bm{y}]
+\end{equation}
+
+且满足$M$是正定对称矩阵，而且根据i,容易证明只要有一个正定对称矩阵$M$依此定义出的
+函数就是内积。
+
+因此，所有三维内积算子的集合与所有三维正定对称矩阵的集合是一一映射的。
+
+定义任意内积只需对其分量定义(1)形式的函数以及正定对称矩阵$M$即可。
+
+如定义矩阵
+$$
+M=\begin{bmatrix}
+    1&0&0\\
+    0&2&0\\
+    0&0&3\\
+\end{bmatrix}
+$$
+
+则(1)式就是一个内积。
+
+\subsection*{2}
+
+\subsubsection*{i}
+
+在$\mathrm{V}$中找到一组基$\{\bm{g}_k\}, k=1,2,...,N$。
+
+定义另一组向量$\bm{h}_k=i\bm{g}_k$，显然$\{\bm{h}_k,\bm{g}_k\}$是
+一组$\mathrm{V_+}$中的$2N$个向量。在实数的范畴下，定义其实的线性组合系数
+$a_k,b_k,\ \ k=1,2,...N$，设有：
+$$
+a_k\bm{g}_k+b_l\bm{h}_l=0
+$$
+
+则知
+$$
+(a_k+ib_k)\bm{g}_k=0
+$$
+
+上式左端的实部是$a_k\bm{g}_k$，虚部是$b_k\bm{g}_k$，都是0。由于已知$\{\bm{g}_k\}$
+是一组基，则
+$$
+a_k=b_k=0,\ \ k=1,2,...N
+$$
+
+因此$\{\bm{h}_k,\bm{g}_k\}$是$\mathrm{V_+}$的一组基。
+
+对于任意$\bm{w}=\bm{u}+i\bm{v}$，其实部和虚部可以分别被$\{\bm{g}_k\}$线性
+表示，因此$\bm{w}$一定是$\{\bm{h}_k,\bm{g}_k\}$的线性表示，因此这组基张成
+的空间包含了$\mathrm{V_+}$。
+
+综上，
+\begin{equation*}
+    \begin{split}
+        dim(span(\{\bm{h}_k,\bm{g}_k\}))=&2N\\
+    span(\{\bm{h}_k,\bm{g}_k\})\subseteq&\mathrm{V_+}\\
+    span(\{\bm{h}_k,\bm{g}_k\})\supseteq&\mathrm{V_+}\\
+    \end{split}
+\end{equation*}
+
+则知
+$$
+dim(\mathrm{V_+})=2N
+$$
+
+以上讨论是在实数域定义的空间下进行。
+
+\subsubsection*{ii}
+
+\begin{equation*}
+    \overline{\bm{w}}\cdot{\bm{w}}
+    =(\bm{u}-i\bm{v})\cdot(\bm{u}+i\bm{v})
+    =\bm{u}\cdot\bm{u}-i\bm{v}\cdot\bm{u}+i\bm{v}\cdot\bm{u}
+    -i^2\bm{v}\cdot\bm{v}=\bm{u}\cdot\bm{u}+\bm{v}\cdot\bm{v}
+\end{equation*}
+
+\subsection*{iii}
+
+记$(\bm{w_1},\bm{w_2})=\overline{\bm{w_1}} \cdot \bm{w_2}$
+
+如果在复空间讨论：
+
+内积性质：
+
+C1：共轭对称
+
+$$
+(\overline{\bm{w_2}},\overline{\bm{w_1}})
+=\overline{\overline{\bm{w_2}}}\cdot\overline{\bm{w_1}}
+=\overline{\overline{\bm{w_1}} \cdot \bm{w_2}}=\overline{(\bm{w_1},\bm{w_2})}
+$$
+
+C2：(第二位)数乘线性：
+
+$$
+(\bm{w_1},a\bm{w_2})=\overline{\bm{w_1}} \cdot a\bm{w_2}={a}(\bm{w_1},\bm{w_2})
+$$
+
+C3：分配律：
+
+$$
+(\bm{w_1}+\bm{w_3},\bm{w_2})=
+(\overline{\bm{w_1}}+\overline{\bm{w_3}}) \cdot \bm{w_2}
+=\overline{\bm{w_1}} \cdot \bm{w_2}+\overline{\bm{w_3}} \cdot \bm{w_2}
+=(\bm{w_1},\bm{w_2})+(\bm{w_3},\bm{w_2})
+$$
+
+C4：正定性：
+
+ii可知：
+
+$$
+(\bm{w_1},\bm{w_1})=\bm{u_1} \cdot \bm{u_1}+\bm{v_1} \cdot \bm{v_1}
+$$
+
+出于点积的正定，上式右端大于等于0且只有$\bm{u_1},\bm{v_1}$都是0的时候
+才是0，因此满足正定性。
+
+因此，如果认为$\mathrm{V_+}$是一个复空间这是一个内积。
+
+\ \ 
+
+{\bf{也可以在实空间讨论}}，此处定义的是
+$$
+(\bm{w_1},\bm{w_2})=
+\bm{u_1}\cdot\bm{u_2}
+-i\bm{v_1}\cdot\bm{u_2}+i\bm{v_1}\cdot\bm{u_2}
++\bm{v_1}\cdot\bm{v_2}
+$$
+
+可以发现其结果一般来说是非实数，因此不可能用它定义实空间的内积。
+
+
+\newcommand{\cbm}[1]{\overline{\bm{#1}}}
+可以定义：
+\begin{equation}
+    \begin{split}
+        (\bm{w_1},\bm{w_2})_*&=
+\bm{u_1}\cdot\bm{u_2}
++\bm{v_1}\cdot\bm{v_2}
+=\frac{1}{4}\left((\bm{w_1}+\cbm{w_1})\cdot(\bm{w_2}+\cbm{w_2})
+-(\bm{w_1}-\cbm{w_1})\cdot(\bm{w_2}-\cbm{w_2})\right)\\
+&=\frac{1}{2}\left(\bm{w_1}\cdot\cbm{w_2}+\cbm{w_1}\cdot\bm{w_2}\right)
+    \end{split}
+\end{equation}
+
+
+作为实空间的内积（但显然不是复空间的内积）。
+
+由于$(\bm{w_1},\bm{w_2})_*=\frac{1}{2}((\bm{w_1},\bm{w_2})+(\bm{w_2},\bm{w_1}))$
+
+其对称性、数乘线性、分配律和正定性可以通过复空间的讨论得到，
+或者直接通过 (2)式的第一个等号可以得到。
+
+% 容易发现此时对称性只能是共轭的，实数的数乘线性和分配律依然满足，
+% 正定性出于ii的讨论也只能是
+
+\subsection*{3}
+
+\subsubsection*{i}
+
+此处以点积符号表示定义模长的那个内积。
+
+如果已知等式则:
+
+\begin{equation*}
+    \begin{split}
+        |\bm{u}+\bm{v}|^2&=(\bm{u}+\bm{v})\cdot (\bm{u}+\bm{v})\\
+        &=\bm{u}\cdot\bm{u}+\bm{v}\cdot\bm{v}+2\bm{u}\cdot\bm{v}\\
+        &=|\bm{u}|^2+|\bm{v}|^2=\bm{u}\cdot\bm{u}+\bm{v}\cdot\bm{v}\\
+        \Leftrightarrow 0&=\bm{u}\cdot\bm{v}
+    \end{split}
+\end{equation*}
+
+因此等式是正交的充要条件。  
+
+\subsubsection*{ii}
+
+不是，考虑三维空间三个非零矢量，构造
+$
+\bm{u}\cdot\bm{v}=0
+$
+并令$\bm{w}=(\bm{u}+\bm{v})\times(\bm{u}\times\bm{v})$
+
+可知三者都是非零且线性相关（叉积展开可得），即共面。但是同时由于
+$\bm{(u+v)}\cdot\bm{w}=0$
+
+可得$|\bm{u}+\bm{v}+\bm{w}|^2=|\bm{u}+\bm{v}|^2+|\bm{w}|^2
+=|\bm{u}|^2+|\bm{v}|^2+|\bm{w}|^2$
+
+因此等式并不是相互正交的充分条件。
+
+根据向量组正交的定义，给出等式组:
+$$
+|\bm{u_i}+\bm{u_j}|^2=|\bm{u_i}|^2+|\bm{u_j}|^2, \ \  i\neq j, \ \ i,j=1,2,...p 
+$$
+
+其中共有$\frac{p(p-1)}{2}$个不同的方程，这就是向量组正交的充分必要条件。
+
+\subsection*{4}
+
+已知对于任意的$\bm{u}$
+\begin{equation*}
+    \bm{A} \cdot \bm{u} = \bm{a}\times\bm{u},\ \ 
+    \bm{W} \cdot \bm{u} = \bm{w}\times\bm{u}
+\end{equation*}
+
+则对于任意$\bm{u},\bm{v}$
+可知
+
+\begin{equation*}
+    \begin{split}
+        \bm{u}\cdot(\bm{A}\cdot\bm{W})\cdot\bm{v}
+        &=(\bm{u}\times\bm{a})\cdot(\bm{w}\times\bm{v})
+        =\bm{u}\cdot(\bm{a}\times(\bm{w}\times\bm{v}))
+        =\bm{u}\cdot((\bm{a}\cdot\bm{v})\bm{w}-(\bm{a}\cdot\bm{w})\bm{v})
+        \\
+        &=(\bm{u}\cdot\bm{w})(\bm{a}\cdot\bm{v})-
+        (\bm{a}\cdot\bm{w})(\bm{u}\cdot\bm{v})\\
+        &=\bm{u}\cdot\left(\bm{w}\bm{a}-(\bm{w}\cdot\bm{a})\bm{I}\right)\cdot\bm{v}
+    \end{split}
+\end{equation*}
+
+因此
+\begin{equation*}
+    \bm{A}\cdot\bm{W}=\bm{w}\bm{a}-(\bm{w}\cdot\bm{a})\bm{I}
+\end{equation*}
+
+当
+$$
+\bm{W}=\bm{A}
+$$
+
+得到
+\begin{equation*}
+    \bm{A}\cdot\bm{A}=\bm{a}\bm{a}-(\bm{a}\cdot\bm{a})\bm{I}
+\end{equation*}
+ 
+由于反对称性可知
+$$
+\bm{A}:\bm{A}=
+\bm{A}\cdot\cdot\bm{A}^\mathrm{T}=tr(\bm{A}\cdot\bm{A}^\mathrm{T})
+=-tr\bm{A}^2=-tr(\bm{a}\bm{a}-(\bm{a}\cdot\bm{a})\bm{I})
+=-(tr(\bm{a}\bm{a})-3\bm{a}\cdot\bm{a})=2\bm{a}\cdot\bm{a}
+$$
+
+\end{document}
