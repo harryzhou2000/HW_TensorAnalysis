@@ -15,7 +15,7 @@ MSWordLineSpacingMultiple=1.5
 ]{zhlineskip}
 
 \usepackage{fontspec}
-\setmainfont{Cambria Math}
+\setmainfont{Times New Roman}
 % \setmonofont{JetBrains Mono}
 \setCJKmainfont{仿宋}[AutoFakeBold=true]
 \setCJKsansfont{黑体}[AutoFakeBold=true]
@@ -205,7 +205,7 @@ $$
 
 已知$[\bm{u},\bm{v},\bm{w}]=0$
 
-假设$\bm{u},\bm{v},\bm{w}$非共面，根据可知
+假设$\bm{u},\bm{v},\bm{w}$非共面，可知存在$\bm{w'}$
 
 $$
 \bm{w}=a_1\bm{u}+a_2\bm{v}+\bm{w'}
@@ -239,6 +239,111 @@ $$
 因此必要条件成立。
 
 \subsection*{1.4}
+取分量$\bm{x}=(1,1,1), \bm{y}=(0,0,0)$，代入即有：
+$\bm{x}+\bm{y}=(1,1,1), \bm{y}+\bm{x}=(0,0,0)$，
+则$\bm{y}+\bm{x}=2(\bm{x}+\bm{y})=(2,2,2)$，不构成阿贝尔群。
+
+取分量$\bm{x}=(1,1,1)$，则$(1+1)\bm{x}=(2,1,2)\neq 1\bm{x} + 1\bm{x}=(2,2,2)$，
+因此不是线性空间的数乘运算。
+
+\subsection*{1.5}
+以下讨论都是在$\mathbb{R}^3$中
+
+\subsubsection*{i}
+
+C1：共轭对称
+
+此处实空间则退化为对称性，交换定义式右端的$x$和$y$发现与此前恒等，则证明。
+
+C2：数乘线性
+
+右端对$x$或者$y$而言都是一次项，无其他幂次，因此满足数乘线性。
+
+C3：分配律
+
+右端对$x$或者$y$而言都是一次项，每一项满足分配律，线性和后仍然满足。
+
+C4：正定性
+
+通过配方可以将其化为正定二次型
+$$
+(x_1+x_2)(y_1+y_2)+x_1y_1+x_2y_2+x_3y_3
+$$
+
+容易看到当$\bm{x}=\bm{y}$上式都是平方项，因此大于等于0且
+向量为0的时候才是0。
+
+或者采用更加
+数值的方法：
+
+$$
+\bm{I'(x,y)}
+=
+[\bm{x}]\trans
+\begin{bmatrix}
+    2&1&0\\
+    1&2&0\\
+    0&0&1\\
+\end{bmatrix}
+[\bm{y}]=[\bm{x}]\trans
+A
+[\bm{y}]
+$$
+
+只需证明矩阵$A$的正定性，由于其严格对角占优且对角线为正则为正定。
+
+或者，其特征值有$1,1,3$都是正数因此是正定的。
+
+综上，满足内积的定义。
+
+\subsubsection*{ii}
+
+根据线性代数，所有的内积一定有对应双线性函数
+
+\begin{equation}
+\bm{I(x,y)}
+=
+[\bm{x}]\trans
+M
+[\bm{y}]
+\end{equation}
+
+且满足$M$是正定对称矩阵，而且根据i,容易证明只要有一个正定对称矩阵$M$依此定义出的
+函数就是内积。
+
+因此，所有三维内积算子的集合与所有三维正定对称矩阵的集合是一一映射的。
+
+定义任意内积只需对其分量定义(1)形式的函数以及正定对称矩阵$M$即可。
+
+如定义矩阵
+$$
+M=\begin{bmatrix}
+    1&0&0\\
+    0&2&0\\
+    0&0&3\\
+\end{bmatrix}
+$$
+
+则(1)式就是一个内积。
+
+\subsection*{1.6}
+根据直角坐标，通过系数矩阵求逆得到逆变基向量的分量：
+\begin{equation*}
+    \begin{aligned}
+        \bm{g}^1=&\frac{1}{15}(5\bm{e}_1-5\bm{e}_2+5\bm{e}_3)\\
+        \bm{g}^2=&\frac{1}{15}(-9\bm{e}_1+21\bm{e}_2-18\bm{e}_3)\\
+        \bm{g}^3=&\frac{1}{15}(\bm{e}_1-4\bm{e}_2+7\bm{e}_3)\\
+    \end{aligned}
+\end{equation*}
+
+逆变度量张量的分量则为：
+\begin{equation*}
+    g^{ij}=\bm{g}^i\cdot\bm{g}^j=\frac{1}{75}\begin{bmatrix}
+        25 & -80 & 20\\
+        -80 & 282 & -73 \\
+        20 & -73 & 22
+    \end{bmatrix}
+\end{equation*}
 % TODO
 
 
