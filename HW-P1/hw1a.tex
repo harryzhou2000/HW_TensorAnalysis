@@ -20,9 +20,12 @@ MSWordLineSpacingMultiple=1.5
 \setCJKmainfont{仿宋}[AutoFakeBold=true]
 \setCJKsansfont{黑体}[AutoFakeBold=true]
 
-\usepackage{bm}
+% \usepackage{bm}
+
 \usepackage{amsmath,amsfonts}
 \usepackage{array}
+
+\newcommand{\bm}[1]{{\mathbf{#1}}}
 
 \newcommand{\trans}[0]{^\mathrm{T}}
 \newcommand{\tran}[1]{#1^\mathrm{T}}
@@ -46,7 +49,6 @@ MSWordLineSpacingMultiple=1.5
 
 
 首先证明：
-
 \begin{equation*}
     e^{ijk}e_{rst}=
     \left|
@@ -75,7 +77,6 @@ MSWordLineSpacingMultiple=1.5
 
 总之，上述恒等式是成立的。
 对上述恒等式$k,t$指标缩并，得到：
-
 \begin{equation*}
     \begin{aligned}
         e^{ijk}e_{rsk}=&
@@ -113,7 +114,7 @@ MSWordLineSpacingMultiple=1.5
     \begin{aligned}
         e^{ijk}e_{ijk}
     =&2\delta^i_i
-    =&6
+    =6
     \end{aligned}
 \end{equation*}
 
@@ -236,6 +237,11 @@ $$
 则知$[\bm{u},\bm{v},\bm{w}]\neq 0$，矛盾。
 
 因此必要条件成立。
+
+\subsection*{1.4}
+% TODO
+
+
 
 \subsection*{1.7}
 
