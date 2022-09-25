@@ -2,7 +2,7 @@
 \documentclass[UTF8,zihao=5]{ctexart}
 
 
-\title{{\bfseries 第1次作业}}
+\title{{\bfseries 第2次作业}}
 \author{周涵宇 2022310984}
 \date{}
 
@@ -45,7 +45,156 @@ MSWordLineSpacingMultiple=1.5
 
 \maketitle
 
-\subsection*{1.1}
+\subsection*{2.1}
+
+不妨在笛卡尔坐标下展开为分量，则：
+
+\begin{equation}
+    \begin{aligned}
+        \bm{A}\cdot\bm{W}=&A_{ij}B^j_{\cdot k}\bm{e}^i\bm{e}^k
+        =\varepsilon_{ijr}a^r\varepsilon^j_{\cdot ks}w^s\bm{e}^i\bm{e}^k
+        =\varepsilon_{rij}\varepsilon^{\cdot\cdot j}_{ks}a^rw^s\bm{e}^i\bm{e}^k
+        =(\delta_{rk}\delta_{is} - \delta_{rs}\delta_{ik})a^rw^s\bm{e}^i\bm{e}^k\\
+        =&a^kw^i\bm{e}^i\bm{e}^k-a^sw^s\bm{e}^k\bm{e}^k
+        =\bm{w}\bm{a}-(\bm{w}\cdot\bm{a})\bm{I}
+    \end{aligned}
+\end{equation}
+
+因此，当$\bm{W}=\bm{A}$，$\bm{A}^2=\bm{a}\bm{a}-(\bm{a}\cdot\bm{a})\bm{I}$。
+
+由于$\bm{A}$是反对称的，
+$tr(\bm{A}\cdot\bm{A}) = -tr(\bm{A}\cdot\bm{A}\trans)=-\bm{A}:\bm{A} $，
+又$tr(\bm{A}\cdot\bm{A})=tr(\bm{a}\bm{a}-(\bm{a}\cdot\bm{a})\bm{I})=\bm{a}\cdot\bm{a}-3\bm{a}\cdot\bm{a}=-2\bm{a}\cdot\bm{a}$
+可知$\bm{A}:\bm{A}=2\bm{a}\cdot\bm{a}$。
+
+\subsection*{2.2}
+\subsubsection*{(i)}
+可以通过Caylay-Hamilton定理给出，三维二阶张量的3次幂可以由更低次幂表示，
+左右同乘本张量递推即有任意高于或等于3次的幂可以由0，1，2次幂表示。
+
+
+
+对这样的等式两端取迹，则可知：
+\begin{equation}
+    J_{3+k}-I_1J_{2+k}+I_2J_{1+k}-I_3J_{0+k}=0,\ \  k=0,1,2..., J_0=3
+\end{equation}
+
+任意高于或等于3次的$J$可以被三个不变量以及$J_1,J_2$表示，同时可以证明$J_1,J_2$
+完全可以由三个不变量表示，因此，所有的$J$共有三个自由度，可以完全由三个不变量表示。
+
+\subsubsection*{(ii)}
+对于三维二阶张量$\bm{T}$，主迹数如下：
+
+\begin{equation}
+    \begin{aligned}
+        J_1&=T^i_{\cdot i},\ 
+        J_2=T^i_{\cdot j}T^j_{\cdot i},\ 
+        J_3=T^i_{\cdot j}T^j_{\cdot k}T^k_{\cdot i}\\
+        &\text{（本式中$J,I$的上标都是幂）}
+    \end{aligned}
+\end{equation}
+
+根据特征方程已经得出：
+
+\begin{equation}
+    \begin{aligned}
+        I_1=&T^i_{\cdot i}=J_1\\
+        I_2=&\frac{1}{2}\left(T^i_{\cdot i}T^j_{\cdot j}
+        -T^i_{\cdot j}T^j_{\cdot i}\right)
+        =\frac{1}{2}(J_1^2-J_2)\\
+        I_3=&\det(\bm{T})=e_{rst}T^r_{\cdot 1}T^s_{\cdot 2}T^t_{\cdot 3}
+        \frac{1}{6}e^{ijk}e_{rst}T^r_{\cdot i}T^s_{\cdot j}T^t_{\cdot k}\\
+        =&
+        \frac{1}{6}
+        \left(\delta^i_r\delta^j_s\delta^k_t +
+        \delta^i_s\delta^j_t\delta^k_r +
+        \delta^i_t\delta^j_r\delta^k_s -
+        \delta^i_t\delta^j_s\delta^k_r -
+        \delta^i_s\delta^j_r\delta^k_t -
+        \delta^i_r\delta^j_t\delta^k_s\right)
+        T^r_{\cdot i}T^s_{\cdot j}T^t_{\cdot k}\\
+        =&
+        \frac{1}{6}
+        \left(
+        T^i_{\cdot i}T^j_{\cdot j}T^k_{\cdot k}+
+        T^r_{\cdot s}T^s_{\cdot t}T^t_{\cdot r}+
+        T^r_{\cdot t}T^s_{\cdot r}T^t_{\cdot s}-
+        T^r_{\cdot t}T^s_{\cdot s}T^t_{\cdot r}-
+        T^r_{\cdot s}T^s_{\cdot r}T^t_{\cdot t}-
+        T^r_{\cdot r}T^s_{\cdot t}T^t_{\cdot s}
+        \right)\\
+        =&
+        \frac{1}{6}
+        \left(
+        J_1^3+2J_3-3J_1J_2
+        \right)\\
+        &\text{（本式中$J,I$的上标都是幂）}
+    \end{aligned}
+\end{equation}
+
+\subsubsection*{(iii)}
+
+根据上一个问题，求解（三角的）非线性方程组即可，通过代入法直接解得：
+\begin{equation}
+    \begin{aligned}
+        J_1=&I_1\\
+        J_2=&I_1^2-2I_2\\
+        J_3=&3I_3+\frac{3J_1J_2}{2}-\frac{J_1^3}{2}
+           =3I_3+\frac{3I_1(I_1^2-2I_2)}{2}-\frac{I_1^3}{2}
+           =I_1^3-3I_1I_2+3I_3\\
+           &\text{（本式中$J,I$的上标都是幂）}
+    \end{aligned}
+\end{equation}
+
+\subsection*{2.3}
+\subsubsection*{(i)}
+充要条件的表述不唯一，可以是“其特征值有且只有一个非0”，
+也可以是“将一组基映射后张成一维空间”，
+或者“一组基映射后成为共线的向量组且至少一个非零”。
+
+容易证明这三个表述等价，现给出最后一个的证明。
+由于当$\bm{a},\bm{b}$至少一个非零时，两侧乘除一个非零标量，
+不影响等式，此处的唯一性应当指的是在共线的意义下所有的非零向量
+算作一个。
+
+首先指出，定理进一步约束为$\bm{a},\bm{b},\bm{B}$都是非0的，
+否则$B$是0，则其中一个为0另一个任取都满足，
+是非唯一的。
+
+必要性：已知有唯一的$\bm{a},\bm{b}\neq\bm{0}\ \ \ \ s.t.\ \ \  \bm{B}=\bm{a}\bm{b}$，
+则对于基向量$\bm{g}_i$，映射后为$\bm{a}(\bm{b}\cdot \bm{g}_i)$，新的向量组一定在$\bm{a}$张成的空间
+中，且由于$\bm{b}$非0，其协变分量不都是0，则条件满足，因此是必要条件。
+
+充分性：已知条件：$\bm{B}\cdot\bm{g}_i$共线，则取此方向的一个非零向量$\bm{a}$，可给出
+$\bm{B}\cdot\bm{g}_i=b_i\bm{a}$，其系数$b_i$不都是0，因此存在非零向量$\bm{b}=b_i\bm{g}^i$，
+使得$\bm{B}\cdot\bm{g}_i=\bm{a}\bm{b}\cdot\bm{g}_i$成立，由于对基向量成立，对所有向量都成立，
+因此$\bm{B}=\bm{a}\bm{b}$，上述过程确定的$\bm{a}, \bm{b}$各自只能在确定的直线上，共线意义是唯一的。
+
+\subsubsection*{(ii)}
+
+三维情况。
+对于任意的二阶张量，其表示为$\bm{B}=B^{ij}\bm{g}_i\bm{g}_j$，取$K=9$，则容易得到一组
+$\bm{a}_i,\bm{b}_i, i=1,2,\dots,9$满足关系，且由于基向量的任意性取法不唯一。现证明如果正则，
+最少表示为3个。
+
+正则指的是三维空间映射为三维空间，也就是一组基映射后线性无关，还是一组基。
+则如果存在$\bm{B}=\sum_{i=1}^{3}{\bm{a}_i\bm{b}_i}$，则映射$\bm{g}_i$到
+$\bm{B}\cdot\bm{g}_i=\sum_{i=1}^{K}{\bm{a}_i\left(\bm{b}_i\cdot\bm{g}_i\right)}$
+如果$K<3$，发现映射后三个向量都是$\bm{a}_1,\bm{a}_2$表示的，一定线性相关，因此不是正则的，因此有
+$K\ge3$。
+
+事实上，任意二阶张量可以通过通过特征分解得到特征向量，以单位特征向量（维数不足则补全）构造一组基时，
+其分量是对角化的，对角元素就是特征值，因此最少只需非零特征值个数组$\bm{a}, \bm{b}$即可表示$\bm{B}$，
+其个数就是二阶张量的秩。
+
+
+
+% !delete below
+\ 
+
+\ 
+
+\ 
 
 
 首先证明：
