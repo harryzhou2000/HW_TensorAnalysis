@@ -620,8 +620,8 @@ $$
 
 \begin{equation}
     \begin{aligned}
-        \bm{a}_n=[K]^n\bm{a}_1
-        =[V]^{-1}diag(\lambda_1^n,\lambda_2^n,\lambda_3^n)[V]\bm{a}_1
+        \bm{a}_n=[K]^{n-1}\bm{a}_1
+        =[V]^{-1}diag(\lambda_1^{n-1},\lambda_2^{n-1},\lambda_3^{n-1})[V]\bm{a}_1
     \end{aligned}
     \label{eq:EX_Mat}
 \end{equation}
@@ -638,7 +638,8 @@ $$
 即有：
 
 \begin{equation}
-    \bm{a}_n=\left[\begin{array}{c} \frac{{\lambda _{1}}^n\,{\lambda _{1}}^3\,\lambda _{2}-\lambda _{1}\,{\lambda _{2}}^n\,{\lambda _{2}}^3-{\lambda _{1}}^n\,{\lambda _{1}}^3\,\lambda _{3}+\lambda _{1}\,{\lambda _{3}}^n\,{\lambda _{3}}^3+{\lambda _{2}}^n\,{\lambda _{2}}^3\,\lambda _{3}-\lambda _{2}\,{\lambda _{3}}^n\,{\lambda _{3}}^3}{\left(-\lambda _{2}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{2}\right)}\\ \frac{{\lambda _{1}}^n\,{\lambda _{1}}^3\,{\lambda _{2}}^2-{\lambda _{1}}^n\,{\lambda _{1}}^3\,{\lambda _{3}}^2-{\lambda _{1}}^2\,{\lambda _{2}}^n\,{\lambda _{2}}^3+{\lambda _{2}}^n\,{\lambda _{2}}^3\,{\lambda _{3}}^2+{\lambda _{1}}^2\,{\lambda _{3}}^n\,{\lambda _{3}}^3-{\lambda _{2}}^2\,{\lambda _{3}}^n\,{\lambda _{3}}^3}{\left(-\lambda _{2}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{2}\right)}\\ \frac{\lambda _{1}\,\lambda _{2}\,\lambda _{3}\,\left({\lambda _{1}}^n\,{\lambda _{1}}^2\,\lambda _{2}-\lambda _{1}\,{\lambda _{2}}^n\,{\lambda _{2}}^2-{\lambda _{1}}^n\,{\lambda _{1}}^2\,\lambda _{3}+\lambda _{1}\,{\lambda _{3}}^n\,{\lambda _{3}}^2+{\lambda _{2}}^n\,{\lambda _{2}}^2\,\lambda _{3}-\lambda _{2}\,{\lambda _{3}}^n\,{\lambda _{3}}^2\right)}{\left(-\lambda _{2}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{2}\right)} \end{array}\right]
+    \bm{a}_n=
+    \left[\begin{array}{c} -\frac{\lambda _{1}\,{\lambda _{2}}^{3+n}-{\lambda _{1}}^{3+n}\,\lambda _{2}-\lambda _{1}\,{\lambda _{3}}^{3+n}+{\lambda _{1}}^{3+n}\,\lambda _{3}+\lambda _{2}\,{\lambda _{3}}^{3+n}-{\lambda _{2}}^{3+n}\,\lambda _{3}}{\left(-\lambda _{2}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{2}\right)}\\ \frac{{\lambda _{1}}^{3+n}\,{\lambda _{2}}^2-{\lambda _{1}}^2\,{\lambda _{2}}^{3+n}-{\lambda _{1}}^{3+n}\,{\lambda _{3}}^2+{\lambda _{1}}^2\,{\lambda _{3}}^{3+n}+{\lambda _{2}}^{3+n}\,{\lambda _{3}}^2-{\lambda _{2}}^2\,{\lambda _{3}}^{3+n}}{\left(-\lambda _{2}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{2}\right)}\\ -\frac{\lambda _{1}\,\lambda _{2}\,\lambda _{3}\,\left(\lambda _{1}\,{\lambda _{2}}^{2+n}-{\lambda _{1}}^{2+n}\,\lambda _{2}-\lambda _{1}\,{\lambda _{3}}^{2+n}+{\lambda _{1}}^{2+n}\,\lambda _{3}+\lambda _{2}\,{\lambda _{3}}^{2+n}-{\lambda _{2}}^{2+n}\,\lambda _{3}\right)}{\left(-\lambda _{2}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{2}\right)} \end{array}\right]
 \end{equation}
 
 引入循环记号：$\left.T_{i_1,i_2,...}\right|_{(1,2,3)}=T_{i_1,i_2,...}+T_{[i_1+1],[i_2+1],...}+T_{[i_1+2],[i_2+2],...}, [i+k]\doteq\mod{(i+k-1,3)}+1$
