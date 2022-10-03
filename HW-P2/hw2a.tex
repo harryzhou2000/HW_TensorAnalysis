@@ -49,7 +49,6 @@ MSWordLineSpacingMultiple=1.5
 \subsection*{2.1}
 
 不妨在笛卡尔坐标下展开为分量，则：
-
 \begin{equation}
     \begin{aligned}
         \bm{A}\cdot\bm{W}= & A_{ij}B^j_{\cdot k}\bm{e}^i\bm{e}^k
@@ -85,7 +84,6 @@ $tr(\bm{A}\cdot\bm{A}) = -tr(\bm{A}\cdot\bm{A}\trans)=-\bm{A}:\bm{A} $，
 
 \subsubsection*{(ii)}
 对于三维二阶张量$\bm{T}$，主迹数如下：
-
 \begin{equation}
     \begin{aligned}
         J_1 & =T^i_{\cdot i},\
@@ -96,7 +94,6 @@ $tr(\bm{A}\cdot\bm{A}) = -tr(\bm{A}\cdot\bm{A}\trans)=-\bm{A}:\bm{A} $，
 \end{equation}
 
 根据特征方程已经得出：
-
 \begin{equation}
     \begin{aligned}
         I_1= & T^i_{\cdot i}=J_1                                            \\
@@ -262,7 +259,6 @@ $B^m_{\cdot m}u^1v^2w^3$。
 含有负号的子项相当于$u,v,w$上标逆序，其选取的分子的位置
 也是第二个坐标恰好逆序。可以发现，其选取的$j,k$都与正号时相反，
 因此18个子项都归纳为6项：
-
 \begin{equation}
     \begin{aligned}
         \frac{
@@ -295,7 +291,6 @@ $B^m_{\cdot m}u^1v^2w^3$。
 \subsubsection*{(ii)}
 
 根据结论：
-
 \begin{equation}
     \begin{aligned}
         [\bm{h}_1,\bm{h}_2,\bm{h}_3][\bm{g}_1,\bm{g}_2,\bm{g}_3]
@@ -312,7 +307,6 @@ $B^m_{\cdot m}u^1v^2w^3$。
 选取$\{\bm{u},\bm{v},\bm{w}\}\equiv\left\{\bm{h}_i\right\}$的逆变基$\bm{h}^i$
 使得$\bm{h}_i\cdot\bm{h}^j=\delta^i_j$，上下乘$[\bm{h}^1,\bm{h}^2,\bm{h}^3]$，
 则有：
-
 \begin{equation}
     \begin{aligned}
           & \frac{
@@ -378,7 +372,6 @@ $I_2$。
 
 与上一小问相同选取$\{\bm{u},\bm{v},\bm{w}\}\equiv\left\{\bm{h}_i\right\}$
 为协变基，并上下同乘逆变基的混合积：
-
 \begin{equation}
     \begin{aligned}
           & \frac{
@@ -452,7 +445,6 @@ Jordan块大小为1时才是对角阵。
 
 设有不同特征根$\lambda_1,\lambda_2,\dots\lambda_k$，其代数重数分别为$r_1,r_2,...,r_k$，
 因此$f(\lambda)=\prod_{i=1}^k{(\lambda-\lambda_i)^{r_i}}$，则：
-
 \begin{equation}
     \begin{aligned}
         f([\bm{A}])=\prod_{i=1}^k{([\bm{A}]-\lambda_i[\bm{I}])^{r_i}}
@@ -463,7 +455,6 @@ Jordan块大小为1时才是对角阵。
 
 考虑上式乘积中的$([\bm{J}]-\lambda_i[\bm{I}])^{r_i}$，其中$\lambda_i$对应的Jordan块大小不大于$r_i$。
 由于：
-
 $$
     [j_m(\lambda_i)]-\lambda_i[\bm{I}_m]=\begin{bmatrix}
         0 & 1      & 0      & \cdots & 0 \\
@@ -500,7 +491,6 @@ $$
 对Hamilton-Caylay定理两端乘$\bm{A}$的$0,1,2...$次幂后，
 可知任意高次的幂都可以用$0,1,2,...n-1$次幂表示。
 具体而言，
-
 \begin{equation}
     \begin{aligned}
         \bm{A}^{n+k}+\sum_{i=1}^n{(-1)^nI_n\bm{A}^{n-i+k}}=0,\ \ k=0,1,2,...
@@ -508,7 +498,6 @@ $$
 \end{equation}
 
 则有递推公式：
-
 \begin{equation}
     \begin{aligned}
         \bm{A}^{n+k}=-\sum_{i=1}^n{(-1)^nI_n\bm{A}^{n-i+k}},\ \ k=0,1,2,...
@@ -517,9 +506,257 @@ $$
 
 给出$\bm{A}^0,\bm{A}^1,\dots,\bm{A}^{n-1}$后，任意次幂都可以由这些初值表示，即为$n$维表现定理。
 
-通过递推关系和一些级数的技巧可以推出三维情况下，任意大于2次幂时的表示系数的显式表达，具体见郑老师论文。
+\
+
+\
+
+\
 
 
+三维情况下的Hamilton-Caylay定理上面已经证明如下式，现给出三维情况表现定理的具体表达式。
+\begin{equation}
+    \bm{A}^3-I_1\bm{A}^2+I_2\bm{A}-I_3\bm{I}=\bm{0}
+    \label{eq:HLTheorem3D}
+\end{equation}
+
+设高次幂的情况是：
+\begin{equation}
+    \bm{A}^n=\alpha_{n-2}\bm{A}^2-\beta_{n-2}\bm{A}+\gamma_{n-2}\bm{I}
+\end{equation}
+
+则有初值：
+\begin{equation}
+    \alpha_1=I_1,\beta_1=I_2,\gamma_1=I_3
+\end{equation}
+
+两边乘$\bm{A}$则有：
+\begin{equation}
+    \bm{A}^{n+1}=\alpha_{n-2}(I_1\bm{A}^2-I_2\bm{A}+I_3\bm{I})
+    -\beta_{n-2}\bm{A}^2+\gamma_{n-2}\bm{A}
+    =\alpha_{n-1}\bm{A}^2-\beta_{n-1}\bm{A}+\gamma_{n-1}\bm{I}
+\end{equation}
+
+因此有系数递推关系：
+
+\begin{equation}
+    \begin{aligned}
+        \alpha_{n}= & \alpha_{n-1}I_1-\beta_{n-1}  \\
+        \beta_{n}=  & \alpha_{n-1}I_2-\gamma_{n-1} \\
+        \gamma_{n}= & \alpha_{n-1}I_3
+    \end{aligned}
+\end{equation}
+
+记：
+\begin{equation}
+    \bm{a}_n=\begin{bmatrix}
+        \alpha_n \\
+        \beta_n  \\
+        \gamma_n \\
+    \end{bmatrix}
+\end{equation}
+
+则容易知道：
+\begin{equation}
+    \bm{a}_n=\begin{bmatrix}
+        I_1 & -1 & 0  \\
+        I_2 & 0  & -1 \\
+        I_3 & 0  & 0
+    \end{bmatrix}\bm{a}_{n-1}
+\end{equation}
+
+又，根据Jordan分解定理，其Jordan标准型就是在Jordan变换下的混变分量
+矩阵，因此有特征值和主不变量的关系：
+\begin{equation}
+    I_1=\lambda_1+\lambda_2+\lambda_3,
+    I_2=\lambda_1\lambda_2+\lambda_2\lambda_3+\lambda_3\lambda_1,
+    I_3=\lambda_1\lambda_2\lambda_3
+\end{equation}
+
+得到：
+
+\begin{equation}
+    \bm{a}_n=[K]\bm{a}_{n-1},\ [K]=\begin{bmatrix}
+        \lambda_1+\lambda_2+\lambda_3                            & -1 & 0  \\
+        \lambda_1\lambda_2+\lambda_2\lambda_3+\lambda_3\lambda_1 & 0  & -1 \\
+        \lambda_1\lambda_2\lambda_3                              & 0  & 0
+    \end{bmatrix}
+\end{equation}
+
+矩阵$[K]$特征方程可解得，其有特征值$\lambda_1,\lambda_2,\lambda_3$，与张量本身一样。
+
+现假设，三个特征值都非零，则可解得特征向量矩阵：
+\begin{equation}
+    [V]=\begin{bmatrix}
+        \frac{1}{\lambda_2\lambda_3}            &
+        \frac{1}{\lambda_3\lambda_1}            &
+        \frac{1}{\lambda_1\lambda_2}                    \\
+        \frac{1}{\lambda_2}+\frac{1}{\lambda_3} &
+        \frac{1}{\lambda_3}+\frac{1}{\lambda_1} &
+        \frac{1}{\lambda_1}+\frac{1}{\lambda_2}         \\
+        1                                       & 1 & 1
+    \end{bmatrix},\ \ [K][V]=[V]diag(\lambda_1,\lambda_2,\lambda_3)
+\end{equation}
+
+当三个特征值互不相同，特征向量是线性无关的，有：
+
+\begin{equation}
+    [V]^{-1}=\lambda_1\lambda_2\lambda_3
+    \begin{bmatrix}
+        \frac{1}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}
+          & 0 & 0 \\
+        0 &
+        \frac{1}{(\lambda_2-\lambda_3)(\lambda_2-\lambda_1)}
+          & 0     \\
+        0 & 0 &
+        \frac{1}{(\lambda_3-\lambda_1)(\lambda_3-\lambda_2)}
+    \end{bmatrix}\begin{bmatrix}
+        \lambda_1 & 1 & \frac{1}{\lambda_1} \\
+        \lambda_2 & 1 & \frac{1}{\lambda_2} \\
+        \lambda_3 & 1 & \frac{1}{\lambda_3} \\
+    \end{bmatrix}
+\end{equation}
+
+因此有通项公式：
+
+\begin{equation}
+    \begin{aligned}
+        \bm{a}_n=[K]^n\bm{a}_1
+        =[V]^{-1}diag(\lambda_1^n,\lambda_2^n,\lambda_3^n)[V]\bm{a}_1
+    \end{aligned}
+    \label{eq:EX_Mat}
+\end{equation}
+
+同时，将
+$$
+    \bm{a}_1=\begin{bmatrix}
+        \lambda_1+\lambda_2+\lambda_3                            \\
+        \lambda_1\lambda_2+\lambda_2\lambda_3+\lambda_3\lambda_1 \\
+        \lambda_1\lambda_2\lambda_3                              \\
+    \end{bmatrix}
+$$
+以及各项用特征值的表达方式代入\eqref{eq:EX_Mat}，
+即有：
+
+\begin{equation}
+    \bm{a}_n=\left[\begin{array}{c} \frac{{\lambda _{1}}^n\,{\lambda _{1}}^3\,\lambda _{2}-\lambda _{1}\,{\lambda _{2}}^n\,{\lambda _{2}}^3-{\lambda _{1}}^n\,{\lambda _{1}}^3\,\lambda _{3}+\lambda _{1}\,{\lambda _{3}}^n\,{\lambda _{3}}^3+{\lambda _{2}}^n\,{\lambda _{2}}^3\,\lambda _{3}-\lambda _{2}\,{\lambda _{3}}^n\,{\lambda _{3}}^3}{\left(-\lambda _{2}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{2}\right)}\\ \frac{{\lambda _{1}}^n\,{\lambda _{1}}^3\,{\lambda _{2}}^2-{\lambda _{1}}^n\,{\lambda _{1}}^3\,{\lambda _{3}}^2-{\lambda _{1}}^2\,{\lambda _{2}}^n\,{\lambda _{2}}^3+{\lambda _{2}}^n\,{\lambda _{2}}^3\,{\lambda _{3}}^2+{\lambda _{1}}^2\,{\lambda _{3}}^n\,{\lambda _{3}}^3-{\lambda _{2}}^2\,{\lambda _{3}}^n\,{\lambda _{3}}^3}{\left(-\lambda _{2}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{2}\right)}\\ \frac{\lambda _{1}\,\lambda _{2}\,\lambda _{3}\,\left({\lambda _{1}}^n\,{\lambda _{1}}^2\,\lambda _{2}-\lambda _{1}\,{\lambda _{2}}^n\,{\lambda _{2}}^2-{\lambda _{1}}^n\,{\lambda _{1}}^2\,\lambda _{3}+\lambda _{1}\,{\lambda _{3}}^n\,{\lambda _{3}}^2+{\lambda _{2}}^n\,{\lambda _{2}}^2\,\lambda _{3}-\lambda _{2}\,{\lambda _{3}}^n\,{\lambda _{3}}^2\right)}{\left(-\lambda _{2}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{2}\right)} \end{array}\right]
+\end{equation}
+
+引入循环记号：$\left.T_{i_1,i_2,...}\right|_{(1,2,3)}=T_{i_1,i_2,...}+T_{[i_1+1],[i_2+1],...}+T_{[i_1+2],[i_2+2],...}, [i+k]\doteq\mod{(i+k-1,3)}+1$
+
+则上式简化为：
+\begin{equation}
+    \bm{a}_n=\begin{bmatrix}
+        \left.\frac{\lambda_1^{n+2}}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}\right|_{(1,2,3)}\\
+        \left.\frac{\lambda_1^{n+2}(\lambda_2+\lambda_3)}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}\right|_{(1,2,3)}\\
+        \left.\frac{\lambda_1^{n+2}\lambda_2\lambda_3}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}\right|_{(1,2,3)}\\
+    \end{bmatrix}
+    \label{eq:EX_0}
+\end{equation}
+
+上式的定义域是$\lambda_i$非零且互不相同。
+
+
+考虑复合函数的连续性传递规律，可知$\lambda_i$与$\bm{a}_n$的关系是连续的，
+其在$\lambda_i$为0或者相等的位置也是连续的，因此任意取极限即为函数值。
+根据\eqref{eq:EX_0}在这些位置的极限，结合洛必达法则，可得：
+
+当$\lambda_1\neq\lambda_2\neq\lambda_3$，\eqref{eq:EX_0}即为$\bm{a}_n$的表达式；
+
+当$\lambda_1\neq\lambda_2=\lambda_3=\lambda_0$，
+\begin{equation}
+    \bm{a}_n=\begin{bmatrix}
+        \frac{\lambda_1^{n+2}-(n+2)\lambda_1\lambda_0^{n+1}+(n+1)\lambda_0^{n+2}}{(\lambda_0-\lambda_1)^2}\\
+        \frac{
+            \lambda_0\left[
+                2\lambda_1^{n+2}-(n+2)\lambda_1^2\lambda_0^{n}+n\lambda_0^{n+2}
+                \right]
+                }{(\lambda_0-\lambda_1)^2}\\
+        \frac{
+            \lambda_0^2\lambda_1
+            \left[
+            \lambda_1^{n+1}-(n+1)\lambda_1\lambda_0^{n}+n\lambda_0^{n+1}
+            \right]
+            }{(\lambda_0-\lambda_1)^2}\\
+    \end{bmatrix}
+    \label{eq:EX_1}
+\end{equation}
+
+当$\lambda_1=\lambda_2=\lambda_3=\lambda_0$，
+
+\begin{equation}
+    \bm{a}_n
+    \begin{bmatrix}
+        \frac{(n+1)(n+2)}{2}\lambda_0^{n}\\
+        n(n+2)\lambda_0^{n+1}\\
+        \frac{(n+1)(n+2)}{2}\lambda_0^{n+2}\\
+    \end{bmatrix}
+    \label{eq:EX_2}
+\end{equation}
+
+以上即为$\bm{A}$的次幂的表现定理。
+
+对于各向同性的无穷阶连续可导的张量函数，设表现定理：
+
+\begin{equation}
+    F(\bm{A})=m_2\bm{A}^2-m_1\bm{A}+m_0\bm{I},\ \ \bm{m}=\begin{bmatrix}
+        m_2\\m_1\\m_0
+    \end{bmatrix}
+\end{equation}
+
+函数有幂级数形式：
+
+\begin{equation}
+    F(\bm{A})=\sum_{i=0}^\infty{b_i\bm{A}^i}
+    \label{eq:F_taylor}
+\end{equation}
+
+
+
+当$\lambda_1\neq\lambda_2\neq\lambda_3$时，将\eqref{eq:EX_0}代入上式，
+有：
+
+\begin{equation}
+    \begin{aligned}
+        \bm{m}=\sum_{n=0}^\infty {b_n\bm{a}_n}=\begin{bmatrix}
+            \left.\frac{F(\lambda_1)}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}\right|_{(1,2,3)}\\
+        \left.\frac{F(\lambda_1)(\lambda_2+\lambda_3)}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}\right|_{(1,2,3)}\\
+        \left.\frac{F(\lambda_1)\lambda_2\lambda_3}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}\right|_{(1,2,3)}\\
+        \end{bmatrix}
+    \end{aligned}
+\end{equation}
+
+其中，$\bm{a}_{-2}, \bm{a}_{-1}, \bm{a}_0$对于以上给出的通项公式是依然成立的，所以
+没有单独讨论这三项。
+
+同样，将\eqref{eq:EX_1}，\eqref{eq:EX_2}也分别代入\eqref{eq:F_taylor}，
+同时考虑$F', F''$的幂级数形式，化简可得：
+
+当$\lambda_1\neq\lambda_2=\lambda_3=\lambda_0$，
+\begin{equation}
+    \bm{m}=\begin{bmatrix}
+        \frac{F(\lambda_1)-F(\lambda_0)-(\lambda_1-\lambda_0)F'(\lambda_0)}
+        {(\lambda_1-\lambda_0)^2}\\
+        \frac{2\lambda_0(F(\lambda_1)-F(\lambda_0))-
+        (\lambda_1^2-\lambda_0^2)F'(\lambda_0)}
+        {(\lambda_1-\lambda_0)^2}\\
+        \frac{\lambda_0^2F(\lambda_1)-\lambda_1(\lambda_1-2\lambda_0)F(\lambda_0)
+        -\lambda_0\lambda_1(\lambda_1-\lambda_0)F'(\lambda_0)}
+        {(\lambda_1-\lambda_0)^2}\\
+    \end{bmatrix}
+\end{equation}
+
+当$\lambda_1=\lambda_2=\lambda_3=\lambda_0$，
+\begin{equation}
+    \bm{m}=\begin{bmatrix}
+        \frac{1}{2}F''(\lambda_0)\\
+        \lambda_0F''(\lambda_0)-F'(\lambda_0)\\
+        \frac{1}{2}\lambda_0^2F''(\lambda_0)-\lambda_0F'(\lambda_0)
+        +F(\lambda_0)\\
+    \end{bmatrix}
+\end{equation}
+
+
+即为各向同性张量函数的表现定理。
 
 
 % !delete below
