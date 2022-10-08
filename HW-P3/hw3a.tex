@@ -1,0 +1,1470 @@
+%!TEX program = xelatex
+\documentclass[UTF8,zihao=5]{ctexart}
+
+
+\title{{\bfseries 第3次作业}}
+\author{周涵宇 2022310984}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+% \setmonofont{JetBrains Mono}
+\setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+
+% \usepackage{bm}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+
+\newcommand{\bm}[1]{{\mathbf{#1}}}
+
+\newcommand{\trans}[0]{^\mathrm{T}}
+\newcommand{\tran}[1]{#1^\mathrm{T}}
+\newcommand{\hermi}[0]{^\mathrm{H}}
+\newcommand{\conj}[1]{\overline{#1}}
+
+\newcommand*{\av}[1]{\left\langle{#1}\right\rangle}
+
+\newcommand*{\avld}[1]{\frac{\overline{D}#1}{Dt}}
+
+\newcommand*{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand*{\pdcd}[3]
+{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+
+
+\begin{document}
+
+\maketitle
+
+\subsection*{3.1}
+
+方便起见按照分量形式：
+
+$$
+A_{ij}=-\epsilon_{ijk}a^k
+$$
+
+由于$\bm{A}$是反对称的，其特征值只有$\pm i\alpha$以及$0$。
+考虑$A_{ij}a^j=-\epsilon_{ijk}a^ka^j=0$，可知，$\bm{a}$是$\bm{a}$的一个特征向量，对应特征值为0。
+由于另外两个特征值与0不同，其特征向量与这个特征向量线性无关，因此0的特征向量都是$\bm{a}$共线的。
+
+\subsection*{3.2}
+
+考虑由于$\bm{S}$是一个线性的映射，因此对$\bm{e}_1$取反，则$\bm{r}_1$取反，因此$\gamma$取反。
+所以，只讨论其极大值即可。因此，只考虑$\bm{r}_1,\bm{r}_2$的夹角极值即可。
+
+不妨求$\bm{S}$的主轴和特征值$s_1\geq s_2 \geq s_3$，沿主轴建立单位直角坐标$\bm{g}_i=\bm{g}^i$，
+记$\bm{e}_1=a_i\bm{g}_i, \bm{e}_2=b_i\bm{g}_i$，代入即有：
+
+\begin{equation}
+    \begin{aligned}
+        \cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}
+        =\frac{s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3}{
+            \sqrt{s_1^2a_1^2 + s_2^2a_2^2+s_3^2a_3^2}
+            \sqrt{s_1^2b_1^2 + s_2^2b_2^2+s_3^2b_3^2}
+        }
+    \end{aligned}
+\end{equation}
+
+记$r_1=\sqrt{s_1^2a_1^2 + s_2^2a_2^2+s_3^2a_3^2}, r_2=\sqrt{s_1^2b_1^2 + s_2^2b_2^2+s_3^2b_3^2}$
+
+则：
+
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            \pd{\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}}{a_1}
+            = & \frac{b_1s_1^2}{r_1r_2} -
+            \frac{a_1s_1^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1^3r_2}\\
+            \pd{\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}}{a_2}
+            = & \frac{b_2s_2^2}{r_1r_2} -
+            \frac{a_2s_2^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1^3r_2}\\
+            \pd{\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}}{a_3}
+            = & \frac{b_3s_3^2}{r_1r_2} -
+            \frac{a_3s_3^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1^3r_2}\\
+            \pd{\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}}{b_1}
+            = & \frac{a_1s_1^2}{r_1r_2} -
+            \frac{b_1s_1^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1r_2^3}\\
+            \pd{\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}}{b_2}
+            = & \frac{a_2s_2^2}{r_1r_2} -
+            \frac{b_2s_2^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1r_2^3}\\
+            \pd{\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}}{b_3}
+            = & \frac{a_3s_3^2}{r_1r_2} -
+            \frac{b_3s_3^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1r_2^3}\\
+        \end{aligned}
+    \right.
+\end{equation}
+
+设拉格朗日乘子$L_1,L_2,K$，对应问题的全部约束（垂直且都是单位长度）：
+
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            F_1= & a_1^2+a_2^2+a_3^2-1\\
+            F_2= & b_1^2+b_2^2+b_3^2-1\\
+            G= & a_1b_1 + a_2b_2 + a_3b_3\\
+        \end{aligned}
+    \right.
+\end{equation}
+
+则目标函数为$M = \cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle} - L_1F_1 - L_2F_2 - KG$，
+求解$\pd{M}{a_i}=0, \pd{M}{b_i}=0, F_1=0, F_2=0, G=0$，则可以得到夹角的极值点可能的位置。
+
+求解：
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            \frac{b_1s_1^2}{r_1r_2} -
+            \frac{a_1s_1^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1^3r_2} - 2L_1a_1 - Kb_1 = & 0\\
+            \frac{b_2s_2^2}{r_1r_2} -
+            \frac{a_2s_2^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1^3r_2} - 2L_1a_2 - Kb_2 = & 0\\
+            \frac{b_3s_3^2}{r_1r_2} -
+            \frac{a_3s_3^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1^3r_2} - 2L_1a_3 - Kb_3 = & 0\\
+            \frac{a_1s_1^2}{r_1r_2} -
+            \frac{b_1s_1^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1r_2^3} - 2L_2b_1 - Ka_1 = & 0\\
+            \frac{a_2s_2^2}{r_1r_2} -
+            \frac{b_2s_2^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1r_2^3} - 2L_2b_2 - Ka_2 = & 0\\
+            \frac{a_3s_3^2}{r_1r_2} -
+            \frac{b_3s_3^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1r_2^3} - 2L_2b_3 - Ka_3 = & 0\\
+            a_1^2+a_2^2+a_3^2-1 = & 0 \\
+            b_1^2+b_2^2+b_3^2-1 = & 0\\
+            a_1b_1 + a_2b_2 + a_3b_3 = & 0\\
+        \end{aligned}
+    \right.
+\end{equation}
+
+方程关于坐标的下标是对称的，因此轮换$a_i,b_i,s_i$的下标同样是解。
+
+方程的解只有：
+$$
+\begin{aligned}
+    (a_1,a_2,a_3)=\pm(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}, 0),\ (b_1,b_2,b_3)=\pm(-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}, 0) & \\
+    (a_1,a_2,a_3)=\pm(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}, 0),\ (b_1,b_2,b_3)=\mp(-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}, 0) & \\
+\end{aligned}
+$$
+以及$a,b$互换和$1,2,3$轮换的结果，共24种。
+
+给出的$\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}$分别是：
+$$
+\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle} = \pm\frac{s_1^2-s_2^2}{s_1^2+s_2^2}
+$$
+及其轮换。
+综上，极值或者鞍点只在$\bm{e}_1,\bm{e}_2$都在某两个主轴的平面上且与主轴夹角$45^\circ$出现，
+最大值、最小值分别是$\frac{\pi}{2} - \arccos{(\pm\frac{s_1^2-s_3^2}{s_1^2+s_3^2})}$，此时$\bm{e}_1, \bm{e}_2$在$s_1,s_3$的主轴平面内，
+与主轴成$45^\circ$。
+
+
+\subsection*{3.3}
+
+不妨在标准正交基给出：$\bm{A}=\bm{e}_i\bm{e}_jA_{ij}$，
+则$\bm{A}\trans=\bm{e}_j\bm{e}_iA_{ij}=-\bm{e}_i\bm{e}_jA_{ij}$，因此$A_{ij}=-A_{ji}$，因此
+$A_{1,1}=A{2,2}=0, A_{1,2}=-A_{2,1}$，可记$\bm{A}=m(\bm{e}_2\bm{e}_1-\bm{e}_1\bm{e}_2)$，
+因此$det(\bm{A})=m^2, det(\bm{A}-\lambda\bm{I})=\lambda^2+m^2$，因此有共轭特征值$\pm mi :=\pm ai$，
+因此题述都成立。
+
+\subsection*{3.4}
+此处引用郑老师给出的各向同性张量函数在三维情况下的表现定理，
+由于$\theta \bm{L}$有特征值$\pm i\theta, 0$则：
+
+\begin{equation}
+    \begin{aligned}
+        e^{\theta \bm{L}} = &
+        \left(-\frac{e^{i\theta}}{2}
+        -\frac{e^{i\theta}}{2} + 1
+        \right) \bm{L}^2 
+        + \left(
+            i\frac{e^{i\theta}}{2}
+            -i\frac{e^{-i\theta}}{2}
+        \right) \bm{L}  + \bm{I}\\
+        = & (1 - \cos \theta)\bm{L}^2 - \sin\theta\bm{L}
+    \end{aligned}
+\end{equation}
+
+那么对于任意的$\bm{x}$，
+$e^{\theta \bm{L}}\cdot\bm{x} = (1 - \cos \theta)\bm{r}\times(\bm{r}\times \bm{x}) - \sin\theta \bm{r}\times \bm{x} + \bm{x}$。
+
+记$\bm{r}$的正交的平面是$P$，那么$\bm{r}\times(\bm{r}\times \bm{x})$与$\sin\theta \bm{r}$都在这个平面内，
+且其长度都是$\bm{x}$在$P$上投影的长度，且其相互垂直，
+构成$P$上的一组正交基。几何分析可知，
+$(1 - \cos \theta)\bm{r}\times(\bm{r}\times \bm{x}) - \sin\theta \bm{r}\times \bm{x}$
+就是$\bm{x}$与$R_\theta(\bm{x})$的差，旋转方向满足右手定则，因此得证。
+
+更为符号地，记$\bm{y} = e^{\theta \bm{L}}\cdot\bm{x}$，则
+
+$$
+\begin{aligned}
+    \bm{y}\cdot\bm{y} = &(1 - \cos \theta)^2
+((\bm{r}\cdot\bm{x})^2+\bm{x}\cdot\bm{x}-2(\bm{r}\cdot\bm{x})^2) +
+(\sin\theta)^2 (\bm{x}\cdot\bm{x}-(\bm{r}\cdot\bm{x})^2)+\bm{x}\cdot\bm{x}
++ 2(1 - \cos \theta)[(\bm{r}\cdot\bm{x})^2-\bm{x}\cdot\bm{x}]\\
+=&\bm{x}\cdot\bm{x}
+\end{aligned}
+$$
+
+因此长度不变；
+
+$$
+\begin{aligned}
+    \bm{y}\cdot\bm{y} = &(1 - \cos \theta)^2
+((\bm{r}\cdot\bm{x})^2+\bm{x}\cdot\bm{x}-2(\bm{r}\cdot\bm{x})^2) +
+(\sin\theta)^2 (\bm{x}\cdot\bm{x}-(\bm{r}\cdot\bm{x})^2)+\bm{x}\cdot\bm{x}
++ 2(1 - \cos \theta)[(\bm{r}\cdot\bm{x})^2-\bm{x}\cdot\bm{x}]\\
+=&\bm{x}\cdot\bm{x}
+\end{aligned}
+$$
+
+因此长度不变；
+
+类似可以验证
+$$
+\bm{y}\cdot\bm{x}=\cos{\theta}\bm{x}\cdot\bm{x}
+$$
+因此夹角正确；
+
+$$
+\bm{x}\times\bm{y}=\sin{\theta}(\bm{x}\cdot\bm{x}) \bm{r}
+$$
+因此旋转方向正确。
+
+\subsubsection*{3.5}
+
+由于反对称性：
+
+$$
+e^{\bm{A}\trans}
+=\sum_{n=0}^\infty{\frac{(-1)^n\bm{A}^n}{n!}}
+$$
+
+考察函数$e^{-x}$在0的幂级数展开，与之正好形式相同，
+因此可以给出$e^{{\bm{A}\trans}}=e^{-\bm{A}}$。
+
+下面证明，对于任意二阶张量$\bm{B}$，有$e^{\bm{B}}\cdot e^{-\bm{B}}=\bm{I}$。
+
+$$
+e^{\bm{B}}\cdot e^{-\bm{B}}=\sum_{n=0}^\infty\sum_{m=0}^\infty{
+    \frac{(-1)^n\bm{B}^{m+n}}{n!m!}
+}
+=
+\sum_{k=0}^\infty\sum_{n=0}^k{
+    \frac{(-1)^n\bm{B}^{k}}{n!(k-n)!}
+}
+=
+\sum_{k=0}^\infty(1-1)^k\bm{B}^k = \bm{I}
+$$
+
+推导使用了$(1-1)^k$的二项式展开。即证得。
+
+\subsection*{3.6}
+
+对称张量一定有$\bm{A}=\bm{V}bm{D}\bm{V}\trans$，
+其中$\bm{V}$是正交二阶张量，$\bm{D}$是$\sum_i\lambda_i\bm{e}_i\bm{e}_i$（不爱因斯坦求和），
+同时根据第一不变量，$tr\bm{A}=tr\bm{D}=\sum_i\lambda_i$。因此：
+$$
+\begin{aligned}
+    \det(e^{\bm{A}})= &
+\det\left(
+    \sum_{n=0}^\infty{\frac{\bm{A}^n}{n!}}
+\right)
+=\det(\bm{V})
+\det\left(
+    \sum_{n=0}^\infty{\frac{\bm{D}^n}{n!}}
+\right)\det(\bm{V}\trans)
+=
+\det\left(
+    \sum_{n=0}^\infty{
+        diag(\lambda_i^n/n! ,i)
+    }
+\right)
+=
+\det\left(
+    diag(
+        \sum_{n=0}^\infty\frac{\lambda_i^n}{n!},i
+    )
+\right)\\
+= &
+\det\left(
+    diag(
+        \sum_{n=0}^\infty\frac{\lambda_i^n}{n!},i
+    )
+\right)
+=\det\left(
+    diag(e^\lambda_i,i)
+    \right)
+    =\prod_i e^{\lambda_i}
+    =e^{\sum_i\lambda_i}
+    =e^{tr\bm{A}}
+\end{aligned} 
+$$
+
+其中$diag(a_i, i)=\sum_i a_i\bm{e}_i\bm{e}_i$（无爱因斯坦求和）。
+
+\subsection*{3.7}
+
+若已知$\bm{A}\cdot\bm{B}=\bm{B}\cdot\bm{A}$，则点乘构成阿贝尔群，二项式定理对其成立：
+$(\bm{A}+\bm{B})^k=\sum_{n=0}^k\frac{k!\bm{A}^n\bm{B}^{k-n}}{n!(k-n)!}$。
+因此有：
+
+$$
+e^{\bm{A}}\cdot e^\bm{B}
+=\left(\sum_{n=0}^\infty\frac{\bm{A}^n}{n!}\right)\cdot
+\left(\sum_{n=0}^\infty\frac{\bm{B}^n}{n!}\right)
+=\sum_{n=0}^\infty\sum_{m=0}^\infty\frac{\bm{A}^n\cdot\bm{B}^m}{n!m!}
+=\sum_{k=0}^\infty\sum_{n=0}^k\frac{\bm{A}^n\cdot\bm{B}^{k-n}}{n!{k-n}!k!}
+=\sum_{k=0}^\infty\frac{(\bm{A}+\bm{B})^k}{k!}
+=e^{\bm{A}+\bm{B}}
+$$
+
+因此可交换是充分条件。
+
+
+
+% \subsection*{2.1}
+
+% 不妨在笛卡尔坐标下展开为分量，则：
+% \begin{equation}
+%     \begin{aligned}
+%         \bm{A}\cdot\bm{W}= & A_{ij}B^j_{\cdot k}\bm{e}^i\bm{e}^k
+%         =\varepsilon_{ijr}a^r\varepsilon^j_{\cdot ks}w^s\bm{e}^i\bm{e}^k
+%         =\varepsilon_{rij}\varepsilon^{\cdot\cdot j}_{ks}a^rw^s\bm{e}^i\bm{e}^k
+%         =(\delta_{rk}\delta_{is} - \delta_{rs}\delta_{ik})a^rw^s\bm{e}^i\bm{e}^k \\
+%         =                  & a^kw^i\bm{e}^i\bm{e}^k-a^sw^s\bm{e}^k\bm{e}^k
+%         =\bm{w}\bm{a}-(\bm{w}\cdot\bm{a})\bm{I}
+%     \end{aligned}
+% \end{equation}
+
+% 因此，当$\bm{W}=\bm{A}$，$\bm{A}^2=\bm{a}\bm{a}-(\bm{a}\cdot\bm{a})\bm{I}$。
+
+% 由于$\bm{A}$是反对称的，
+% $tr(\bm{A}\cdot\bm{A}) = -tr(\bm{A}\cdot\bm{A}\trans)=-\bm{A}:\bm{A} $，
+% 又$tr(\bm{A}\cdot\bm{A})=tr(\bm{a}\bm{a}-(\bm{a}\cdot\bm{a})\bm{I})=\bm{a}\cdot\bm{a}-3\bm{a}\cdot\bm{a}=-2\bm{a}\cdot\bm{a}$
+% 可知$\bm{A}:\bm{A}=2\bm{a}\cdot\bm{a}$。
+
+% \subsection*{2.2}
+% \subsubsection*{(i)}
+% 可以通过Caylay-Hamilton定理给出，三维二阶张量的3次幂可以由更低次幂表示，
+% 左右同乘本张量递推即有任意高于或等于3次的幂可以由0，1，2次幂表示。
+
+
+
+% 对这样的等式两端取迹，则可知：
+% \begin{equation}
+%     J_{3+k}-I_1J_{2+k}+I_2J_{1+k}-I_3J_{0+k}=0,\ \  k=0,1,2..., J_0=3
+% \end{equation}
+
+% 任意高于或等于3次的$J$可以被三个不变量以及$J_1,J_2$表示，同时可以证明$J_1,J_2$
+% 完全可以由三个不变量表示，因此，所有的$J$共有三个自由度，可以完全由三个不变量表示。
+
+% \subsubsection*{(ii)}
+% 对于三维二阶张量$\bm{T}$，主迹数如下：
+% \begin{equation}
+%     \begin{aligned}
+%         J_1 & =T^i_{\cdot i},\
+%         J_2=T^i_{\cdot j}T^j_{\cdot i},\
+%         J_3=T^i_{\cdot j}T^j_{\cdot k}T^k_{\cdot i} \\
+%             & \text{（本式中$J,I$的上标都是幂）}
+%     \end{aligned}
+% \end{equation}
+
+% 根据特征方程已经得出：
+% \begin{equation}
+%     \begin{aligned}
+%         I_1= & T^i_{\cdot i}=J_1                                            \\
+%         I_2= & \frac{1}{2}\left(T^i_{\cdot i}T^j_{\cdot j}
+%         -T^i_{\cdot j}T^j_{\cdot i}\right)
+%         =\frac{1}{2}(J_1^2-J_2)                                             \\
+%         I_3= & \det(\bm{T})=e_{rst}T^r_{\cdot 1}T^s_{\cdot 2}T^t_{\cdot 3}=
+%         \frac{1}{6}e^{ijk}e_{rst}T^r_{\cdot i}T^s_{\cdot j}T^t_{\cdot k}    \\
+%         =    &
+%         \frac{1}{6}
+%         \left(\delta^i_r\delta^j_s\delta^k_t +
+%         \delta^i_s\delta^j_t\delta^k_r +
+%         \delta^i_t\delta^j_r\delta^k_s -
+%         \delta^i_t\delta^j_s\delta^k_r -
+%         \delta^i_s\delta^j_r\delta^k_t -
+%         \delta^i_r\delta^j_t\delta^k_s\right)
+%         T^r_{\cdot i}T^s_{\cdot j}T^t_{\cdot k}                             \\
+%         =    &
+%         \frac{1}{6}
+%         \left(
+%         T^i_{\cdot i}T^j_{\cdot j}T^k_{\cdot k}+
+%         T^r_{\cdot s}T^s_{\cdot t}T^t_{\cdot r}+
+%         T^r_{\cdot t}T^s_{\cdot r}T^t_{\cdot s}-
+%         T^r_{\cdot t}T^s_{\cdot s}T^t_{\cdot r}-
+%         T^r_{\cdot s}T^s_{\cdot r}T^t_{\cdot t}-
+%         T^r_{\cdot r}T^s_{\cdot t}T^t_{\cdot s}
+%         \right)                                                             \\
+%         =    &
+%         \frac{1}{6}
+%         \left(
+%         J_1^3+2J_3-3J_1J_2
+%         \right)                                                             \\
+%              & \text{（本式中$J,I$的上标都是幂）}
+%     \end{aligned}
+% \end{equation}
+
+% \subsubsection*{(iii)}
+
+% 根据上一个问题，求解（三角的）非线性方程组即可，通过代入法直接解得：
+% \begin{equation}
+%     \begin{aligned}
+%         J_1= & I_1                                    \\
+%         J_2= & I_1^2-2I_2                             \\
+%         J_3= & 3I_3+\frac{3J_1J_2}{2}-\frac{J_1^3}{2}
+%         =3I_3+\frac{3I_1(I_1^2-2I_2)}{2}-\frac{I_1^3}{2}
+%         =I_1^3-3I_1I_2+3I_3                           \\
+%              & \text{（本式中$J,I$的上标都是幂）}
+%     \end{aligned}
+% \end{equation}
+
+% \subsection*{2.3}
+% \subsubsection*{(i)}
+% 充要条件的表述不唯一，可以是“其特征值有且只有一个非0”，
+% 也可以是“将一组基映射后张成一维空间”，
+% 或者“一组基映射后成为共线的向量组且至少一个非零”。
+
+% 容易证明这三个表述等价，现给出最后一个的证明。
+% 由于当$\bm{a},\bm{b}$至少一个非零时，两侧乘除一个非零标量，
+% 不影响等式，此处的唯一性应当指的是在共线的意义下所有的非零向量
+% 算作一个。
+
+% 首先指出，定理进一步约束为$\bm{a},\bm{b},\bm{B}$都是非0的，
+% 否则$B$是0，则其中一个为0另一个任取都满足，
+% 是非唯一的。
+
+% 必要性：已知有唯一的$\bm{a},\bm{b}\neq\bm{0}\ \ \ \ s.t.\ \ \  \bm{B}=\bm{a}\bm{b}$，
+% 则对于基向量$\bm{g}_i$，映射后为$\bm{a}(\bm{b}\cdot \bm{g}_i)$，新的向量组一定在$\bm{a}$张成的空间
+% 中，且由于$\bm{b}$非0，其协变分量不都是0，则条件满足，因此是必要条件。
+
+% 充分性：已知条件：$\bm{B}\cdot\bm{g}_i$共线，则取此方向的一个非零向量$\bm{a}$，可给出
+% $\bm{B}\cdot\bm{g}_i=b_i\bm{a}$，其系数$b_i$不都是0，因此存在非零向量$\bm{b}=b_i\bm{g}^i$，
+% 使得$\bm{B}\cdot\bm{g}_i=\bm{a}\bm{b}\cdot\bm{g}_i$成立，由于对基向量成立，对所有向量都成立，
+% 因此$\bm{B}=\bm{a}\bm{b}$，上述过程确定的$\bm{a}, \bm{b}$各自只能在确定的直线上，共线意义是唯一的。
+
+% \subsubsection*{(ii)}
+
+% 三维情况。
+% 对于任意的二阶张量，其表示为$\bm{B}=B^{ij}\bm{g}_i\bm{g}_j$，取$K=9$，则容易得到一组
+% $\bm{a}_i,\bm{b}_i, i=1,2,\dots,9$满足关系，且由于基向量的任意性取法不唯一。现证明如果正则，
+% 最少表示为3个。
+
+% 正则指的是三维空间映射为三维空间，也就是一组基映射后线性无关，还是一组基。
+% 则如果存在$\bm{B}=\sum_{i=1}^{3}{\bm{a}_i\bm{b}_i}$，则映射$\bm{g}_i$到
+% $\bm{B}\cdot\bm{g}_i=\sum_{i=1}^{K}{\bm{a}_i\left(\bm{b}_i\cdot\bm{g}_i\right)}$
+% 如果$K<3$，发现映射后三个向量都是$\bm{a}_1,\bm{a}_2$表示的，一定线性相关，因此不是正则的，因此有
+% $K\ge3$。
+
+% \subsection*{2.4}
+
+
+% \subsubsection*{(i)}
+% \begin{equation}
+%     \begin{aligned}
+%         \frac{
+%         [\bm{B}\cdot\bm{u}, \bm{v}, \bm{w}]+
+%         [\bm{u}, \bm{B}\cdot\bm{v}, \bm{w}]+
+%         [\bm{u}, \bm{v}, \bm{B}\cdot\bm{w}]}{[\bm{u}, \bm{v}, \bm{w}]}
+%         = &
+%         \frac{
+%         B^i_{\cdot m}u^mv^jw^k\epsilon_{ijk}+
+%         u^iB^j_{\cdot m}v^mw^k\epsilon_{ijk}+
+%         u^iv^jB^k_{\cdot m}w^m\epsilon_{ijk}}
+%         {[\bm{u}, \bm{v}, \bm{w}]} \\
+%         = &
+%         \frac{
+%         B^i_{\cdot m}u^mv^jw^k\epsilon_{ijk}+
+%         u^kB^i_{\cdot m}v^mw^j\epsilon_{ijk}+
+%         u^jv^kB^i_{\cdot m}w^m\epsilon_{ijk}}
+%         {[\bm{u}, \bm{v}, \bm{w}]} \\
+%     \end{aligned}
+% \end{equation}
+
+% 观察上式的分子，当$i=1,m=2$，
+% 分子为$B^1_{\cdot 2}u^2v^jw^k\epsilon_{1jk}+B^1_{\cdot 2}u^kv^2w^j\epsilon_{1jk}+B^1_{\cdot 2}u^jv^kw^2\epsilon_{1jk}$，求和，
+% 只有$j=2,k=3$或者$j=3,k=2$的部分是非零，发现第一项在$j=2,k=3$时与
+% 第二项在$j=3,k=2$时刚好相反，同理六项中三对都为符号相反、位置依序，因此这些项求和是0。
+
+% 求和结果：
+% \begin{equation}
+%     \begin{aligned}
+%         \frac{
+%         [\bm{B}\cdot\bm{u}, \bm{v}, \bm{w}]+
+%         [\bm{u}, \bm{B}\cdot\bm{v}, \bm{w}]+
+%         [\bm{u}, \bm{v}, \bm{B}\cdot\bm{w}]}{[\bm{u}, \bm{v}, \bm{w}]}
+%         = &
+%         \frac{
+%         B^1_{\cdot 1}u^1v^jw^k\epsilon_{1jk}+
+%         B^1_{\cdot 1}u^kv^1w^j\epsilon_{1jk}+
+%         B^1_{\cdot 1}u^jv^kw^1\epsilon_{1jk}}
+%         {[\bm{u}, \bm{v}, \bm{w}]} \\
+%         + &
+%         \frac{
+%         B^2_{\cdot 2}u^2v^jw^k\epsilon_{2jk}+
+%         B^2_{\cdot 2}u^kv^2w^j\epsilon_{2jk}+
+%         B^2_{\cdot 2}u^jv^kw^2\epsilon_{2jk}}
+%         {[\bm{u}, \bm{v}, \bm{w}]} \\
+%         + &
+%         \frac{
+%         B^3_{\cdot 3}u^3v^jw^k\epsilon_{3jk}+
+%         B^3_{\cdot 3}u^kv^3w^j\epsilon_{3jk}+
+%         B^3_{\cdot 3}u^jv^kw^3\epsilon_{3jk}}
+%         {[\bm{u}, \bm{v}, \bm{w}]} \\
+%     \end{aligned}
+% \end{equation}
+
+% 根据行列编号，上式分子表示为第$(m,n)$项，
+% 9项都为两个子项的
+% 求和，符号相反。
+% 为第$m$行第$n$列的
+% 一项。
+% 考虑上式中含有$u^1v^2w^3$的子项中，为
+% $(1,1)$取$j=2,k=3$，
+% $(2,2)$取$j=3,k=1$，
+% $(3,3)$取$j=1,k=2$，
+% 求和为$B^m_{\cdot m}u^1v^2w^3$；
+% 含有$u^3v^1w^2$的项为$(1,2)$，$(2,3)$，$(3,1)$的子项，
+% 求和为
+% $B^m_{\cdot m}u^3v^1w^2$；
+% 含有$u^2v^3w^1$的项为$(1,3)$，$(2,1)$，$(3,2)$的子项，
+% 求和为
+% $B^m_{\cdot m}u^1v^2w^3$。
+% ，这样所有含有正号的子项都归纳完毕。
+% 含有负号的子项相当于$u,v,w$上标逆序，其选取的分子的位置
+% 也是第二个坐标恰好逆序。可以发现，其选取的$j,k$都与正号时相反，
+% 因此18个子项都归纳为6项：
+% \begin{equation}
+%     \begin{aligned}
+%         \frac{
+%         [\bm{B}\cdot\bm{u}, \bm{v}, \bm{w}]+
+%         [\bm{u}, \bm{B}\cdot\bm{v}, \bm{w}]+
+%         [\bm{u}, \bm{v}, \bm{B}\cdot\bm{w}]}{[\bm{u}, \bm{v}, \bm{w}]}
+%         = &
+%         \frac{
+%         B^m_{\cdot m}
+%         \left(
+%         u^1v^2w^3+u^2v^3w^1+u^3v^1w^2-
+%         u^1v^3w^2-u^2v^1w^3-u^3v^2w^1
+%         \right)}
+%         {[\bm{u}, \bm{v}, \bm{w}]} \\
+%         = &
+%         \frac{
+%         B^m_{\cdot m}
+%         u^iv^jw^k\epsilon_{ijk}}
+%         {[\bm{u}, \bm{v}, \bm{w}]} \\
+%         = &
+%         \frac{
+%         B^m_{\cdot m}
+%         [\bm{u}, \bm{v}, \bm{w}]}
+%         {[\bm{u}, \bm{v}, \bm{w}]} \\
+%         = &
+%         B^m_{\cdot m}=I_1
+%     \end{aligned}
+% \end{equation}
+
+% \subsubsection*{(ii)}
+
+% 根据结论：
+% \begin{equation}
+%     \begin{aligned}
+%         [\bm{h}_1,\bm{h}_2,\bm{h}_3][\bm{g}_1,\bm{g}_2,\bm{g}_3]
+%         = & \left|
+%         \begin{matrix}
+%             \bm{h}_1\cdot\bm{g}_1 & \bm{h}_1\cdot\bm{g}_2 & \bm{h}_1\cdot\bm{g}_3 \\
+%             \bm{h}_2\cdot\bm{g}_1 & \bm{h}_2\cdot\bm{g}_2 & \bm{h}_2\cdot\bm{g}_3 \\
+%             \bm{h}_3\cdot\bm{g}_1 & \bm{h}_3\cdot\bm{g}_2 & \bm{h}_3\cdot\bm{g}_3 \\
+%         \end{matrix}
+%         \right|
+%     \end{aligned}
+% \end{equation}
+
+% 选取$\{\bm{u},\bm{v},\bm{w}\}\equiv\left\{\bm{h}_i\right\}$的逆变基$\bm{h}^i$
+% 使得$\bm{h}_i\cdot\bm{h}^j=\delta^i_j$，上下乘$[\bm{h}^1,\bm{h}^2,\bm{h}^3]$，
+% 则有：
+% \begin{equation}
+%     \begin{aligned}
+%           & \frac{
+%         [\bm{B}\cdot\bm{u}, \bm{B}\cdot\bm{v}, \bm{w}]+
+%         [\bm{u}, \bm{B}\cdot\bm{v}, \bm{B}\cdot\bm{w}]+
+%         [\bm{B}\cdot\bm{u}, \bm{v}, \bm{B}\cdot\bm{w}]}{[\bm{u}, \bm{v}, \bm{w}]}
+%         \\
+%         = &
+%         \frac{
+%             \left|
+%             \begin{matrix}
+%                 \bm{h}^1\cdot\bm{B}\cdot\bm{h}_1 & \bm{h}^1\cdot\bm{B}\cdot\bm{h}_2 \\
+%                 \bm{h}^2\cdot\bm{B}\cdot\bm{h}_1 & \bm{h}^2\cdot\bm{B}\cdot\bm{h}_2 \\
+%             \end{matrix}
+%             \right|
+%             +
+%             \left|
+%             \begin{matrix}
+%                 \bm{h}^2\cdot\bm{B}\cdot\bm{h}_2 & \bm{h}^2\cdot\bm{B}\cdot\bm{h}_3 \\
+%                 \bm{h}^3\cdot\bm{B}\cdot\bm{h}_2 & \bm{h}^3\cdot\bm{B}\cdot\bm{h}_3 \\
+%             \end{matrix}
+%             \right|
+%             +
+%             \left|
+%             \begin{matrix}
+%                 \bm{h}^3\cdot\bm{B}\cdot\bm{h}_3 & \bm{h}^3\cdot\bm{B}\cdot\bm{h}_1 \\
+%                 \bm{h}^1\cdot\bm{B}\cdot\bm{h}_3 & \bm{h}^1\cdot\bm{B}\cdot\bm{h}_1 \\
+%             \end{matrix}
+%             \right|
+%         }{\det{[\delta_i^j]}} \\
+%         = &
+%         \left|
+%         \begin{matrix}
+%             B^1_{\cdot1} & B^1_{\cdot2} \\
+%             B^2_{\cdot1} & B^2_{\cdot2} \\
+%         \end{matrix}
+%         \right|
+%         +
+%         \left|
+%         \begin{matrix}
+%             B^2_{\cdot2} & B^2_{\cdot3} \\
+%             B^3_{\cdot2} & B^3_{\cdot3} \\
+%         \end{matrix}
+%         \right|
+%         +
+%         \left|
+%         \begin{matrix}
+%             B^3_{\cdot3} & B^3_{\cdot1} \\
+%             B^1_{\cdot3} & B^1_{\cdot1} \\
+%         \end{matrix}
+%         \right|
+%         =\frac{1}{2}\left(B^i_{\cdot i}B^j_{\cdot j}-B^i_{\cdot j}B^j_{\cdot i}\right)
+%     \end{aligned}
+% \end{equation}
+
+% 上式分量在协变基是$\bm{u},\bm{v},\bm{w}$的混变分量。
+% 上式进行坐标变换，代入坐标变换系数后，在直角坐标下形式是不变的，因此为$I_2$。
+% 或者可以理解为，其表示为主迹数后，由于主迹数写作混变分量缩并时，
+% 在任意坐标下的形式一样，上述形式即为
+% $I_2$。
+
+% \subsubsection*{(iii)}
+
+% 与上一小问相同选取$\{\bm{u},\bm{v},\bm{w}\}\equiv\left\{\bm{h}_i\right\}$
+% 为协变基，并上下同乘逆变基的混合积：
+% \begin{equation}
+%     \begin{aligned}
+%           & \frac{
+%             [\bm{B}\cdot\bm{u}, \bm{B}\cdot\bm{v}, \bm{B}\bm{w}]}
+%         {[\bm{u}, \bm{v}, \bm{w}]}
+%         \\
+%         = &
+%         \frac{
+%             \left|
+%             \begin{matrix}
+%                 \bm{h}^1\cdot\bm{B}\cdot\bm{h}_1 & \bm{h}^1\cdot\bm{B}\cdot\bm{h}_2 & \bm{h}^1\cdot\bm{B}\cdot\bm{h}_3 \\
+%                 \bm{h}^2\cdot\bm{B}\cdot\bm{h}_1 & \bm{h}^2\cdot\bm{B}\cdot\bm{h}_2 & \bm{h}^2\cdot\bm{B}\cdot\bm{h}_3 \\
+%                 \bm{h}^3\cdot\bm{B}\cdot\bm{h}_1 & \bm{h}^3\cdot\bm{B}\cdot\bm{h}_2 & \bm{h}^3\cdot\bm{B}\cdot\bm{h}_3 \\
+%             \end{matrix}
+%             \right|
+%         }{\det{[\delta_i^j]}} \\
+%         = &
+%         \left|
+%         \begin{matrix}
+%             B^1_{\cdot1} & B^1_{\cdot2} & B^1_{\cdot3} \\
+%             B^2_{\cdot1} & B^2_{\cdot2} & B^2_{\cdot3} \\
+%             B^3_{\cdot1} & B^3_{\cdot2} & B^3_{\cdot3} \\
+%         \end{matrix}
+%         \right| = \det{(\bm{B})}=I_3
+%     \end{aligned}
+% \end{equation}
+
+% 上式倒数第二个等式，是由于混变分量展开后写成广义Kronecker $\delta$之后，坐标变换到直角坐标时，
+% 作为混变分量形式不改变，因此混变分量的行列式就是张量的行列式。
+
+% \subsection*{2.5}
+
+% 容易证明，二阶反对称张量的特征根的实部是0 %（因为用H而不是T的内积才正定）
+% ；根据代数基本定理，则有非0根两两为的为共轭虚根。
+
+% 设$\bm{A}$有两个不同且不共轭的根，$si, ui, s\neq\pm u$，对应特征向量为$\bm{v}, \bm{w}$，
+% 则有：$\bm{A}\cdot\bm{v}=(si)\bm{v}, \bm{A}\cdot\bm{w}=(ui)\bm{w}$，
+% 反对称：$-\conj{\bm{v}}\cdot\bm{A}=(si)\conj{\bm{v}}$；
+% 因此：$-\conj{\bm{v}}\cdot(ui)\bm{w}=-\conj{\bm{v}}\cdot\bm{A}\cdot\bm{w}=(si)\conj{\bm{v}}\cdot\bm{w}$；
+% 因此：$(ui)\conj{\bm{v}}\cdot\bm{w}=(-si)\conj{\bm{v}}\cdot\bm{w}$；
+% 由于$u\neq-s$，上式有$\conj{\bm{v}}\cdot\bm{w}=0$，即为垂直。
+
+% （本题中点积符号代表的是将协变、逆变分量直接缩并，右侧没有取共轭）
+
+% \subsection*{2.6}
+
+% 线性空间中二阶张量$\bm{A}$（即线性变换），混变分量一定在一组基（或者说相似变换）下成为Jordan标准型，
+% 写作矩阵形式（方便下面讨论）：
+% $[\bm{A}]=[\bm{T}][\bm{J}][\bm{T}]^{-1}$，其中$[\bm{T}]$坐标转换系数矩阵。
+% 其中Jordan标准型为分块对角阵，其中主对角线为特征值，上1对角线为0或1，连续的1构成一个
+% Jordan链，每个Jordan链对应的对角块矩阵一定是同一个特征值构成的，即有设$m\times m$矩阵
+% 为$[j_m(\lambda)]$称作Jordan块，其主对角线是$\lambda$，上1对角线全为1：
+% \begin{equation}
+%     [j_m(\lambda)]=\begin{bmatrix}
+%         \lambda & 1       & 0      & \cdots  & 0       \\
+%         0       & \lambda & 1      & \cdots  & 0       \\
+%         0       & 0       & \ddots & \ddots  & 0       \\
+%         0       & \cdots  & 0      & \lambda & 1       \\
+%         0       & \cdots  & 0      & 0       & \lambda \\
+%     \end{bmatrix}_{m\times m}
+% \end{equation}
+% Jordan块大小为1时才是对角阵。
+
+% 总有：$[\bm{J}]=diag([j_{m1}(\lambda_{i1})],[j_{m2}(\lambda_{i2})],\dots,[j_{mq}(\lambda_{iq})])$
+% ，为$q$个Jordan块组成。其中$\lambda_{ia},\lambda_{ib}$可能相等，将其排序，则每个重特征根构成对角阵，
+% 是若干Jordan块对角排列形成。也就是说Jordan块的大小一定不大于其代数重数。
+
+% 以上Jordan分解定理此处不证明。
+
+% 下面证明Hamilton-Caylay定理，即$f([\bm{A}])=0, f(\lambda)=\det(\lambda[\bm{I}]-[\bm{A}])$。
+
+% 设有不同特征根$\lambda_1,\lambda_2,\dots\lambda_k$，其代数重数分别为$r_1,r_2,...,r_k$，
+% 因此$f(\lambda)=\prod_{i=1}^k{(\lambda-\lambda_i)^{r_i}}$，则：
+% \begin{equation}
+%     \begin{aligned}
+%         f([\bm{A}])=\prod_{i=1}^k{([\bm{A}]-\lambda_i[\bm{I}])^{r_i}}
+%         =\prod_{i=1}^k{\left[[\bm{T}]([\bm{J}]-\lambda_i[\bm{I}])[\bm{T}]^{-1}\right]^{r_i}}
+%             =[\bm{T}]\left[\prod_{i=1}^k{([\bm{J}]-\lambda_i[\bm{I}])^{r_i}}\right][\bm{T}]^{-1}
+%     \end{aligned}
+% \end{equation}
+
+% 考虑上式乘积中的$([\bm{J}]-\lambda_i[\bm{I}])^{r_i}$，其中$\lambda_i$对应的Jordan块大小不大于$r_i$。
+% 由于：
+% $$
+%     [j_m(\lambda_i)]-\lambda_i[\bm{I}_m]=\begin{bmatrix}
+%         0 & 1      & 0      & \cdots & 0 \\
+%         0 & 0      & 1      & \cdots & 0 \\
+%         0 & 0      & \ddots & \ddots & 0 \\
+%         0 & \cdots & 0      & 0      & 1 \\
+%         0 & \cdots & 0      & 0      & 0 \\
+%     \end{bmatrix}_{m\times m}
+% $$
+
+% 而
+% $$
+%     \begin{bmatrix}
+%         0 & 1      & 0      & \cdots & 0 \\
+%         0 & 0      & 1      & \cdots & 0 \\
+%         0 & 0      & \ddots & \ddots & 0 \\
+%         0 & \cdots & 0      & 0      & 1 \\
+%         0 & \cdots & 0      & 0      & 0 \\
+%     \end{bmatrix}_{m\times m}^2=\begin{bmatrix}
+%         0 & 0      & 1      & \cdots & 0 \\
+%         0 & 0      & 0      & \cdots & 0 \\
+%         0 & 0      & \ddots & \ddots & 1 \\
+%         0 & \cdots & 0      & 0      & 0 \\
+%         0 & \cdots & 0      & 0      & 0 \\
+%     \end{bmatrix}_{m\times m}
+% $$
+
+% 即每自乘一次，上述矩阵1的位置上移1，因此$\left[[j_m(\lambda_i)]-\lambda_i[\bm{I}_m]\right]^m=[\bm{0}_m]$。
+% 由于$([\bm{J}]-\lambda_i[\bm{I}])^{r_i}$中每个对角块的幂次都不小于其大小，其必为0，
+% 因此这个矩阵在$\lambda_1$对应的位置都是0，因此对每个特征值给出的矩阵乘积后，全部为0。
+
+% 即有Hamilton-Caylay定理。考虑坐标变换后对张量实体同样成立。
+
+% 对Hamilton-Caylay定理两端乘$\bm{A}$的$0,1,2...$次幂后，
+% 可知任意高次的幂都可以用$0,1,2,...n-1$次幂表示。
+% 具体而言，
+% \begin{equation}
+%     \begin{aligned}
+%         \bm{A}^{n+k}+\sum_{i=1}^n{(-1)^nI_n\bm{A}^{n-i+k}}=0,\ \ k=0,1,2,...
+%     \end{aligned}
+% \end{equation}
+
+% 则有递推公式：
+% \begin{equation}
+%     \begin{aligned}
+%         \bm{A}^{n+k}=-\sum_{i=1}^n{(-1)^nI_n\bm{A}^{n-i+k}},\ \ k=0,1,2,...
+%     \end{aligned}
+% \end{equation}
+
+% 给出$\bm{A}^0,\bm{A}^1,\dots,\bm{A}^{n-1}$后，任意次幂都可以由这些初值表示，即为$n$维表现定理。
+
+% \
+
+% \
+
+% \
+
+
+% 三维情况下的Hamilton-Caylay定理上面已经证明如下式，现给出三维情况表现定理的具体表达式。
+% \begin{equation}
+%     \bm{A}^3-I_1\bm{A}^2+I_2\bm{A}-I_3\bm{I}=\bm{0}
+%     \label{eq:HLTheorem3D}
+% \end{equation}
+
+% 设高次幂的情况是：
+% \begin{equation}
+%     \bm{A}^n=\alpha_{n-2}\bm{A}^2-\beta_{n-2}\bm{A}+\gamma_{n-2}\bm{I}
+% \end{equation}
+
+% 则有初值：
+% \begin{equation}
+%     \alpha_1=I_1,\beta_1=I_2,\gamma_1=I_3
+% \end{equation}
+
+% 两边乘$\bm{A}$则有：
+% \begin{equation}
+%     \bm{A}^{n+1}=\alpha_{n-2}(I_1\bm{A}^2-I_2\bm{A}+I_3\bm{I})
+%     -\beta_{n-2}\bm{A}^2+\gamma_{n-2}\bm{A}
+%     =\alpha_{n-1}\bm{A}^2-\beta_{n-1}\bm{A}+\gamma_{n-1}\bm{I}
+% \end{equation}
+
+% 因此有系数递推关系：
+
+% \begin{equation}
+%     \begin{aligned}
+%         \alpha_{n}= & \alpha_{n-1}I_1-\beta_{n-1}  \\
+%         \beta_{n}=  & \alpha_{n-1}I_2-\gamma_{n-1} \\
+%         \gamma_{n}= & \alpha_{n-1}I_3
+%     \end{aligned}
+% \end{equation}
+
+% 记：
+% \begin{equation}
+%     \bm{a}_n=\begin{bmatrix}
+%         \alpha_n \\
+%         \beta_n  \\
+%         \gamma_n \\
+%     \end{bmatrix}
+% \end{equation}
+
+% 则容易知道：
+% \begin{equation}
+%     \bm{a}_n=\begin{bmatrix}
+%         I_1 & -1 & 0  \\
+%         I_2 & 0  & -1 \\
+%         I_3 & 0  & 0
+%     \end{bmatrix}\bm{a}_{n-1}
+% \end{equation}
+
+% 又，根据Jordan分解定理，其Jordan标准型就是在Jordan变换下的混变分量
+% 矩阵，因此有特征值和主不变量的关系：
+% \begin{equation}
+%     I_1=\lambda_1+\lambda_2+\lambda_3,
+%     I_2=\lambda_1\lambda_2+\lambda_2\lambda_3+\lambda_3\lambda_1,
+%     I_3=\lambda_1\lambda_2\lambda_3
+% \end{equation}
+
+% 得到：
+
+% \begin{equation}
+%     \bm{a}_n=[K]\bm{a}_{n-1},\ [K]=\begin{bmatrix}
+%         \lambda_1+\lambda_2+\lambda_3                            & -1 & 0  \\
+%         \lambda_1\lambda_2+\lambda_2\lambda_3+\lambda_3\lambda_1 & 0  & -1 \\
+%         \lambda_1\lambda_2\lambda_3                              & 0  & 0
+%     \end{bmatrix}
+% \end{equation}
+
+% 矩阵$[K]$特征方程可解得，其有特征值$\lambda_1,\lambda_2,\lambda_3$，与张量本身一样。
+
+% 现假设，三个特征值都非零，则可解得特征向量矩阵：
+% \begin{equation}
+%     [V]=\begin{bmatrix}
+%         \frac{1}{\lambda_2\lambda_3}            &
+%         \frac{1}{\lambda_3\lambda_1}            &
+%         \frac{1}{\lambda_1\lambda_2}                    \\
+%         \frac{1}{\lambda_2}+\frac{1}{\lambda_3} &
+%         \frac{1}{\lambda_3}+\frac{1}{\lambda_1} &
+%         \frac{1}{\lambda_1}+\frac{1}{\lambda_2}         \\
+%         1                                       & 1 & 1
+%     \end{bmatrix},\ \ [K][V]=[V]diag(\lambda_1,\lambda_2,\lambda_3)
+% \end{equation}
+
+% 当三个特征值互不相同，特征向量是线性无关的，有：
+
+% \begin{equation}
+%     [V]^{-1}=\lambda_1\lambda_2\lambda_3
+%     \begin{bmatrix}
+%         \frac{1}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}
+%           & 0 & 0 \\
+%         0 &
+%         \frac{1}{(\lambda_2-\lambda_3)(\lambda_2-\lambda_1)}
+%           & 0     \\
+%         0 & 0 &
+%         \frac{1}{(\lambda_3-\lambda_1)(\lambda_3-\lambda_2)}
+%     \end{bmatrix}\begin{bmatrix}
+%         \lambda_1 & 1 & \frac{1}{\lambda_1} \\
+%         \lambda_2 & 1 & \frac{1}{\lambda_2} \\
+%         \lambda_3 & 1 & \frac{1}{\lambda_3} \\
+%     \end{bmatrix}
+% \end{equation}
+
+% 因此有通项公式：
+
+% \begin{equation}
+%     \begin{aligned}
+%         \bm{a}_n=[K]^{n-1}\bm{a}_1
+%         =[V]diag(\lambda_1^{n-1},\lambda_2^{n-1},\lambda_3^{n-1})[V]^{-1}\bm{a}_1
+%     \end{aligned}
+%     \label{eq:EX_Mat}
+% \end{equation}
+
+% 同时，将
+% $$
+%     \bm{a}_1=\begin{bmatrix}
+%         \lambda_1+\lambda_2+\lambda_3                            \\
+%         \lambda_1\lambda_2+\lambda_2\lambda_3+\lambda_3\lambda_1 \\
+%         \lambda_1\lambda_2\lambda_3                              \\
+%     \end{bmatrix}
+% $$
+% 以及各项用特征值的表达方式代入\eqref{eq:EX_Mat}，
+% 即有：
+
+% \begin{equation}
+%     \bm{a}_n=
+%     \left[\begin{array}{c} -\frac{\lambda _{1}\,{\lambda _{2}}^{2+n}-{\lambda _{1}}^{2+n}\,\lambda _{2}-\lambda _{1}\,{\lambda _{3}}^{2+n}+{\lambda _{1}}^{2+n}\,\lambda _{3}+\lambda _{2}\,{\lambda _{3}}^{2+n}-{\lambda _{2}}^{2+n}\,\lambda _{3}}{\left(-\lambda _{2}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{2}\right)}\\ \frac{{\lambda _{1}}^{2+n}\,{\lambda _{2}}^2-{\lambda _{1}}^2\,{\lambda _{2}}^{2+n}-{\lambda _{1}}^{2+n}\,{\lambda _{3}}^2+{\lambda _{1}}^2\,{\lambda _{3}}^{2+n}+{\lambda _{2}}^{2+n}\,{\lambda _{3}}^2-{\lambda _{2}}^2\,{\lambda _{3}}^{2+n}}{\left(-\lambda _{2}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{2}\right)}\\ -\frac{\lambda _{1}\,\lambda _{2}\,\lambda _{3}\,\left(\lambda _{1}\,{\lambda _{2}}^{1+n}-{\lambda _{1}}^{1+n}\,\lambda _{2}-\lambda _{1}\,{\lambda _{3}}^{1+n}+{\lambda _{1}}^{1+n}\,\lambda _{3}+\lambda _{2}\,{\lambda _{3}}^{1+n}-{\lambda _{2}}^{1+n}\,\lambda _{3}\right)}{\left(-\lambda _{2}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{1}\right)\,\left(-\lambda _{3}+\lambda _{2}\right)} \end{array}\right]
+% \end{equation}
+
+% 引入循环记号：$\left.T_{i_1,i_2,...}\right|_{(1,2,3)}=T_{i_1,i_2,...}+T_{[i_1+1],[i_2+1],...}+T_{[i_1+2],[i_2+2],...}, [i+k]\doteq\mod{(i+k-1,3)}+1$
+
+% 则上式简化为：
+% \begin{equation}
+%     \bm{a}_n=\begin{bmatrix}
+%         \left.\frac{\lambda_1^{n+2}}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}\right|_{(1,2,3)}\\
+%         \left.\frac{\lambda_1^{n+2}(\lambda_2+\lambda_3)}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}\right|_{(1,2,3)}\\
+%         \left.\frac{\lambda_1^{n+2}\lambda_2\lambda_3}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}\right|_{(1,2,3)}\\
+%     \end{bmatrix}
+%     \label{eq:EX_0}
+% \end{equation}
+
+% 上式的定义域是$\lambda_i$非零且互不相同。
+
+
+% 考虑复合函数的连续性传递规律，可知$\lambda_i$与$\bm{a}_n$的关系是连续的，
+% 其在$\lambda_i$为0或者相等的位置也是连续的，因此任意取极限即为函数值。
+% 根据\eqref{eq:EX_0}在这些位置的极限，结合洛必达法则，可得：
+
+% 当$\lambda_1\neq\lambda_2\neq\lambda_3$，\eqref{eq:EX_0}即为$\bm{a}_n$的表达式；
+
+% 当$\lambda_1\neq\lambda_2=\lambda_3=\lambda_0$，
+% \begin{equation}
+%     \bm{a}_n=\begin{bmatrix}
+%         \frac{\lambda_1^{n+2}-(n+2)\lambda_1\lambda_0^{n+1}+(n+1)\lambda_0^{n+2}}{(\lambda_0-\lambda_1)^2}\\
+%         \frac{
+%             \lambda_0\left[
+%                 2\lambda_1^{n+2}-(n+2)\lambda_1^2\lambda_0^{n}+n\lambda_0^{n+2}
+%                 \right]
+%                 }{(\lambda_0-\lambda_1)^2}\\
+%         \frac{
+%             \lambda_0^2\lambda_1
+%             \left[
+%             \lambda_1^{n+1}-(n+1)\lambda_1\lambda_0^{n}+n\lambda_0^{n+1}
+%             \right]
+%             }{(\lambda_0-\lambda_1)^2}\\
+%     \end{bmatrix}
+%     \label{eq:EX_1}
+% \end{equation}
+
+% 当$\lambda_1=\lambda_2=\lambda_3=\lambda_0$，
+
+% \begin{equation}
+%     \bm{a}_n
+%     \begin{bmatrix}
+%         \frac{(n+1)(n+2)}{2}\lambda_0^{n}\\
+%         n(n+2)\lambda_0^{n+1}\\
+%         \frac{(n+1)(n+2)}{2}\lambda_0^{n+2}\\
+%     \end{bmatrix}
+%     \label{eq:EX_2}
+% \end{equation}
+
+% 以上即为$\bm{A}$的次幂的表现定理。
+
+% 对于各向同性的无穷阶连续可导的张量函数，设表现定理：
+
+% \begin{equation}
+%     F(\bm{A})=m_2\bm{A}^2-m_1\bm{A}+m_0\bm{I},\ \ \bm{m}=\begin{bmatrix}
+%         m_2\\m_1\\m_0
+%     \end{bmatrix}
+% \end{equation}
+
+% 函数有幂级数形式：
+
+% \begin{equation}
+%     F(\bm{A})=\sum_{i=0}^\infty{b_i\bm{A}^i}
+%     \label{eq:F_taylor}
+% \end{equation}
+
+
+
+% 当$\lambda_1\neq\lambda_2\neq\lambda_3$时，将\eqref{eq:EX_0}代入上式，
+% 有：
+
+% \begin{equation}
+%     \begin{aligned}
+%         \bm{m}=\sum_{n=0}^\infty {b_n\bm{a}_n}=\begin{bmatrix}
+%             \left.\frac{F(\lambda_1)}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}\right|_{(1,2,3)}\\
+%         \left.\frac{F(\lambda_1)(\lambda_2+\lambda_3)}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}\right|_{(1,2,3)}\\
+%         \left.\frac{F(\lambda_1)\lambda_2\lambda_3}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}\right|_{(1,2,3)}\\
+%         \end{bmatrix}
+%     \end{aligned}
+% \end{equation}
+
+% 其中，$\bm{a}_{-2}, \bm{a}_{-1}, \bm{a}_0$对于以上给出的通项公式是依然成立的，所以
+% 没有单独讨论这三项。
+
+% 同样，将\eqref{eq:EX_1}，\eqref{eq:EX_2}也分别代入\eqref{eq:F_taylor}，
+% 同时考虑$F', F''$的幂级数形式，化简可得：
+
+% 当$\lambda_1\neq\lambda_2=\lambda_3=\lambda_0$，
+% \begin{equation}
+%     \bm{m}=\begin{bmatrix}
+%         \frac{F(\lambda_1)-F(\lambda_0)-(\lambda_1-\lambda_0)F'(\lambda_0)}
+%         {(\lambda_1-\lambda_0)^2}\\
+%         \frac{2\lambda_0(F(\lambda_1)-F(\lambda_0))-
+%         (\lambda_1^2-\lambda_0^2)F'(\lambda_0)}
+%         {(\lambda_1-\lambda_0)^2}\\
+%         \frac{\lambda_0^2F(\lambda_1)-\lambda_1(\lambda_1-2\lambda_0)F(\lambda_0)
+%         -\lambda_0\lambda_1(\lambda_1-\lambda_0)F'(\lambda_0)}
+%         {(\lambda_1-\lambda_0)^2}\\
+%     \end{bmatrix}
+% \end{equation}
+
+% 当$\lambda_1=\lambda_2=\lambda_3=\lambda_0$，
+% \begin{equation}
+%     \bm{m}=\begin{bmatrix}
+%         \frac{1}{2}F''(\lambda_0)\\
+%         \lambda_0F''(\lambda_0)-F'(\lambda_0)\\
+%         \frac{1}{2}\lambda_0^2F''(\lambda_0)-\lambda_0F'(\lambda_0)
+%         +F(\lambda_0)\\
+%     \end{bmatrix}
+% \end{equation}
+
+
+% 即为各向同性张量函数的表现定理。
+
+
+% !delete below
+% \
+
+% \
+
+% \
+
+
+% 首先证明：
+% \begin{equation*}
+%     e^{ijk}e_{rst}=
+%     \left|
+%     \begin{matrix}
+%         \delta^i_r & \delta^i_s & \delta^i_t \\
+%         \delta^j_r & \delta^j_s & \delta^j_t \\
+%         \delta^k_r & \delta^k_s & \delta^k_t \\
+%     \end{matrix}
+%     \right|
+%     \equiv
+%     \delta^i_r\delta^j_s\delta^k_t +
+%     \delta^i_s\delta^j_t\delta^k_r +
+%     \delta^i_t\delta^j_r\delta^k_s -
+%     \delta^i_t\delta^j_s\delta^k_r -
+%     \delta^i_s\delta^j_r\delta^k_t -
+%     \delta^i_r\delta^j_t\delta^k_s
+% \end{equation*}
+
+% 考虑左侧为$\pm 1$的情况：
+% 当$i,j,k$与$r,s,t$分别是$1,2,3$时，容易发现右侧是单位阵的行列式，等于左侧。
+% 对$i,j,k$或者$r,s,t$循环移位时，由于相当于行列式交换两次行或者列，左右都不变。
+% 对$i,j,k$或者$r,s,t$任意交换时，由于行列式交换一次行或者列，左右都变号。
+% 因此所有非零的情况左右相等
+
+% 考虑左侧为$0$：当$i,j,k$或者$r,s,t$一定有任意的重复，可知有两列或者两行重复，左右都是0。
+
+% 总之，上述恒等式是成立的。
+% 对上述恒等式$k,t$指标缩并，得到：
+% \begin{equation*}
+%     \begin{aligned}
+%         e^{ijk}e_{rsk}= &
+%         \delta^i_r\delta^j_s\delta^k_k +
+%         \delta^i_s\delta^j_k\delta^k_r +
+%         \delta^i_k\delta^j_r\delta^k_s -
+%         \delta^i_k\delta^j_s\delta^k_r -
+%         \delta^i_s\delta^j_r\delta^k_k -
+%         \delta^i_r\delta^j_k\delta^k_s           \\
+%         =               &
+%         3\delta^i_r\delta^j_s +
+%         \delta^i_s\delta^j_r +
+%         \delta^j_r\delta^i_s -
+%         \delta^j_s\delta^i_r -
+%         3\delta^i_s\delta^j_r -
+%         \delta^i_r\delta^j_s
+%         \\
+%         =               & \delta^i_r\delta^j_s -
+%         \delta^i_s\delta^j_r
+%     \end{aligned}
+% \end{equation*}
+
+% 进一步缩并可得：
+% \begin{equation*}
+%     \begin{aligned}
+%         e^{ijk}e_{rjk}
+%         = & \delta^i_r\delta^j_j -
+%         \delta^i_j\delta^j_r       \\
+%         = & 2\delta^i_r
+%     \end{aligned}
+% \end{equation*}
+
+% 进一步缩并可得：
+% \begin{equation*}
+%     \begin{aligned}
+%         e^{ijk}e_{ijk}
+%         = & 2\delta^i_i
+%         =6
+%     \end{aligned}
+% \end{equation*}
+
+% \subsection*{1.2}
+% 在直角坐标展开，根据第一题，有：
+% \begin{equation*}
+%     \begin{aligned}
+%         \bm{u}\times(\bm{v}\times\bm{w})
+%         = &
+%         u^i\bm{e}_i\times(v^r\bm{e}_r\times w^s\bm{e}_s) \\
+%         = &
+%         u^i\bm{e}_i\times(v^r w^s e_{rsj}\bm{e}^j)       \\
+%         = &
+%         u^i v^r w^s e_{rsj}e_{ijk}\bm{e}^k               \\
+%         = &
+%         u^i v^r w^s (\delta^k_r\delta^i_s-\delta^k_s\delta^i_r)
+%         \bm{e}^k                                         \\
+%         = &
+%         u^i v^k w^i \bm{e}^k- u^i v^i w^k\bm{e}^k        \\
+%         = &
+%         (\bm{u}\cdot\bm{w})\bm{v}-(\bm{u}\cdot\bm{v})\bm{w}
+%     \end{aligned}
+% \end{equation*}
+
+% 同样：
+% \begin{equation*}
+%     \begin{aligned}
+%         (\bm{u}\times\bm{v})\cdot(\bm{w}\times\bm{a})
+%         = &
+%         u^iv^je_{ijk}w^ra^se_{rsk} \\
+%         = &
+%         u^iv^jw^ra^s(\delta^i_r\delta^j_s -
+%         \delta^i_s\delta^j_r)      \\
+%         = &
+%         u^iv^jw^ia^j-u^iv^jw^ja^i  \\
+%         = &
+%         (\bm{u}\cdot\bm{w})(\bm{v}\cdot\bm{a})-
+%         (\bm{u}\cdot\bm{a})(\bm{v}\cdot\bm{w})
+%     \end{aligned}
+% \end{equation*}
+
+% \subsection*{1.3}
+% 证明：
+
+% 已知单位正交基下混合积定义的轮换性质
+% $$
+%     [\bm{u},\bm{v},\bm{w}]=
+%     (\bm{u}\times\bm{v})\cdot\bm{w}
+%     =(\bm{v}\times\bm{w})\cdot\bm{u}
+%     =(\bm{w}\times\bm{u})\cdot\bm{v}
+% $$
+
+% 因此以下讨论只取轮换等价中的一个情况。
+
+% ~\\
+
+% 先讨论充分性
+
+% 如果$\bm{u},\bm{v},\bm{w}$共面，则不妨设
+
+% $$
+%     \bm{w}=a_1\bm{u}+a_2\bm{v}
+% $$
+
+% (上式及其轮换形式中必有一个成立，仅讨论此种)
+
+% 则
+
+% $$
+%     [\bm{u},\bm{v},\bm{w}]=
+%     (\bm{u}\times\bm{v})\cdot\bm{w}
+%     =(\bm{u}\times\bm{v})\cdot(a_1\bm{u}+a_2\bm{v})
+%     =a_1(\bm{u}\times\bm{v})\cdot\bm{u}+
+%     a_2(\bm{u}\times\bm{v})\cdot\bm{v}
+% $$
+
+% 容易知道根据叉积的性质，上式最后两项都是0，则
+
+% $$
+%     [\bm{u},\bm{v},\bm{w}]=0
+% $$
+
+% 以上是充分性的逆否命题，因此得证。
+
+% ~\\
+
+% 再讨论必要性
+
+% 已知$[\bm{u},\bm{v},\bm{w}]=0$
+
+% 假设$\bm{u},\bm{v},\bm{w}$非共面，可知存在$\bm{w'}$
+
+% $$
+%     \bm{w}=a_1\bm{u}+a_2\bm{v}+\bm{w'}
+% $$
+
+% 且
+% $
+%     \bm{w'}\neq 0,
+%     \bm{w'}\cdot\bm{u}=\bm{w'}\cdot\bm{u}=0
+% $。
+
+% 即，必有$\bm{w}$在$span(\bm{u},\bm{v})$的正交空间
+% 中的投影$\bm{w'}$非零。
+
+% 又空间只有3维，$span(\bm{u}\times\bm{v})$
+% 就是$span(\bm{u},\bm{v})$的正交空间
+% （子空间的正交空间的唯一性可以通过构造正交基
+% 证明）
+
+% 因此
+
+% $$
+%     \left|[\bm{u},\bm{v},\bm{w}]\right|
+%     =\left|\bm{w'}\cdot(\bm{u}\times\bm{v})\right|
+%     =|\bm{w'}||\bm{u}\times\bm{v}|
+% $$
+
+% 根据已知以上最后相乘两项都非0，
+% 则知$[\bm{u},\bm{v},\bm{w}]\neq 0$，矛盾。
+
+% 因此必要条件成立。
+
+% \subsection*{1.4}
+% 取分量$\bm{x}=(1,1,1), \bm{y}=(0,0,0)$，
+% 则$\bm{y}+\bm{x}=(2,2,2)\neq\bm{x}+\bm{y}=(1,1,1)$，不构成阿贝尔群。
+
+% 可以证明，满足实线性空间定义的向量加法，写作实数分量时，由于其交换律、
+% 零元、结合律，一定是分量分别相加。下一问的向量加法就如此计算。
+
+% 取分量$\bm{x}=(1,1,1)$，则$(1+1)\bm{x}=(2,1,2)\neq 1\bm{x} + 1\bm{x}=(2,2,2)$，
+% 因此不是线性空间的数乘运算。
+
+% \subsection*{1.5}
+% 以下讨论都是在$\mathbb{R}^3$中
+
+% \subsubsection*{i}
+
+% C1：共轭对称
+
+% 此处实空间则退化为对称性，交换定义式右端的$x$和$y$发现与此前恒等，则证明。
+
+% C2：数乘线性
+
+% 右端对$x$或者$y$而言都是一次项，无其他幂次，因此满足数乘线性。
+
+% C3：分配律
+
+% 右端对$x$或者$y$而言都是一次项，每一项满足分配律，线性和后仍然满足。
+
+% C4：正定性
+
+% 通过配方可以将其化为正定二次型
+% $$
+%     (x_1+x_2)(y_1+y_2)+x_1y_1+x_2y_2+x_3y_3
+% $$
+
+% 容易看到当$\bm{x}=\bm{y}$上式都是平方项，因此大于等于0且
+% 向量为0的时候才是0。
+
+% 或者采用更加
+% 数值的方法：
+
+% $$
+%     \bm{I'(x,y)}
+%     =
+%     [\bm{x}]\trans
+%     \begin{bmatrix}
+%         2 & 1 & 0 \\
+%         1 & 2 & 0 \\
+%         0 & 0 & 1 \\
+%     \end{bmatrix}
+%     [\bm{y}]=[\bm{x}]\trans
+%     A
+%         [\bm{y}]
+% $$
+
+% 只需证明矩阵$A$的正定性，由于其严格对角占优且对角线为正则为正定。
+
+% 或者，其特征值有$1,1,3$都是正数因此是正定的。
+
+% 综上，满足内积的定义。
+
+% \subsubsection*{ii}
+
+% 根据线性代数，所有的内积一定有对应双线性函数
+
+% \begin{equation}
+%     \bm{I(x,y)}
+%     =
+%     [\bm{x}]\trans
+%     M
+%         [\bm{y}]
+%     \label{eq:1}
+% \end{equation}
+
+% 且满足$M$是正定对称矩阵，而且根据i,容易证明只要有一个正定对称矩阵$M$依此定义出的
+% 函数就是内积。
+
+% 因此，所有三维内积算子的集合与所有三维正定对称矩阵的集合是一一映射的。
+
+% 定义任意内积只需对其分量定义(1)形式的函数以及正定对称矩阵$M$即可。
+
+% 如定义矩阵
+% $$
+%     M=\begin{bmatrix}
+%         1 & 0 & 0 \\
+%         0 & 2 & 0 \\
+%         0 & 0 & 3 \\
+%     \end{bmatrix}
+% $$
+
+% 则\eqref{eq:1}式就是一个内积。
+
+% \subsection*{1.6}
+% 根据直角坐标，通过系数矩阵求逆得到逆变基向量的分量：
+% \begin{equation*}
+%     \begin{aligned}
+%         \bm{g}^1= & \frac{1}{15}(5\bm{e}_1-5\bm{e}_2+5\bm{e}_3)    \\
+%         \bm{g}^2= & \frac{1}{15}(-9\bm{e}_1+21\bm{e}_2-18\bm{e}_3) \\
+%         \bm{g}^3= & \frac{1}{15}(\bm{e}_1-4\bm{e}_2+7\bm{e}_3)     \\
+%     \end{aligned}
+% \end{equation*}
+
+% 逆变度量张量的分量则为：
+% \begin{equation*}
+%     g^{ij}=\bm{g}^i\cdot\bm{g}^j=\frac{1}{75}\begin{bmatrix}
+%         25  & -80 & 20  \\
+%         -80 & 282 & -73 \\
+%         20  & -73 & 22
+%     \end{bmatrix}
+% \end{equation*}
+% % TODO
+
+
+
+% \subsection*{1.7}
+
+% 当$\bm{u},\bm{v},\bm{w}$线性相关，左右都是0，显然成立，以下讨论线性无关情况。
+
+% 记$\bm{u},\bm{v},\bm{w}=\bm{g}_1, \bm{g}_2, \bm{g}_3$
+% 则一定有逆变基矢量$\bm{g}^1, \bm{g}^2, \bm{g}^3$，使得$\bm{g}^i\cdot\bm{g}_j=\delta^i_j$。
+% 则讨论$\bm{a},\bm{b},\bm{c}$的逆变分量展开情况：
+% \begin{equation*}
+%     \begin{aligned}
+%         [\bm{a},\bm{b},\bm{c}]
+%         = & [a_i\bm{g}^i,b_j\bm{g}^j,c_k\bm{g}^k] \\
+%     \end{aligned}
+% \end{equation*}
+
+% 考虑上式右端展开爱因斯坦求和有27项，其中非零的，只有$i,j,k$不等的情况，因此：
+% \begin{equation*}
+%     \begin{aligned}
+%         [\bm{a},\bm{b},\bm{c}]
+%         = & [a_i\bm{g}^i,b_j\bm{g}^j,c_k\bm{g}^k] \\
+%         = & (
+%         a_1b_2c_3 + a_2b_3c_1 + a_3b_1c_2
+%         -a_3b_2c_1 - a_2b_1c_3 - a_1b_3c_2
+%         )
+%         [\bm{g}^1, \bm{g}^2, \bm{g}^3]            \\
+%         = & \left|
+%         \begin{matrix}
+%             a_1 & a_2 & a_3 \\
+%             b_1 & b_2 & b_3 \\
+%             c_1 & c_2 & c_3 \\
+%         \end{matrix}
+%         \right|[\bm{g}^1, \bm{g}^2, \bm{g}^3]
+%     \end{aligned}
+% \end{equation*}
+
+% 由于已知
+% \begin{equation*}
+%     \begin{aligned}
+%         \bm{g}^1= &
+%         \frac{1}{\sqrt{g}}(\bm{g}_2\times\bm{g}_3) \\
+%         \bm{g}^2= &
+%         \frac{1}{\sqrt{g}}(\bm{g}_3\times\bm{g}_1) \\
+%         \bm{g}^3= &
+%         \frac{1}{\sqrt{g}}(\bm{g}_1\times\bm{g}_2) \\
+%     \end{aligned}
+% \end{equation*}
+
+% 因此，根据叉积公式（第二题）：
+% \begin{equation*}
+%     \begin{aligned}
+%         [\bm{g}^1, \bm{g}^2, \bm{g}^3]= &
+%         \frac{1}{g^{\frac{3}{2}}}
+%         \left(
+%         (\bm{g}_2\times\bm{g}_3)\times
+%         (\bm{g}_3\times\bm{g}_1)
+%         \right)\cdot
+%         (\bm{g}_1\times\bm{g}_2)                                 \\
+%         =                               &
+%         \frac{1}{g^{\frac{3}{2}}}
+%         \left[
+%             \left(
+%             (\bm{g}_2\times\bm{g}_3)\cdot\bm{g}_1
+%             \right)\bm{g}_3-
+%             \left(
+%             (\bm{g}_3\times\bm{g}_1)\cdot\bm{g}_3
+%             \right)\bm{g}_1
+%             \right]\cdot
+%         (\bm{g}_1\times\bm{g}_2)                                 \\
+%         =                               &
+%         \frac{1}{g^{\frac{3}{2}}}
+%         [\bm{g}_1,\bm{g}_2,\bm{g}_3]\bm{g}_3\cdot
+%         (\bm{g}_1\times\bm{g}_2)                                 \\
+%         =                               &
+%         \frac{1}{g^{\frac{3}{2}}}
+%         [\bm{g}_1,\bm{g}_2,\bm{g}_3][\bm{g}_1,\bm{g}_2,\bm{g}_3] \\
+%         =                               &
+%         \frac{1}{\sqrt{g}}
+%     \end{aligned}
+% \end{equation*}
+
+% 因此，关于$[\bm{a},\bm{b},\bm{c}]$的展开可得：
+% \begin{equation*}
+%     \begin{aligned}
+%         [\bm{a},\bm{b},\bm{c}]
+%         = & \left|
+%         \begin{matrix}
+%             a_1 & a_2 & a_3 \\
+%             b_1 & b_2 & b_3 \\
+%             c_1 & c_2 & c_3 \\
+%         \end{matrix}
+%         \right|\frac{1}{\sqrt{g}} \\
+%         \Rightarrow\
+%         [\bm{a},\bm{b},\bm{c}][\bm{g}_1,\bm{g}_2,\bm{g}_3]
+%         = & \left|
+%         \begin{matrix}
+%             a_1 & a_2 & a_3 \\
+%             b_1 & b_2 & b_3 \\
+%             c_1 & c_2 & c_3 \\
+%         \end{matrix}
+%         \right|
+%     \end{aligned}
+% \end{equation*}
+
+% 又根据逆变分量的计算方法：
+% \begin{equation*}
+%     \begin{aligned}
+%         a_i & =\bm{a}\cdot\bm{g}_i \\
+%         b_i & =\bm{b}\cdot\bm{g}_i \\
+%         c_i & =\bm{c}\cdot\bm{g}_i \\
+%     \end{aligned}
+% \end{equation*}
+
+% 带入上式即为所求证公式。
+
+
+\end{document}
