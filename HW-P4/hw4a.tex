@@ -1,0 +1,652 @@
+%!TEX program = xelatex
+\documentclass[UTF8,zihao=5]{ctexart}
+
+
+\title{{\bfseries 第4次作业}}
+\author{周涵宇 2022310984}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+% \setmonofont{JetBrains Mono}
+\setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+
+% \usepackage{bm}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+
+\newcommand{\bm}[1]{{\mathbf{#1}}}
+
+\newcommand{\trans}[0]{^\mathrm{T}}
+\newcommand{\tran}[1]{#1^\mathrm{T}}
+\newcommand{\hermi}[0]{^\mathrm{H}}
+\newcommand{\conj}[1]{\overline{#1}}
+
+\newcommand*{\av}[1]{\left\langle{#1}\right\rangle}
+
+\newcommand*{\avld}[1]{\frac{\overline{D}#1}{Dt}}
+
+\newcommand*{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand*{\pdcd}[3]
+{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+
+
+\begin{document}
+
+\maketitle
+
+\subsection*{4.1}
+
+考虑：$\bm{g}_i\bm{g}^j=\delta_i^j$，
+设出逆变基在标准正交坐标系下的系数，解线性方程即有：
+
+$$
+    \begin{aligned}
+        \bm{g}^1= & \frac{ 57\bm{e}_1 -17\bm{e}_2 +27\bm{e}_3 -23\bm{e}_4}{261} \\
+        \bm{g}^2= & \frac{-45\bm{e}_1+105\bm{e}_2 -90\bm{e}_3 +96\bm{e}_4}{261} \\
+        \bm{g}^3= & \frac{-21\bm{e}_1 +20\bm{e}_2 +45\bm{e}_3 -19\bm{e}_4}{261} \\
+        \bm{g}^4= & \frac{  9\bm{e}_1 -21\bm{e}_2 +18\bm{e}_3 +33\bm{e}_4}{261} \\
+    \end{aligned}
+$$
+
+\subsection*{4.2}
+
+以下以$\bm{r}$代表位置矢量。
+
+\subsubsection*{4.2.1}
+
+柱坐标系：$\bm{r}= \cos{(x^2)} x^1 \bm{e}_1 + \sin{(x^2)} x^1 \bm{e}_2 + x^3 \bm{e}_3$
+
+则$\bm{g}_i=\pd{\bm{r}}{x^i}$
+$$
+    \begin{aligned}
+        \bm{g}_1 = & \cos{(x^2)}\bm{e}_1 + \sin{(x^2)}\bm{e}_2        \\
+        \bm{g}_2 = & -\sin{(x^2)}x^1\bm{e}_1 + \cos{(x^2)}x^1\bm{e}_2 \\
+        \bm{g}_3 = & \bm{e}_3                                         \\
+    \end{aligned}
+$$
+
+根据$\bm{g}_i\bm{g}^j=\delta_i^j$，即有：
+$$
+    \begin{aligned}
+        \bm{g}^1 = & \cos{(x^2)}\bm{e}_1 + \sin{(x^2)}\bm{e}_2                          \\
+        \bm{g}^2 = & -\frac{\sin{(x^2)}}{x^1}\bm{e}_1 + \frac{\cos{(x^2)}}{x^1}\bm{e}_2 \\
+        \bm{g}^3 = & \bm{e}_3                                                           \\
+    \end{aligned}
+$$
+
+因此度量张量：
+$$
+    \begin{aligned}
+        \bm{G}=\bm{g}^1\bm{g}^1 + x^1x^1 \bm{g}^2\bm{g}^2 + \bm{g}^3\bm{g}^3
+        =\bm{g}_1\bm{g}_1 + \frac{1}{x^1x^1} \bm{g}_2\bm{g}_2 + \bm{g}_3\bm{g}_3
+    \end{aligned}
+$$
+
+因此$\det(g_{ij})=\frac{1}{\det(g^{ij})}=x^1x^1=g$
+
+\subsubsection*{4.2.2}
+
+球坐标系：$\bm{r}= x^1\cos{(x^2)}\cos{(x^3)} \bm{e}_1 + x^1\sin{(x^2)}\cos{(x^3)}\bm{e}_2 + x^1\sin{(x^3)}\bm{e}_3$
+
+则$\bm{g}_i=\pd{\bm{r}}{x^i}$
+$$
+    \begin{aligned}
+        \bm{g}^1 = & \cos(x^2)\cos(x^3)\bm{e}_1 + \sin(x^2)\cos(x^3)\bm{e}_2 +\sin(x^3)\bm{e}_3             \\
+        \bm{g}^2 = & -x^1\sin(x^2)\cos(x^3)\bm{e}_1 +  x^1\cos(x^2)\cos(x^3)\bm{e}_2                        \\
+        \bm{g}^3 = & -x^1\cos(x^2)\sin(x^3)\bm{e}_1 - x^1\sin(x^2)\sin(x^3)\bm{e}_2 +  x^1\cos(x^3)\bm{e}_3 \\
+    \end{aligned}
+$$
+
+根据$\bm{g}_i\bm{g}^j=\delta_i^j$，即有：
+$$
+    \begin{aligned}
+        \bm{g}^1 = & \cos(x^2)\cos(x^3)\bm{e}_1 + \sin(x^2)\cos(x^3)\bm{e}_2 +\sin(x^3)\bm{e}_3                                     \\
+        \bm{g}^2 = & -\frac{\sin(x^2)}{x^1\cos(x^3)}\bm{e}_1 + \frac{\cos(x^2)}{x^1\cos(x^3)}\bm{e}_2                               \\
+        \bm{g}^3 = & -\frac{\cos(x^2)\sin(x^3)}{x^1}\bm{e}_1  -\frac{\sin(x^2)\sin(x^3)}{x^1}\bm{e}_2+\frac{\cos(x^3)}{x^1}\bm{e}_3 \\
+    \end{aligned}
+$$
+
+因此度量张量：
+$$
+    \begin{aligned}
+        \bm{G}= & \bm{g}^1\bm{g}^1 + x^1x^1\cos(x^3)\cos(x^3) \bm{g}^2\bm{g}^2 + x^1x^1\bm{g}^3\bm{g}^3                      \\
+        =       & \bm{g}_1\bm{g}_1 + \frac{1}{x^1x^1\cos(x^3)\cos(x^3)} \bm{g}_2\bm{g}_2 + \frac{1}{x^1x^1} \bm{g}_3\bm{g}_3
+    \end{aligned}
+$$
+
+因此$\det(g_{ij})=\frac{1}{\det(g^{ij})}=\left[x^1x^1\cos(x^3)\right]^2=g$
+
+\subsubsection*{4.2.1}
+
+极坐标系：$\bm{r}= \cos{(x^2)} x^1 \bm{e}_1 + \sin{(x^2)} x^1 \bm{e}_2 $
+
+则$\bm{g}_i=\pd{\bm{r}}{x^i}$
+$$
+    \begin{aligned}
+        \bm{g}_1 = & \cos{(x^2)}\bm{e}_1 + \sin{(x^2)}\bm{e}_2        \\
+        \bm{g}_2 = & -\sin{(x^2)}x^1\bm{e}_1 + \cos{(x^2)}x^1\bm{e}_2 \\
+    \end{aligned}
+$$
+
+根据$\bm{g}_i\bm{g}^j=\delta_i^j$，即有：
+$$
+    \begin{aligned}
+        \bm{g}^1 = & \cos{(x^2)}\bm{e}_1 + \sin{(x^2)}\bm{e}_2                          \\
+        \bm{g}^2 = & -\frac{\sin{(x^2)}}{x^1}\bm{e}_1 + \frac{\cos{(x^2)}}{x^1}\bm{e}_2 \\
+    \end{aligned}
+$$
+
+因此度量张量：
+$$
+    \begin{aligned}
+        \bm{G}=\bm{g}^1\bm{g}^1 + x^1x^1 \bm{g}^2\bm{g}^2
+        =\bm{g}_1\bm{g}_1 + \frac{1}{x^1x^1} \bm{g}_2\bm{g}_2
+    \end{aligned}
+$$
+
+因此$\det(g_{ij})=\frac{1}{\det(g^{ij})}=x^1x^1=g$
+
+\subsection*{4.3}
+
+% [g] is col vector cart for g, so [g_i][beta^i_j'] = [g_j']
+
+4.2已经给出$\bm{g}_i,\,\bm{g}_{i'}$，则根据$\bm{g}_i\beta_{j'}^{i}=\bm{g}_{j'}$，
+即有：$\beta_{j'}^{i}=\bm{g}^i\cdot\bm{g}_{j'}$，因此：
+
+$$
+    \beta^i_{j'}=
+    \left[\begin{array}{ccc} \cos\left(-x^{2'}+x^{2}\right)\,\cos\left(x^{3'}\right) & x^{1'}\,\sin\left(-x^{2'}+x_{2}\right)\,\cos\left(x^{3'}\right) & -x^{1'}\,\cos\left(-x^{2'}+x_{2}\right)\,\sin\left(x^{3'}\right)\\ -\frac{\sin\left(-x^{2'}+x_{2}\right)\,\cos\left(x^{3'}\right)}{x_{1}} & \frac{x^{1'}\,\cos\left(-x^{2'}+x_{2}\right)\,\cos\left(x^{3'}\right)}{x_{1}} & \frac{x^{1'}\,\sin\left(-x^{2'}+x_{2}\right)\,\sin\left(x^{3'}\right)}{x_{1}}\\ \sin\left(x^{3'}\right) & 0 & x^{1'}\,\cos\left(x^{3'}\right) \end{array}\right]_{ij'}
+$$
+
+不难发现，由于$x^{2'} = x^2$，
+$$
+    \beta^i_{j'}=
+    \left[\begin{array}{ccc} \cos\left(x^{3'}\right) & 0 & -x^{1'}\,\sin\left(x^{3'}\right)\\ 0 & \frac{x^{1'}\,\cos\left(x^{3'}\right)}{x^{1}} & 0\\ \sin\left(x^{3'}\right) & 0 & x^{1'}\,\cos\left(x^{3'}\right) \end{array}\right]_{ij'}
+$$
+
+又由于$x^{1}=x^{1'}\cos(x^{3'})$
+$$
+    \beta^i_{j'}=
+    \left[\begin{array}{ccc} \cos\left(x^{3'}\right) & 0 & -x^{1'}\,\sin\left(x^{3'}\right)\\ 0 & 1 & 0\\ \sin\left(x^{3'}\right) & 0 & x^{1'}\,\cos\left(x^{3'}\right) \end{array}\right]_{ij'}
+$$
+
+考虑到$\beta^i_{k'}\beta^{k'}_j=\delta^i_j$，即有：
+$$
+    \beta^{i'}_j=
+    \left[\begin{array}{ccc} \cos\left(x^{3'}\right) & 0 & \sin\left(x^{3'}\right)\\ 0 & 1 & 0\\ -\frac{\sin\left(x^{3'}\right)}{x^{1'}} & 0 & \frac{\cos\left(x^{3'}\right)}{x^{1'}} \end{array}\right]_{i'j}
+$$
+
+如果表示表示为$x^i$，有：$x^{1'}=\sqrt{(x^1)^2+(x^3)^2}, x^{2'}=x^2, x^{3'}=\arctan(\frac{x^3}{x^1})$代入即可。
+
+\subsection*{4.4}
+
+首先根据分量协变导数满足：
+$\pd{\bm{u}}{x^i}=u_{j;i}\bm{g}^j=u^j_{;i}\bm{g}_j$，其两端张量积$\bm{g}_i$即可发现
+最左端是一个二阶张量，右端是按照基矢量的张量积展开的结果，因此协变分量都是张量分量。
+又有关系：
+
+$$
+    u^i_{;j} = u^i_{,j} + u^k\Gamma_{jk}^i
+$$
+
+由于克氏符号不是张量的分量，通过左右两端的坐标变换关系
+容易发现，普通偏导数也不是张量的分量，存在不满足坐标变换
+关系的例子。
+
+（由于克氏符号在直线坐标下是0，在非直线坐标下是非0，其不是张量的分量，
+因此也不满足坐标变换关系）
+
+\subsection*{4.5}
+
+\subsubsection*{4.5.1}
+柱坐标下，$[g_{ij}]=diag(1, (x^1)^2, 1)$，是对角阵，考虑
+$$
+    \Gamma_{ij,k}=
+    \frac{1}{2}
+    (g_{ik,j} + g_{jk,i} - g_{ij,k})
+$$
+
+则$i=k=2,j=1$或者$j=k=2,i=1$时，$\Gamma_{ij,k}=x^1$，
+$i=j=2,k=1$时，$\Gamma_{ij,k}=-x^1$，其余分量都是0。
+
+
+\subsubsection*{4.5.2}
+球坐标下，$[g_{ij}]=diag(1, (x^1)^2\cos^2(x^3), (x^1)^2)$，是对角阵，考虑
+$$
+    \Gamma_{ij,k}=
+    \frac{1}{2}
+    (g_{ik,j} + g_{jk,i} - g_{ij,k})
+$$
+
+% $$
+% \Gamma^l_{ij}=g^{kl}
+%     \frac{1}{2}
+%     (g_{ik,j} + g_{jk,i} - g_{ij,k})
+% $$
+
+则$i=k=2,j=1$或者$j=k=2,i=1$时，
+$\Gamma_{ij,k}=x^1\cos^2(x^3)$；
+当$i=j=2,k=1$时，
+$\Gamma_{ij,k}=-x^1\cos^2(x^3)$；
+当$i=k=2,j=3$或者$j=k=2,i=3$时，
+$\Gamma_{ij,k}=-x^1x^1\cos(x^3)\sin(x^3)$；
+当$i=j=2,k=3$时，
+$\Gamma_{ij,k}=x^1x^1\cos(x^3)\sin(x^3)$；
+当$i=k=3,j=1$或者$j=k=3,i=1$时，
+$\Gamma_{ij,k}=x^1$；
+当$i=j=3,k=1$时，
+$\Gamma_{ij,k}=-x^1$；
+其余分量都是0。
+
+
+
+\subsubsection*{4.6}
+
+首先由于$\bm{g_i}=\pd{\bm{r}}{x^i}=\pd{\bm{r}}{x^{i'}}\pd{x^i}{x^{i'}}=\bm{g_{i'}}\pd{x^i}{x^{i'}}$
+可知$\pd{x^i}{x^{i'}}$就是$\beta^i_{i'}$，反之亦然。
+
+
+% ! before coord conversion, separate contraction indices with delta
+
+% ! $g_{ij,k} -> g_{i'j,k}$, cannot put $\beta^{i'}_i$ through the partial difference of k!
+
+$$
+    \begin{aligned}
+        \Gamma^{l'}_{i'j'}
+        = & \pd{\bm{g}_{i'}}{x^{j'}}\cdot \bm{g}^{l'}
+        =
+        \pd{\left(\bm{g}_{i}\pd{x^i}{x^{i'}}\right)}{x^{j'}}
+        \cdot\bm{g}^{l}\pd{x^{l'}}{x^{l}}
+        =
+        \left(
+        \pd{\bm{g}_i}{x^{j'}}\pd{x^i}{x^{i'}}
+        +
+        \bm{g}_i\pdcd{x^i}{x^{i'}}{x^{j'}}
+        \right)
+        \cdot\bm{g}^{l}\pd{x^{l'}}{x^{l}}             \\
+        = &
+        \pd{\bm{g}_i}{x^{j'}}\pd{x^i}{x^{i'}}\cdot\bm{g}^{l}\pd{x^{l'}}{x^{l}}
+        +\pdcd{x^l}{x^{i'}}{x^{j'}}\pd{x^{l'}}{x^{l}}
+        =
+        \pd{\bm{g}_i}{x^{j}}\cdot\bm{g}^{l}\beta^j_{j'}\beta^i_{i'}\beta^{l'}_l
+        +\pdcd{x^l}{x^{i'}}{x^{j'}}\beta^{l'}_l
+        =
+        \Gamma^l_{ij}\beta^j_{j'}\beta^i_{i'}\beta^{l'}_l
+        +\pdcd{x^l}{x^{i'}}{x^{j'}}\beta^{l'}_l
+    \end{aligned}
+$$
+
+其中老坐标对新坐标的二阶导数不一定都是0，而且对于一般的函数，
+坐标转换系数作为一阶导数与二阶导数在给定的一点处可无关，因此总
+存在这一项非零的构造，因此克氏符号不满足坐标变换关系，不是一个张量。
+
+\subsection*{4.7}
+
+对于任意维数，可知：
+$$
+    \sqrt{g}=\sqrt{\det(g_{ij})}=\pm[\bm{g}_1,\bm{g}_2,...\bm{g}_n]
+$$
+
+其中中括号运算是三维混合积的推广，使得：
+$$
+    [\bm{g}_1,\bm{g}_2,...,\bm{g}_n]
+    =\bm{g}_1\cdot \bm{e}^{i_1}
+    \bm{g}_2\cdot \bm{e}^{i_2}...
+    \bm{g}_n\cdot \bm{e}^{i_n}
+    \delta_{1,2,...n}^{i_1,i_2,...i_n}
+$$
+
+其中，
+$$
+    \delta_{1,2,...n}^{i_1,i_2,...i_n}
+    =
+    \left|\begin{matrix}
+        \delta_1^{i_1} & \delta_1^{i_2} & \cdots & \delta_1^{i_n} \\
+        \delta_2^{i_1} & \delta_2^{i_2} & \cdots & \delta_2^{i_n} \\
+        \vdots         & \vdots         & \ddots & \vdots         \\
+        \delta_n^{i_1} & \delta_n^{i_2} & \cdots & \delta_n^{i_n} \\
+    \end{matrix}\right|
+$$
+
+这个结论可以用矩阵理论得到，
+同时根据行列式的性质可知，当其中两个向量相同时
+方括号运算为0。
+
+方便讨论，设$[\bm{g}_1,\bm{g}_2,...\bm{g}_n]>0$，也就是说取一种“手性”。
+另外一种手性的推导只相差一个符号。
+
+观察$\sqrt{g}$的展开，其中标正基和坐标无关，且考虑线性性质、结合律，
+可知，对其求导后的代数形式与n个变量的乘积的导数相同：
+
+$$
+    \begin{aligned}
+        \pd{\sqrt{g}}{x^i}= &
+        [\pd{\bm{g}_1}{x^1}, \bm{g}_2,...\bm{g}_n]
+        +[\bm{g}_1, \pd{\bm{g}_2}{x^1},...\bm{g}_n]+...
+        +[\bm{g}_1, \bm{g}_2,...\pd{\bm{g}_n}{x^1}]    \\
+        =                   &
+        [\Gamma^l_{1i}\bm{g}_l, \bm{g}_2,...\bm{g}_n]
+        +[\bm{g}_1, \Gamma^l_{2i}\bm{g}_l,...\bm{g}_n]+...
+        +[\bm{g}_1, \bm{g}_2,...\Gamma^l_{ni}\bm{g}_l] \\
+        =                   &
+        [\Gamma^1_{1i}\bm{g}_1, \bm{g}_2,...\bm{g}_n]
+        +[\bm{g}_1, \Gamma^2_{2i}\bm{g}_2,...\bm{g}_n]+...
+        +[\bm{g}_1, \bm{g}_2,...\Gamma^n_{ni}\bm{g}_n]\\
+        =                   &
+        \Gamma^1_{1i}[\bm{g}_1, \bm{g}_2,...\bm{g}_n]
+        +\Gamma^2_{2i}[\bm{g}_1, \bm{g}_2,...\bm{g}_n]+...
+        +\Gamma^n_{ni}[\bm{g}_1, \bm{g}_2,...\bm{g}_n]\\
+        =                   &
+        \Gamma^l_{li}[\bm{g}_1, \bm{g}_2,...\bm{g}_n]
+    \end{aligned}
+$$
+
+其中第三个等号是因为展开缩并项后，带有重复向量的中括号运算都是0，仅剩一项。
+因此：
+$$
+\pd{\sqrt{g}}{x^i}=\Gamma^l_{li}\sqrt{g}
+\Rightarrow
+\Gamma^l_{li}=\frac{1}{\sqrt{g}}\pd{\sqrt{g}}{x^i}
+=\pd{\ln\sqrt{g}}{x^i}
+$$
+
+
+
+% \subsection*{3.1}
+
+% 方便起见按照分量形式：
+
+% $$
+% A_{ij}=-\epsilon_{ijk}a^k
+% $$
+
+% 由于$\bm{A}$是反对称的，其特征值只有$\pm i\alpha$以及$0$。
+% 考虑$A_{ij}a^j=-\epsilon_{ijk}a^ka^j=0$，可知，$\bm{a}$是$\bm{a}$的一个特征向量，对应特征值为0。
+% 由于另外两个特征值与0不同，其特征向量与这个特征向量线性无关，因此0的特征向量都是$\bm{a}$共线的。
+
+% \subsection*{3.2}
+
+% 考虑由于$\bm{S}$是一个线性的映射，因此对$\bm{e}_1$取反，则$\bm{r}_1$取反，因此$\gamma$取反。
+% 所以，只讨论其极大值即可。因此，只考虑$\bm{r}_1,\bm{r}_2$的夹角极值即可。
+
+% 不妨求$\bm{S}$的主轴和特征值$s_1\geq s_2 \geq s_3$，沿主轴建立单位直角坐标$\bm{g}_i=\bm{g}^i$，
+% 记$\bm{e}_1=a_i\bm{g}_i, \bm{e}_2=b_i\bm{g}_i$，代入即有：
+
+% \begin{equation}
+%     \begin{aligned}
+%         \cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}
+%         =\frac{s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3}{
+%             \sqrt{s_1^2a_1^2 + s_2^2a_2^2+s_3^2a_3^2}
+%             \sqrt{s_1^2b_1^2 + s_2^2b_2^2+s_3^2b_3^2}
+%         }
+%     \end{aligned}
+% \end{equation}
+
+% 记$r_1=\sqrt{s_1^2a_1^2 + s_2^2a_2^2+s_3^2a_3^2}, r_2=\sqrt{s_1^2b_1^2 + s_2^2b_2^2+s_3^2b_3^2}$
+
+% 则：
+
+% \begin{equation}
+%     \left\{
+%         \begin{aligned}
+%             \pd{\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}}{a_1}
+%             = & \frac{b_1s_1^2}{r_1r_2} -
+%             \frac{a_1s_1^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1^3r_2}\\
+%             \pd{\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}}{a_2}
+%             = & \frac{b_2s_2^2}{r_1r_2} -
+%             \frac{a_2s_2^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1^3r_2}\\
+%             \pd{\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}}{a_3}
+%             = & \frac{b_3s_3^2}{r_1r_2} -
+%             \frac{a_3s_3^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1^3r_2}\\
+%             \pd{\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}}{b_1}
+%             = & \frac{a_1s_1^2}{r_1r_2} -
+%             \frac{b_1s_1^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1r_2^3}\\
+%             \pd{\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}}{b_2}
+%             = & \frac{a_2s_2^2}{r_1r_2} -
+%             \frac{b_2s_2^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1r_2^3}\\
+%             \pd{\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}}{b_3}
+%             = & \frac{a_3s_3^2}{r_1r_2} -
+%             \frac{b_3s_3^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1r_2^3}\\
+%         \end{aligned}
+%     \right.
+% \end{equation}
+
+% 设拉格朗日乘子$L_1,L_2,K$，对应问题的全部约束（垂直且都是单位长度）：
+
+% \begin{equation}
+%     \left\{
+%         \begin{aligned}
+%             F_1= & a_1^2+a_2^2+a_3^2-1\\
+%             F_2= & b_1^2+b_2^2+b_3^2-1\\
+%             G= & a_1b_1 + a_2b_2 + a_3b_3\\
+%         \end{aligned}
+%     \right.
+% \end{equation}
+
+% 则目标函数为$M = \cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle} - L_1F_1 - L_2F_2 - KG$，
+% 求解$\pd{M}{a_i}=0, \pd{M}{b_i}=0, F_1=0, F_2=0, G=0$，则可以得到夹角的极值点可能的位置。
+
+% 求解：
+% \begin{equation}
+%     \left\{
+%         \begin{aligned}
+%             \frac{b_1s_1^2}{r_1r_2} -
+%             \frac{a_1s_1^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1^3r_2} - 2L_1a_1 - Kb_1 = & 0\\
+%             \frac{b_2s_2^2}{r_1r_2} -
+%             \frac{a_2s_2^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1^3r_2} - 2L_1a_2 - Kb_2 = & 0\\
+%             \frac{b_3s_3^2}{r_1r_2} -
+%             \frac{a_3s_3^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1^3r_2} - 2L_1a_3 - Kb_3 = & 0\\
+%             \frac{a_1s_1^2}{r_1r_2} -
+%             \frac{b_1s_1^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1r_2^3} - 2L_2b_1 - Ka_1 = & 0\\
+%             \frac{a_2s_2^2}{r_1r_2} -
+%             \frac{b_2s_2^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1r_2^3} - 2L_2b_2 - Ka_2 = & 0\\
+%             \frac{a_3s_3^2}{r_1r_2} -
+%             \frac{b_3s_3^2(s_1^2a_1b_1 + s_2^2a_2b_2 + s_3^2a_3b_3)}{r_1r_2^3} - 2L_2b_3 - Ka_3 = & 0\\
+%             a_1^2+a_2^2+a_3^2-1 = & 0 \\
+%             b_1^2+b_2^2+b_3^2-1 = & 0\\
+%             a_1b_1 + a_2b_2 + a_3b_3 = & 0\\
+%         \end{aligned}
+%     \right.
+% \end{equation}
+
+% 方程关于坐标的下标是对称的，因此轮换$a_i,b_i,s_i$的下标同样是解。
+
+% 方程的解只有：
+% $$
+% \begin{aligned}
+%     (a_1,a_2,a_3)=\pm(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}, 0),\ (b_1,b_2,b_3)=\pm(-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}, 0) & \\
+%     (a_1,a_2,a_3)=\pm(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}, 0),\ (b_1,b_2,b_3)=\mp(-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}, 0) & \\
+% \end{aligned}
+% $$
+% 以及$a,b$互换和$1,2,3$轮换的结果，共24种。
+
+% 给出的$\cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle}$分别是：
+% $$
+% \cos{\left\langle \bm{r}_1,\bm{r}_2 \right\rangle} = \pm\frac{s_1^2-s_2^2}{s_1^2+s_2^2}
+% $$
+% 及其轮换。
+% 综上，极值或者鞍点只在$\bm{e}_1,\bm{e}_2$都在某两个主轴的平面上且与主轴夹角$45^\circ$出现，
+% 最大值、最小值分别是$\frac{\pi}{2} - \arccos{(\pm\frac{s_1^2-s_3^2}{s_1^2+s_3^2})}$，此时$\bm{e}_1, \bm{e}_2$在$s_1,s_3$的主轴平面内，
+% 与主轴成$45^\circ$。
+
+
+% \subsection*{3.3}
+
+% 不妨在标准正交基给出：$\bm{A}=\bm{e}_i\bm{e}_jA_{ij}$，
+% 则$\bm{A}\trans=\bm{e}_j\bm{e}_iA_{ij}=-\bm{e}_i\bm{e}_jA_{ij}$，因此$A_{ij}=-A_{ji}$，因此
+% $A_{1,1}=A{2,2}=0, A_{1,2}=-A_{2,1}$，可记$\bm{A}=m(\bm{e}_2\bm{e}_1-\bm{e}_1\bm{e}_2)$，
+% 因此$det(\bm{A})=m^2, det(\bm{A}-\lambda\bm{I})=\lambda^2+m^2$，因此有共轭特征值$\pm mi :=\pm ai$，
+% 因此题述都成立。
+
+% \subsection*{3.4}
+% 此处引用郑老师给出的各向同性张量函数在三维情况下的表现定理，
+% 由于$\theta \bm{L}$有特征值$\pm i\theta, 0$则：
+
+% \begin{equation}
+%     \begin{aligned}
+%         e^{\theta \bm{L}} = &
+%         \left(-\frac{e^{i\theta}}{2}
+%         -\frac{e^{i\theta}}{2} + 1
+%         \right) \bm{L}^2 
+%         + \left(
+%             i\frac{e^{i\theta}}{2}
+%             -i\frac{e^{-i\theta}}{2}
+%         \right) \bm{L}  + \bm{I}\\
+%         = & (1 - \cos \theta)\bm{L}^2 - \sin\theta\bm{L}
+%     \end{aligned}
+% \end{equation}
+
+% 那么对于任意的$\bm{x}$，
+% $e^{\theta \bm{L}}\cdot\bm{x} = (1 - \cos \theta)\bm{r}\times(\bm{r}\times \bm{x}) - \sin\theta \bm{r}\times \bm{x} + \bm{x}$。
+
+% 记$\bm{r}$的正交的平面是$P$，那么$\bm{r}\times(\bm{r}\times \bm{x})$与$\sin\theta \bm{r}$都在这个平面内，
+% 且其长度都是$\bm{x}$在$P$上投影的长度，且其相互垂直，
+% 构成$P$上的一组正交基。几何分析可知，
+% $(1 - \cos \theta)\bm{r}\times(\bm{r}\times \bm{x}) - \sin\theta \bm{r}\times \bm{x}$
+% 就是$\bm{x}$与$R_\theta(\bm{x})$的差，旋转方向满足右手定则，因此得证。
+
+% 更为符号地，记$\bm{y} = e^{\theta \bm{L}}\cdot\bm{x}$，则
+
+% $$
+% \begin{aligned}
+%     \bm{y}\cdot\bm{y} = &(1 - \cos \theta)^2
+% ((\bm{r}\cdot\bm{x})^2+\bm{x}\cdot\bm{x}-2(\bm{r}\cdot\bm{x})^2) +
+% (\sin\theta)^2 (\bm{x}\cdot\bm{x}-(\bm{r}\cdot\bm{x})^2)+\bm{x}\cdot\bm{x}
+% + 2(1 - \cos \theta)[(\bm{r}\cdot\bm{x})^2-\bm{x}\cdot\bm{x}]\\
+% =&\bm{x}\cdot\bm{x}
+% \end{aligned}
+% $$
+
+% 因此长度不变；
+
+% $$
+% \begin{aligned}
+%     \bm{y}\cdot\bm{y} = &(1 - \cos \theta)^2
+% ((\bm{r}\cdot\bm{x})^2+\bm{x}\cdot\bm{x}-2(\bm{r}\cdot\bm{x})^2) +
+% (\sin\theta)^2 (\bm{x}\cdot\bm{x}-(\bm{r}\cdot\bm{x})^2)+\bm{x}\cdot\bm{x}
+% + 2(1 - \cos \theta)[(\bm{r}\cdot\bm{x})^2-\bm{x}\cdot\bm{x}]\\
+% =&\bm{x}\cdot\bm{x}
+% \end{aligned}
+% $$
+
+% 因此长度不变；
+
+% 类似可以验证
+% $$
+% \bm{y}\cdot\bm{x}=\cos{\theta}\bm{x}\cdot\bm{x}
+% $$
+% 因此夹角正确；
+
+% $$
+% \bm{x}\times\bm{y}=\sin{\theta}(\bm{x}\cdot\bm{x}) \bm{r}
+% $$
+% 因此旋转方向正确。
+
+% \subsubsection*{3.5}
+
+% 由于反对称性：
+
+% $$
+% e^{\bm{A}\trans}
+% =\sum_{n=0}^\infty{\frac{(-1)^n\bm{A}^n}{n!}}
+% $$
+
+% 考察函数$e^{-x}$在0的幂级数展开，与之正好形式相同，
+% 因此可以给出$e^{{\bm{A}\trans}}=e^{-\bm{A}}$。
+
+% 下面证明，对于任意二阶张量$\bm{B}$，有$e^{\bm{B}}\cdot e^{-\bm{B}}=\bm{I}$。
+
+% $$
+% e^{\bm{B}}\cdot e^{-\bm{B}}=\sum_{n=0}^\infty\sum_{m=0}^\infty{
+%     \frac{(-1)^n\bm{B}^{m+n}}{n!m!}
+% }
+% =
+% \sum_{k=0}^\infty\sum_{n=0}^k{
+%     \frac{(-1)^n\bm{B}^{k}}{n!(k-n)!}
+% }
+% =
+% \sum_{k=0}^\infty(1-1)^k\bm{B}^k = \bm{I}
+% $$
+
+% 推导使用了$(1-1)^k$的二项式展开。即证得。
+
+% \subsection*{3.6}
+
+% 对称张量一定有$\bm{A}=\bm{V}bm{D}\bm{V}\trans$，
+% 其中$\bm{V}$是正交二阶张量，$\bm{D}$是$\sum_i\lambda_i\bm{e}_i\bm{e}_i$（不爱因斯坦求和），
+% 同时根据第一不变量，$tr\bm{A}=tr\bm{D}=\sum_i\lambda_i$。因此：
+% $$
+% \begin{aligned}
+%     \det(e^{\bm{A}})= &
+% \det\left(
+%     \sum_{n=0}^\infty{\frac{\bm{A}^n}{n!}}
+% \right)
+% =\det(\bm{V})
+% \det\left(
+%     \sum_{n=0}^\infty{\frac{\bm{D}^n}{n!}}
+% \right)\det(\bm{V}\trans)
+% =
+% \det\left(
+%     \sum_{n=0}^\infty{
+%         diag(\lambda_i^n/n! ,i)
+%     }
+% \right)
+% =
+% \det\left(
+%     diag(
+%         \sum_{n=0}^\infty\frac{\lambda_i^n}{n!},i
+%     )
+% \right)\\
+% = &
+% \det\left(
+%     diag(
+%         \sum_{n=0}^\infty\frac{\lambda_i^n}{n!},i
+%     )
+% \right)
+% =\det\left(
+%     diag(e^\lambda_i,i)
+%     \right)
+%     =\prod_i e^{\lambda_i}
+%     =e^{\sum_i\lambda_i}
+%     =e^{tr\bm{A}}
+% \end{aligned} 
+% $$
+
+% 其中$diag(a_i, i)=\sum_i a_i\bm{e}_i\bm{e}_i$（无爱因斯坦求和）。
+
+% \subsection*{3.7}
+
+% 若已知$\bm{A}\cdot\bm{B}=\bm{B}\cdot\bm{A}$，则点乘构成阿贝尔群，二项式定理对其成立：
+% $(\bm{A}+\bm{B})^k=\sum_{n=0}^k\frac{k!\bm{A}^n\bm{B}^{k-n}}{n!(k-n)!}$。
+% 因此有：
+
+% $$
+% e^{\bm{A}}\cdot e^\bm{B}
+% =\left(\sum_{n=0}^\infty\frac{\bm{A}^n}{n!}\right)\cdot
+% \left(\sum_{n=0}^\infty\frac{\bm{B}^n}{n!}\right)
+% =\sum_{n=0}^\infty\sum_{m=0}^\infty\frac{\bm{A}^n\cdot\bm{B}^m}{n!m!}
+% =\sum_{k=0}^\infty\sum_{n=0}^k\frac{\bm{A}^n\cdot\bm{B}^{k-n}}{n!{k-n}!k!}
+% =\sum_{k=0}^\infty\frac{(\bm{A}+\bm{B})^k}{k!}
+% =e^{\bm{A}+\bm{B}}
+% $$
+
+% 因此可交换是充分条件。
+
+
+
+
+
+
+\end{document}
