@@ -1,0 +1,773 @@
+%!TEX program = xelatex
+\documentclass[UTF8,zihao=5]{ctexart}
+
+
+\title{{\bfseries 第4次作业}}
+\author{周涵宇 2022310984}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+% \setmonofont{JetBrains Mono}
+\setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+
+% \usepackage{bm}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+
+\newcommand{\bm}[1]{{\mathbf{#1}}}
+
+\newcommand{\trans}[0]{^\mathrm{T}}
+\newcommand{\tran}[1]{#1^\mathrm{T}}
+\newcommand{\hermi}[0]{^\mathrm{H}}
+\newcommand{\conj}[1]{\overline{#1}}
+
+\newcommand*{\av}[1]{\left\langle{#1}\right\rangle}
+
+\newcommand*{\avld}[1]{\frac{\overline{D}#1}{Dt}}
+
+\newcommand*{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand*{\pdcd}[3]
+{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+
+
+\begin{document}
+
+\maketitle
+
+\subsection*{5.1}
+
+\newcommand{\uu}[0]{\bm{u}}
+\newcommand{\vv}[0]{\bm{v}}
+\newcommand{\g}[0]{\bm{g}}
+\newcommand{\nb}[0]{\bm{\nabla}}
+
+\subsubsection*{5.1.1}
+$$
+    (\bm{u}\cdot\bm{v})\bm{\nabla}
+    =\pd{\bm{u}\cdot\bm{v}}{x^i}\bm{g}^i
+    =(\pd{\bm{u}}{x^i}\cdot\bm{v} + \bm{u}\cdot\pd{\bm{v}}{x^i})\bm{g}^i
+    =\bm{v}\cdot(\pd{\bm{u}}{x^i}\bm{g}^i) + \bm{u}\cdot(\pd{\bm{v}}{x^i}\bm{g}^i)
+    =\bm{u}\cdot(\bm{v}\bm{\nabla})+\bm{v}\cdot(\bm{u}\nabla)
+$$
+
+\subsubsection*{5.1.2}
+$$
+    \vv\times(\uu\times\nb)
+    =\vv\times(\pd{\uu}{x^i}\times\g^i)
+    =\vv\cdot\g^i\pd{\uu}{x^i}-\vv\cdot\pd{\uu}{x^i}\g^i
+    =\vv\cdot(\nb\uu-\uu\nb)
+    =(\uu\nb-\nb\uu)\cdot\vv
+$$
+
+\subsubsection*{5.1.3}
+$$
+    \begin{aligned}
+        \nb(\uu\cdot\vv)
+        = &
+        \g^i\pd{(\uu\cdot\vv)}{x^i}
+        =\nb\uu\cdot\vv+\nb\vv\cdot\uu
+        =\nb\uu\cdot\vv+\nb\vv\cdot\uu
+        +\uu\nb\cdot\vv + \vv\nb\cdot\uu
+        -\uu\nb\cdot\vv - \vv\nb\cdot\uu \\
+        = &
+        \uu\nb\cdot\vv + \vv\nb\cdot\uu
+        +(\nb\uu-\uu\nb)\cdot\vv
+        +(\nb\vv-\vv\nb)\cdot\uu
+        =\vv\cdot\nb\uu+\uu\cdot\nb\vv
+        -\vv\times(\uu\times\nb)
+        -\uu\times(\vv\times\nb)
+    \end{aligned}
+$$
+其中最后一个等号运用了5.1.2的结论。
+
+\subsubsection*{5.1.4}
+$$
+    \begin{aligned}
+        (\uu\times\vv)\times\nb
+        = & (\pd{\uu}{x^i}\times\vv)\times\g^i
+        +(\vv\times\pd{\vv}{x^i})\times\g^i
+        =
+        \pd{\uu}{x^i}\cdot\g^i\vv-\pd{\uu}{x^i}\g^i\cdot\vv
+        +\pd{\vv}{x^i}\g^i\cdot\uu-\pd{\vv}{x^i}\cdot\g^i\uu \\
+        = &
+        (\uu\cdot\nb)\vv - (\uu\nb)\cdot\vv
+        +(\vv\nb)\cdot\uu - (\vv\cdot\nb)\uu
+    \end{aligned}
+$$
+
+\subsection*{5.2}
+
+
+% ! use Christoffel notation to swap:
+% ! which leads to : $\pd{\g^i}{x^j}\g^j=\g^j\pd{\g^i}{x^j}$
+$$
+    \begin{aligned}
+        (\uu\times\nb)\times\nb
+        = &
+        \left[\pd{}{x^j}\left(
+            \pd{\uu}{x^i}\times\g^i
+            \right)\right]\times\g^j
+        =
+        \left(
+        \pdcd{\uu}{x^j}{x^i}\times\g^i
+        +\pd{\uu}{x^i}\times\pd{\g^i}{x^j}
+        \right)\times\g^j                     \\
+        = &
+        \pdcd{\uu}{x^j}{x^i}\cdot\g^j\g^i
+        -\pdcd{\uu}{x^j}{x^i}\g^i\cdot\g^j
+        +\pd{\uu}{x^i}\cdot\g^j\pd{\g^i}{x^j}
+        -\pd{\uu}{x^i}\pd{\g^i}{x^j}\cdot\g^j \\
+        = &
+        \pdcd{\uu}{x^j}{x^i}\cdot\g^j\g^i
+        -\pdcd{\uu}{x^j}{x^i}\g^i\cdot\g^j
+        -\pd{\uu}{x^i}\cdot\g^j\Gamma^i_{jm}\g^m
+        -\pd{\uu}{x^i}\pd{\g^i}{x^j}\cdot\g^j \\
+        = &
+        \pdcd{\uu}{x^j}{x^i}\cdot\g^j\g^i
+        -\pdcd{\uu}{x^j}{x^i}\g^i\cdot\g^j
+        -\pd{\uu}{x^i}\cdot\g^m\Gamma^i_{jm}\g^j
+        -\pd{\uu}{x^i}\pd{\g^i}{x^j}\cdot\g^j \\
+        = &
+        \pdcd{\uu}{x^i}{x^j}\cdot\g^i\g^j
+        -\pdcd{\uu}{x^j}{x^i}\g^i\cdot\g^j
+        +\pd{\uu}{x^i}\cdot\pd{\g^i}{x^j}\g^j
+        -\pd{\uu}{x^i}\pd{\g^i}{x^j}\cdot\g^j \\
+        = &
+        \left[\pd{}{x^j}\left(\g^i\cdot\pd{\uu}{x^i}\right)\right]\g^j
+        -
+        \left[\pd{}{x^j}\left(\pd{\uu}{x^i}\g^i\right)\right]\cdot\g^j
+        =
+        (\nb\cdot\uu)\nb - (\uu\nb)\cdot\nb
+    \end{aligned}
+$$
+
+则$(\uu\nb)\cdot\nb=(\nb\cdot\uu)\nb-(\uu\times\nb)\times\nb$，
+由于无旋且无源，可得$(\uu\nb)\cdot\nb=0$。
+
+\subsection*{5.3}
+
+由$\g_i=\pd{\bm{r}}{x^i}$
+
+$$
+    [\g_1,\g_2,\g_3]=[\bm{e}_1,\bm{e}_2,\bm{e}_3]
+    \left[\begin{array}{ccc} a & -a & 0\\ \frac{a\,x^{2}}{\sqrt{x^{1}\,x^{2}}} & \frac{a\,x^{1}}{\sqrt{x^{1}\,x^{2}}} & 0\\ 0 & 0 & 1 \end{array}\right]
+$$
+
+容易发现这是一个正交坐标系。则有：
+$A\av{1}^2 = \frac{a^2(x^1+x^2)}{x^1}, A\av{2}^2 = \frac{a^2(x^1+x^2)}{x^2}, A\av{3} =1$
+
+同时度量张量的分量：$[g_{ij}]=diag(A\av{1}^2,A\av{2}^2,A\av{3}^2),[g^{ij}]=diag(A\av{1}^{-2},A\av{2}^{-2},A\av{3}^{-2})$
+
+且$\sqrt{g}=\frac{aa(x^1+x^2)}{\sqrt{x^1x^2}}$
+
+$$
+    [\g^1,\g^2,\g^3]=[\bm{e}_1,\bm{e}_2,\bm{e}_3]
+    \left[\begin{array}{ccc} \frac{x^{1}}{a\,\left(x^{2}+x^{1}\right)} & -\frac{x^{2}}{a\,\left(x^{2}+x^{1}\right)} & 0\\ \frac{\sqrt{x^{1}}\,\sqrt{x^{2}}}{a\,\left(x^{2}+x^{1}\right)} & \frac{\sqrt{x^{1}}\,\sqrt{x^{2}}}{a\,\left(x^{2}+x^{1}\right)} & 0\\ 0 & 0 & 1 \end{array}\right]
+$$
+
+则由
+$$
+    \Gamma_{ij,k}=
+    \frac{1}{2}
+    (g_{ik,j} + g_{jk,i} - g_{ij,k})
+$$
+
+可得：
+当$i=j=k=1$, $\Gamma_{ij,k}=-\frac{aax^2}{2x^1x^1}$；
+当$i=j=k=2$, $\Gamma_{ij,k}=-\frac{aax^1}{2x^2x^2}$；
+当$i=j=1, k=2$, $\Gamma_{ij,k}=-\frac{aa}{x^1}$；
+当$i=j=2, k=1$, $\Gamma_{ij,k}=-\frac{aa}{x^2}$；
+当$i=k=1, j=2$或者 $j=k=1, i=2$, $\Gamma_{ij,k}=\frac{aa}{2x^1}$；
+当$i=k=2, j=1$或者 $j=k=2, i=1$, $\Gamma_{ij,k}=\frac{aa}{2x^2}$；
+其余分量都是0。对$k=1,2$分别除以$A\av{1}^2,A\av{2}^2$即有$\Gamma^k_{ij}$
+
+\subsection*{5.4}
+
+记$\vv=f\nabla$
+$$
+    f\nabla=\pd{f}{x^i}\bm{g}^i
+$$
+
+则
+
+\begin{equation}
+    v_i=\pd{f}{x^i},\, v^1=f_{,1}\frac{x^1}{a^2(x^1+x^2)},\, v^2=f_{,2}\frac{x^2}{a^2(x^1+x^2)},\, v^3=f_{,3}
+    \label{eq:gradf}
+\end{equation}
+
+$$
+    \uu\nabla=\pd{\uu}{x^i}\bm{g}^i=u^k_{;i}\g_k\g^i
+$$
+
+其中，分量的协变导数为
+$$
+    u^k_{;i}=u^k_{,i} + u^m\Gamma^k_{mi}
+$$
+
+因此，有：
+$$
+    \begin{aligned}
+        u^1_{;1}= & u^1_{,1} + u^m\Gamma^1_{m1}
+        =u^1_{,1} - u^1 \frac{x^2}{2x^1(x^1+x^2)} + u^2 \frac{1}{2(x^1+x^2)} \\
+        u^1_{;2}= & u^1_{,2} + u^m\Gamma^1_{m2}
+        =u^1_{,2} + u^1 \frac{1}{2(x^1+x^2)} - u^2 \frac{x^1}{2x^2(x^1+x^2)} \\
+        u^1_{;3}= & u^1_{,3} + u^m\Gamma^1_{m3}
+        =u^1_{,3}                                                            \\
+        u^2_{;1}= & u^2_{,1} + u^m\Gamma^2_{m1}
+        =u^2_{,1} - u^1 \frac{x^2}{2x^1(x^1+x^2)} + u^2 \frac{1}{2(x^1+x^2)} \\
+        u^2_{;2}= & u^2_{,2} + u^m\Gamma^2_{m2}
+        =u^2_{,2} + u^1 \frac{1}{2(x^1+x^2)} - u^2 \frac{x^1}{2x^2(x^1+x^2)} \\
+        u^2_{;3}= & u^2_{,3} + u^m\Gamma^2_{m3}
+        =u^2_{,3}                                                            \\
+        u^3_{;1}= & u^3_{,1} + u^m\Gamma^3_{m1}
+        =u^3_{,1}                                                            \\
+        u^3_{;2}= & u^3_{,2} + u^m\Gamma^3_{m2}
+        =u^3_{,2}                                                            \\
+        u^3_{;3}= & u^3_{,3} + u^m\Gamma^3_{m3}
+        =u^3_{,3}                                                            \\
+    \end{aligned}
+$$
+
+因此，散度为：
+
+\begin{equation}
+    \begin{aligned}
+        \uu\cdot\nb= & u^k_{;i}\g_k\cdot\g^i=u^i_{;i} \\=&
+        u^1_{,1} - u^1 \frac{x^2}{2x^1(x^1+x^2)} + u^2 \frac{1}{2(x^1+x^2)}
+        +
+        u^2_{,2} + u^1 \frac{1}{2(x^1+x^2)} - u^2 \frac{x^1}{2x^2(x^1+x^2)}
+        +
+        u^3_{,3}
+    \end{aligned}
+    \label{eq:divu}
+\end{equation}
+
+
+由于置换符号的反对称性和联络系数的对称性，旋度不需要协变导数即表示为：
+
+
+
+\begin{equation}
+    \begin{aligned}
+        \frac{aa(x^1+x^2)}{\sqrt{x^1x^2}}
+        \nabla\times\uu
+        = & u_{j;m}\g^m\times\g^j
+        =u_{j;m}\epsilon^{mjk}\g_k
+        =u_{j,m}\epsilon^{mjk}\g_k                           \\
+        = & \frac{1}{\sqrt{g}}\left|
+        \begin{matrix}
+            \g_1       & \g_2       & \g_3       \\
+            \partial_1 & \partial_2 & \partial_3 \\
+            u_1        & u_2        & u_3
+        \end{matrix}
+        \right|
+        =\frac{\sqrt{x^1x^2}}{aa(x^1+x^2)}
+        \left|
+        \begin{matrix}
+            \g_1                        & \g_2                        & \g_3       \\
+            \partial_1                  & \partial_2                  & \partial_3 \\
+            u^1\frac{a^2(x^1+x^2)}{x^1} & u^2\frac{a^2(x^1+x^2)}{x^2} & u^3
+        \end{matrix}
+        \right|                                              \\
+        = & \frac{\sqrt{x^1x^2}}{aa(x^1+x^2)}
+        [\g_1,\g_2,\g_3]
+        diag\left(
+        u^3_{,2}-u^2_{,3}\frac{a^2(x^1+x^2)}{x^2},\,
+        u^1_{,3}\frac{a^2(x^1+x^2)}{x^1}-u^3_{,1},\, \right. \\
+          & \left.
+        u^2_{,1}\frac{a^2(x^1+x^2)}{x^2}+u^2\frac{a^2}{x^2}
+        -
+        u^1_{,2}\frac{a^2(x^1+x^2)}{x^1}-u^1\frac{a^2}{x^1}
+        \right)                                              \\
+        = & \frac{\sqrt{x^1x^2}}{aa(x^1+x^2)}
+        [\bm{e}_1,\bm{e}_2,\bm{e}_3]
+        \left[\begin{array}{ccc} a & -a & 0\\ \frac{a\,x^{2}}{\sqrt{x^{1}\,x^{2}}} & \frac{a\,x^{1}}{\sqrt{x^{1}\,x^{2}}} & 0\\ 0 & 0 & 1 \end{array}\right]              \\
+          & diag\left(
+        u^3_{,2}-u^2_{,3}\frac{a^2(x^1+x^2)}{x^2},\,
+        u^1_{,3}\frac{a^2(x^1+x^2)}{x^1}-u^3_{,1},\, \right. \\
+          & \left.
+        u^2_{,1}\frac{a^2(x^1+x^2)}{x^2}+u^2\frac{a^2}{x^2}
+        -
+        u^1_{,2}\frac{a^2(x^1+x^2)}{x^1}-u^1\frac{a^2}{x^1}
+        \right)
+    \end{aligned}
+    \label{eq:curlu}
+\end{equation}
+
+
+最下面的矩阵形式中，$diag$代表将元素作为对角元素生成对角阵。
+
+考虑到$\nabla\cdot(\nabla f)=\nabla\cdot\vv$，则：
+
+\begin{equation}
+    \begin{aligned}
+        \nabla\cdot(\nabla f)
+        = &
+        f_{,1,1}\frac{x^1}{a^2(x^1+x^2)} + f_{,1}\frac{1}{a^2(x^1+x^2)} -f_{,1}\frac{x^1}{a^2(x^1+x^2)(x^1+x^2)} \\
+        - & f_{,1}\frac{x^1}{a^2(x^1+x^2)} \frac{x^2}{2x^1(x^1+x^2)}                                             \\
+        + & f_{,2}\frac{x^2}{a^2(x^1+x^2)} \frac{1}{2(x^1+x^2)}                                                  \\
+        + &
+        f_{,2,2}\frac{x^2}{a^2(x^1+x^2)} + f_{,2}\frac{1}{a^2(x^1+x^2)}- f_{,2}\frac{x^2}{a^2(x^1+x^2)(x^1+x^2)} \\
+        + & f_{,1}\frac{x^1}{a^2(x^1+x^2)} \frac{1}{2(x^1+x^2)}                                                  \\
+        - & f_{,2}\frac{x^2}{a^2(x^1+x^2)} \frac{x^1}{2x^2(x^1+x^2)}                                             \\
+        + &
+        f_{,3,3}
+    \end{aligned}
+    \label{eq:laplacianf}
+\end{equation}
+
+
+当然，在计算散度时，可以应用结论$\Gamma^i_{ij}=\frac{1}{\sqrt{g}}\pd{\sqrt{g}}{x^j}$，
+这样：
+
+$$
+    \uu\cdot\nb = u^i_{;i}=u^i_{;i} + u^k\Gamma^i_{ik}=
+    u^i_{,i} + u^i\frac{1}{\sqrt{g}}\pd{\sqrt{g}}{x^i}
+    =\frac{1}{\sqrt{g}}\pd{(\sqrt{g}u^i)}{x^i}
+$$
+
+则，
+$$
+    \uu\cdot\nb
+    =
+    \frac{\sqrt{x^1x^2}}{aa(x^1+x^2)}
+    \pd{}{x^i}(\frac{aa(x^1+x^2)}{\sqrt{x^1x^2}}u^i)
+$$
+
+所求结果分别在\eqref{eq:gradf}，\eqref{eq:divu}，\eqref{eq:curlu}与\eqref{eq:laplacianf}。
+
+计算结果与\eqref{eq:divu}相同。进一步代入$f$的Laplacian也一样。
+
+
+
+\subsection*{5.5}
+
+因为积分流形是可定向的，取坐标系$x^i$，
+在曲面上时$\g_1,\g_2$构成切平面，$\g_3$构成法向量且有$\g_3 = \g_1\times\g_2$。
+逆变基向量性质类推。即正好有$d\bm{A}=dx^1dx^2\g_3$
+
+$$
+    \begin{aligned}
+        \int_\Sigma{(\bm{T}\times\nb)\cdot d\bm{A}}
+        = &
+        \int_\Sigma{(\pd{\bm{T}}{x^i}\times\g^i)\cdot \g_3 dx^1dx^2}
+        =
+        \int_\Sigma{\left[(
+                \pd{\bm{T}}{x^1}\times\g^1)\cdot \g_3
+                +
+                (\pd{\bm{T}}{x^2}\times\g^2)\cdot \g_3
+        \right] dx^1dx^2} \\
+        = &
+        \int_\Sigma{\left[
+                (\pd{\bm{T}}{x^1}\cdot\g_1)(\g^1\cdot\g_2)
+                -
+                (\pd{\bm{T}}{x^1}\cdot\g_2)(\g^1\cdot\g_1)
+                +
+                (\pd{\bm{T}}{x^2}\cdot\g_1)(\g^2\cdot\g_2)
+                -
+                (\pd{\bm{T}}{x^2}\cdot\g_2)(\g^2\cdot\g_1)
+        \right] dx^1dx^2} \\
+        = &
+        \int_\Sigma{\left[
+                -
+                (\pd{\bm{T}}{x^1}\cdot\g_2)
+                +
+                (\pd{\bm{T}}{x^2}\cdot\g_1)
+        \right] dx^1dx^2} \\
+        = &
+        \int_\Sigma{\left[
+        -
+        \pd{\bm{T}\cdot\g_2}{x^1}+\bm{T}\cdot\Gamma^k_{21}\g_k
+        +
+        \pd{\bm{T}\cdot\g_1}{x^2}-\bm{T}\cdot\Gamma^k_{12}\g_k
+        \right] dx^1dx^2} \\
+        = &
+        \int_\Sigma{\left[
+                -
+                \pd{\bm{T}\cdot\g_2}{x^1}
+                +
+                \pd{\bm{T}\cdot\g_1}{x^2}
+        \right] dx^1dx^2} \\
+    \end{aligned}
+$$
+
+考虑$\bm{T}=T_{i_1i_2...i_p}\g^{i_1}\g^{i_2}...\g^{i_p}$，
+则$\bm{T}\cdot\g_1=T_{i_1i_2...i_{p-1}1}\g^{i_1}\g^{i_2}...\g^{i_{p-1}}$，
+$\bm{T}\cdot\g_2=T_{i_1i_2...i_{p-1}2}\g^{i_1}\g^{i_2}...\g^{i_{p-1}}$，
+由于积分的线性性质，都可以看成是标量参与运算，其通过二维平面的Green公式：
+
+$$
+    \int_D{(\pd{\phi_1}{x^1}+\pd{\phi_2}{x^2})dx^1dx^2}
+    =
+    \oint_{\partial D}{\phi_1(dx^2)+\phi_2(-dx^1)}
+$$
+（其中$D$是$(x^1,x^2)$取$\Sigma$的集合，对应于平面区域，也就是曲面的定义域，
+在$\partial D$上面的$dx^1,dx^2$是满足右手法则取的，$(x^1,x^2)$平面上的边界线元）
+可以转换为：
+$$
+    \begin{aligned}
+        \int_\Sigma{(\bm{T}\times\nb)\cdot d\bm{A}}
+        = &
+        \int_\Sigma{\left[
+                -
+                \pd{\bm{T}\cdot\g_2}{x^1}
+                +
+                \pd{\bm{T}\cdot\g_1}{x^2}
+        \right] dx^1dx^2} \\
+        = &
+        -\oint_L{
+            \bm{T}\cdot\g_2(dx^2)
+            +
+            \bm{T}\cdot\g_1(dx^1)
+        }                 \\
+        = &
+        -\oint_L{
+        \bm{T}\cdot
+        (\g_2(dx^2)
+        +\g_1(dx^1))
+        }                 \\
+        = &
+        -\oint_L{
+        \bm{T}\cdot
+        d\bm{s}
+        }                 \\
+    \end{aligned}
+$$
+
+其中二维平面Green公式可以直接由平面区域积分的面元法给出。
+
+上述讨论针对的是光滑曲面。
+当曲面不是整体光滑而是分片时，在每一片上分别使用这个公式，然后在
+交界处的边界积分相抵消，因此分片光滑时仍然成立。
+
+% \subsection*{4.1}
+
+% 考虑：$\bm{g}_i\bm{g}^j=\delta_i^j$，
+% 设出逆变基在标准正交坐标系下的系数，解线性方程即有：
+
+% $$
+%     \begin{aligned}
+%         \bm{g}^1= & \frac{ 57\bm{e}_1 -17\bm{e}_2 +27\bm{e}_3 -23\bm{e}_4}{261} \\
+%         \bm{g}^2= & \frac{-45\bm{e}_1+105\bm{e}_2 -90\bm{e}_3 +96\bm{e}_4}{261} \\
+%         \bm{g}^3= & \frac{-21\bm{e}_1 +20\bm{e}_2 +45\bm{e}_3 -19\bm{e}_4}{261} \\
+%         \bm{g}^4= & \frac{  9\bm{e}_1 -21\bm{e}_2 +18\bm{e}_3 +33\bm{e}_4}{261} \\
+%     \end{aligned}
+% $$
+
+% \subsection*{4.2}
+
+% 以下以$\bm{r}$代表位置矢量。
+
+% \subsubsection*{4.2.1}
+
+% 柱坐标系：$\bm{r}= \cos{(x^2)} x^1 \bm{e}_1 + \sin{(x^2)} x^1 \bm{e}_2 + x^3 \bm{e}_3$
+
+% 则$\bm{g}_i=\pd{\bm{r}}{x^i}$
+% $$
+%     \begin{aligned}
+%         \bm{g}_1 = & \cos{(x^2)}\bm{e}_1 + \sin{(x^2)}\bm{e}_2        \\
+%         \bm{g}_2 = & -\sin{(x^2)}x^1\bm{e}_1 + \cos{(x^2)}x^1\bm{e}_2 \\
+%         \bm{g}_3 = & \bm{e}_3                                         \\
+%     \end{aligned}
+% $$
+
+% 根据$\bm{g}_i\bm{g}^j=\delta_i^j$，即有：
+% $$
+%     \begin{aligned}
+%         \bm{g}^1 = & \cos{(x^2)}\bm{e}_1 + \sin{(x^2)}\bm{e}_2                          \\
+%         \bm{g}^2 = & -\frac{\sin{(x^2)}}{x^1}\bm{e}_1 + \frac{\cos{(x^2)}}{x^1}\bm{e}_2 \\
+%         \bm{g}^3 = & \bm{e}_3                                                           \\
+%     \end{aligned}
+% $$
+
+% 因此度量张量：
+% $$
+%     \begin{aligned}
+%         \bm{G}=\bm{g}^1\bm{g}^1 + x^1x^1 \bm{g}^2\bm{g}^2 + \bm{g}^3\bm{g}^3
+%         =\bm{g}_1\bm{g}_1 + \frac{1}{x^1x^1} \bm{g}_2\bm{g}_2 + \bm{g}_3\bm{g}_3
+%     \end{aligned}
+% $$
+
+% 因此$\det(g_{ij})=\frac{1}{\det(g^{ij})}=x^1x^1=g$
+
+% \subsubsection*{4.2.2}
+
+% 球坐标系：$\bm{r}= x^1\cos{(x^2)}\cos{(x^3)} \bm{e}_1 + x^1\sin{(x^2)}\cos{(x^3)}\bm{e}_2 + x^1\sin{(x^3)}\bm{e}_3$
+
+% 则$\bm{g}_i=\pd{\bm{r}}{x^i}$
+% $$
+%     \begin{aligned}
+%         \bm{g}^1 = & \cos(x^2)\cos(x^3)\bm{e}_1 + \sin(x^2)\cos(x^3)\bm{e}_2 +\sin(x^3)\bm{e}_3             \\
+%         \bm{g}^2 = & -x^1\sin(x^2)\cos(x^3)\bm{e}_1 +  x^1\cos(x^2)\cos(x^3)\bm{e}_2                        \\
+%         \bm{g}^3 = & -x^1\cos(x^2)\sin(x^3)\bm{e}_1 - x^1\sin(x^2)\sin(x^3)\bm{e}_2 +  x^1\cos(x^3)\bm{e}_3 \\
+%     \end{aligned}
+% $$
+
+% 根据$\bm{g}_i\bm{g}^j=\delta_i^j$，即有：
+% $$
+%     \begin{aligned}
+%         \bm{g}^1 = & \cos(x^2)\cos(x^3)\bm{e}_1 + \sin(x^2)\cos(x^3)\bm{e}_2 +\sin(x^3)\bm{e}_3                                     \\
+%         \bm{g}^2 = & -\frac{\sin(x^2)}{x^1\cos(x^3)}\bm{e}_1 + \frac{\cos(x^2)}{x^1\cos(x^3)}\bm{e}_2                               \\
+%         \bm{g}^3 = & -\frac{\cos(x^2)\sin(x^3)}{x^1}\bm{e}_1  -\frac{\sin(x^2)\sin(x^3)}{x^1}\bm{e}_2+\frac{\cos(x^3)}{x^1}\bm{e}_3 \\
+%     \end{aligned}
+% $$
+
+% 因此度量张量：
+% $$
+%     \begin{aligned}
+%         \bm{G}= & \bm{g}^1\bm{g}^1 + x^1x^1\cos(x^3)\cos(x^3) \bm{g}^2\bm{g}^2 + x^1x^1\bm{g}^3\bm{g}^3                      \\
+%         =       & \bm{g}_1\bm{g}_1 + \frac{1}{x^1x^1\cos(x^3)\cos(x^3)} \bm{g}_2\bm{g}_2 + \frac{1}{x^1x^1} \bm{g}_3\bm{g}_3
+%     \end{aligned}
+% $$
+
+% 因此$\det(g_{ij})=\frac{1}{\det(g^{ij})}=\left[x^1x^1\cos(x^3)\right]^2=g$
+
+% \subsubsection*{4.2.1}
+
+% 极坐标系：$\bm{r}= \cos{(x^2)} x^1 \bm{e}_1 + \sin{(x^2)} x^1 \bm{e}_2 $
+
+% 则$\bm{g}_i=\pd{\bm{r}}{x^i}$
+% $$
+%     \begin{aligned}
+%         \bm{g}_1 = & \cos{(x^2)}\bm{e}_1 + \sin{(x^2)}\bm{e}_2        \\
+%         \bm{g}_2 = & -\sin{(x^2)}x^1\bm{e}_1 + \cos{(x^2)}x^1\bm{e}_2 \\
+%     \end{aligned}
+% $$
+
+% 根据$\bm{g}_i\bm{g}^j=\delta_i^j$，即有：
+% $$
+%     \begin{aligned}
+%         \bm{g}^1 = & \cos{(x^2)}\bm{e}_1 + \sin{(x^2)}\bm{e}_2                          \\
+%         \bm{g}^2 = & -\frac{\sin{(x^2)}}{x^1}\bm{e}_1 + \frac{\cos{(x^2)}}{x^1}\bm{e}_2 \\
+%     \end{aligned}
+% $$
+
+% 因此度量张量：
+% $$
+%     \begin{aligned}
+%         \bm{G}=\bm{g}^1\bm{g}^1 + x^1x^1 \bm{g}^2\bm{g}^2
+%         =\bm{g}_1\bm{g}_1 + \frac{1}{x^1x^1} \bm{g}_2\bm{g}_2
+%     \end{aligned}
+% $$
+
+% 因此$\det(g_{ij})=\frac{1}{\det(g^{ij})}=x^1x^1=g$
+
+% \subsection*{4.3}
+
+% % [g] is col vector cart for g, so [g_i][beta^i_j'] = [g_j']
+
+% 4.2已经给出$\bm{g}_i,\,\bm{g}_{i'}$，则根据$\bm{g}_i\beta_{j'}^{i}=\bm{g}_{j'}$，
+% 即有：$\beta_{j'}^{i}=\bm{g}^i\cdot\bm{g}_{j'}$，因此：
+
+% $$
+%     \beta^i_{j'}=
+%     \left[\begin{array}{ccc} \cos\left(-x^{2'}+x^{2}\right)\,\cos\left(x^{3'}\right) & x^{1'}\,\sin\left(-x^{2'}+x_{2}\right)\,\cos\left(x^{3'}\right) & -x^{1'}\,\cos\left(-x^{2'}+x_{2}\right)\,\sin\left(x^{3'}\right)\\ -\frac{\sin\left(-x^{2'}+x_{2}\right)\,\cos\left(x^{3'}\right)}{x_{1}} & \frac{x^{1'}\,\cos\left(-x^{2'}+x_{2}\right)\,\cos\left(x^{3'}\right)}{x_{1}} & \frac{x^{1'}\,\sin\left(-x^{2'}+x_{2}\right)\,\sin\left(x^{3'}\right)}{x_{1}}\\ \sin\left(x^{3'}\right) & 0 & x^{1'}\,\cos\left(x^{3'}\right) \end{array}\right]_{ij'}
+% $$
+
+% 不难发现，由于$x^{2'} = x^2$，
+% $$
+%     \beta^i_{j'}=
+%     \left[\begin{array}{ccc} \cos\left(x^{3'}\right) & 0 & -x^{1'}\,\sin\left(x^{3'}\right)\\ 0 & \frac{x^{1'}\,\cos\left(x^{3'}\right)}{x^{1}} & 0\\ \sin\left(x^{3'}\right) & 0 & x^{1'}\,\cos\left(x^{3'}\right) \end{array}\right]_{ij'}
+% $$
+
+% 又由于$x^{1}=x^{1'}\cos(x^{3'})$
+% $$
+%     \beta^i_{j'}=
+%     \left[\begin{array}{ccc} \cos\left(x^{3'}\right) & 0 & -x^{1'}\,\sin\left(x^{3'}\right)\\ 0 & 1 & 0\\ \sin\left(x^{3'}\right) & 0 & x^{1'}\,\cos\left(x^{3'}\right) \end{array}\right]_{ij'}
+% $$
+
+% 考虑到$\beta^i_{k'}\beta^{k'}_j=\delta^i_j$，即有：
+% $$
+%     \beta^{i'}_j=
+%     \left[\begin{array}{ccc} \cos\left(x^{3'}\right) & 0 & \sin\left(x^{3'}\right)\\ 0 & 1 & 0\\ -\frac{\sin\left(x^{3'}\right)}{x^{1'}} & 0 & \frac{\cos\left(x^{3'}\right)}{x^{1'}} \end{array}\right]_{i'j}
+% $$
+
+% 如果表示表示为$x^i$，有：$x^{1'}=\sqrt{(x^1)^2+(x^3)^2}, x^{2'}=x^2, x^{3'}=\arctan(\frac{x^3}{x^1})$代入即可。
+
+% \subsection*{4.4}
+
+% 首先根据分量协变导数满足：
+% $\pd{\bm{u}}{x^i}=u_{j;i}\bm{g}^j=u^j_{;i}\bm{g}_j$，其两端张量积$\bm{g}_i$即可发现
+% 最左端是一个二阶张量，右端是按照基矢量的张量积展开的结果，因此协变分量都是张量分量。
+% 又有关系：
+
+% $$
+%     u^i_{;j} = u^i_{,j} + u^k\Gamma_{jk}^i
+% $$
+
+% 由于克氏符号不是张量的分量，通过左右两端的坐标变换关系
+% 容易发现，普通偏导数也不是张量的分量，存在不满足坐标变换
+% 关系的例子。
+
+% （由于克氏符号在直线坐标下是0，在非直线坐标下是非0，其不是张量的分量，
+% 因此也不满足坐标变换关系）
+
+% \subsection*{4.5}
+
+% \subsubsection*{4.5.1}
+% 柱坐标下，$[g_{ij}]=diag(1, (x^1)^2, 1)$，是对角阵，考虑
+% $$
+%     \Gamma_{ij,k}=
+%     \frac{1}{2}
+%     (g_{ik,j} + g_{jk,i} - g_{ij,k})
+% $$
+
+% 则$i=k=2,j=1$或者$j=k=2,i=1$时，$\Gamma_{ij,k}=x^1$，
+% $i=j=2,k=1$时，$\Gamma_{ij,k}=-x^1$，其余分量都是0。
+
+
+% \subsubsection*{4.5.2}
+% 球坐标下，$[g_{ij}]=diag(1, (x^1)^2\cos^2(x^3), (x^1)^2)$，是对角阵，考虑
+% $$
+%     \Gamma_{ij,k}=
+%     \frac{1}{2}
+%     (g_{ik,j} + g_{jk,i} - g_{ij,k})
+% $$
+
+% % $$
+% % \Gamma^l_{ij}=g^{kl}
+% %     \frac{1}{2}
+% %     (g_{ik,j} + g_{jk,i} - g_{ij,k})
+% % $$
+
+% 则$i=k=2,j=1$或者$j=k=2,i=1$时，
+% $\Gamma_{ij,k}=x^1\cos^2(x^3)$；
+% 当$i=j=2,k=1$时，
+% $\Gamma_{ij,k}=-x^1\cos^2(x^3)$；
+% 当$i=k=2,j=3$或者$j=k=2,i=3$时，
+% $\Gamma_{ij,k}=-x^1x^1\cos(x^3)\sin(x^3)$；
+% 当$i=j=2,k=3$时，
+% $\Gamma_{ij,k}=x^1x^1\cos(x^3)\sin(x^3)$；
+% 当$i=k=3,j=1$或者$j=k=3,i=1$时，
+% $\Gamma_{ij,k}=x^1$；
+% 当$i=j=3,k=1$时，
+% $\Gamma_{ij,k}=-x^1$；
+% 其余分量都是0。
+
+
+
+% \subsubsection*{4.6}
+
+% 首先由于$\bm{g_i}=\pd{\bm{r}}{x^i}=\pd{\bm{r}}{x^{i'}}\pd{x^i}{x^{i'}}=\bm{g_{i'}}\pd{x^i}{x^{i'}}$
+% 可知$\pd{x^i}{x^{i'}}$就是$\beta^i_{i'}$，反之亦然。
+
+
+% % ! before coord conversion, separate contraction indices with delta
+
+% % ! $g_{ij,k} -> g_{i'j,k}$, cannot put $\beta^{i'}_i$ through the partial difference of k!
+
+% $$
+%     \begin{aligned}
+%         \Gamma^{l'}_{i'j'}
+%         = & \pd{\bm{g}_{i'}}{x^{j'}}\cdot \bm{g}^{l'}
+%         =
+%         \pd{\left(\bm{g}_{i}\pd{x^i}{x^{i'}}\right)}{x^{j'}}
+%         \cdot\bm{g}^{l}\pd{x^{l'}}{x^{l}}
+%         =
+%         \left(
+%         \pd{\bm{g}_i}{x^{j'}}\pd{x^i}{x^{i'}}
+%         +
+%         \bm{g}_i\pdcd{x^i}{x^{i'}}{x^{j'}}
+%         \right)
+%         \cdot\bm{g}^{l}\pd{x^{l'}}{x^{l}}             \\
+%         = &
+%         \pd{\bm{g}_i}{x^{j'}}\pd{x^i}{x^{i'}}\cdot\bm{g}^{l}\pd{x^{l'}}{x^{l}}
+%         +\pdcd{x^l}{x^{i'}}{x^{j'}}\pd{x^{l'}}{x^{l}}
+%         =
+%         \pd{\bm{g}_i}{x^{j}}\cdot\bm{g}^{l}\beta^j_{j'}\beta^i_{i'}\beta^{l'}_l
+%         +\pdcd{x^l}{x^{i'}}{x^{j'}}\beta^{l'}_l
+%         =
+%         \Gamma^l_{ij}\beta^j_{j'}\beta^i_{i'}\beta^{l'}_l
+%         +\pdcd{x^l}{x^{i'}}{x^{j'}}\beta^{l'}_l
+%     \end{aligned}
+% $$
+
+% 其中老坐标对新坐标的二阶导数不一定都是0，而且对于一般的函数，
+% 坐标转换系数作为一阶导数与二阶导数在给定的一点处可无关，因此总
+% 存在这一项非零的构造，因此克氏符号不满足坐标变换关系，不是一个张量。
+
+% \subsection*{4.7}
+
+% 对于任意维数，可知：
+% $$
+%     \sqrt{g}=\sqrt{\det(g_{ij})}=\pm[\bm{g}_1,\bm{g}_2,...\bm{g}_n]
+% $$
+
+% 其中中括号运算是三维混合积的推广，此处称作广义混合积，使得：
+% $$
+%     [\bm{g}_1,\bm{g}_2,...,\bm{g}_n]
+%     =\bm{g}_1\cdot \bm{e}^{i_1}
+%     \bm{g}_2\cdot \bm{e}^{i_2}...
+%     \bm{g}_n\cdot \bm{e}^{i_n}
+%     \delta_{1,2,...n}^{i_1,i_2,...i_n}
+% $$
+
+% 其中，
+% $$
+%     \delta_{1,2,...n}^{i_1,i_2,...i_n}
+%     =
+%     \left|\begin{matrix}
+%         \delta_1^{i_1} & \delta_1^{i_2} & \cdots & \delta_1^{i_n} \\
+%         \delta_2^{i_1} & \delta_2^{i_2} & \cdots & \delta_2^{i_n} \\
+%         \vdots         & \vdots         & \ddots & \vdots         \\
+%         \delta_n^{i_1} & \delta_n^{i_2} & \cdots & \delta_n^{i_n} \\
+%     \end{matrix}\right|
+% $$
+
+% 这个结论可以用矩阵理论得到，
+% 同时根据行列式的性质可知，当其中两个向量相同时
+% 广义混合积运算为0。同时广义混合基对任意输入向量线性（进行坐标变换，因而具有分配律。
+
+% 方便讨论，设$[\bm{g}_1,\bm{g}_2,...\bm{g}_n]>0$，也就是说取一种“手性”。
+% 另外一种手性的推导只相差一个符号。
+
+% 观察$\sqrt{g}$的展开，其中标正基和坐标无关，且考虑线性性质、分配律，
+% 可知，对其求导后的代数形式与n个变量的乘积的导数相同：
+
+% $$
+%     \begin{aligned}
+%         \pd{\sqrt{g}}{x^i}= &
+%         [\pd{\bm{g}_1}{x^i}, \bm{g}_2,...\bm{g}_n]
+%         +[\bm{g}_1, \pd{\bm{g}_2}{x^i},...\bm{g}_n]+...
+%         +[\bm{g}_1, \bm{g}_2,...\pd{\bm{g}_n}{x^i}]    \\
+%         =                   &
+%         [\Gamma^l_{1i}\bm{g}_l, \bm{g}_2,...\bm{g}_n]
+%         +[\bm{g}_1, \Gamma^l_{2i}\bm{g}_l,...\bm{g}_n]+...
+%         +[\bm{g}_1, \bm{g}_2,...\Gamma^l_{ni}\bm{g}_l] \\
+%         =                   &
+%         [\Gamma^1_{1i}\bm{g}_1, \bm{g}_2,...\bm{g}_n]
+%         +[\bm{g}_1, \Gamma^2_{2i}\bm{g}_2,...\bm{g}_n]+...
+%         +[\bm{g}_1, \bm{g}_2,...\Gamma^n_{ni}\bm{g}_n]\\
+%         =                   &
+%         \Gamma^1_{1i}[\bm{g}_1, \bm{g}_2,...\bm{g}_n]
+%         +\Gamma^2_{2i}[\bm{g}_1, \bm{g}_2,...\bm{g}_n]+...
+%         +\Gamma^n_{ni}[\bm{g}_1, \bm{g}_2,...\bm{g}_n]\\
+%         =                   &
+%         \Gamma^l_{li}[\bm{g}_1, \bm{g}_2,...\bm{g}_n]
+%     \end{aligned}
+% $$
+
+% 其中第三个等号是因为展开缩并项后，带有重复向量的广义混合积运算都是0，仅剩一项。
+% 因此：
+% $$
+% \pd{\sqrt{g}}{x^i}=\Gamma^l_{li}\sqrt{g}
+% \Rightarrow
+% \Gamma^l_{li}=\frac{1}{\sqrt{g}}\pd{\sqrt{g}}{x^i}
+% =\pd{\ln\sqrt{g}}{x^i}
+% $$
+
+
+
+\end{document}
