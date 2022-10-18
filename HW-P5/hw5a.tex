@@ -161,9 +161,12 @@ $$
 由$\g_i=\pd{\bm{r}}{x^i}$
 
 $$
-    [\g_1,\g_2,\g_3]=[\bm{e}_1,\bm{e}_2,\bm{e}_3]
+    [[\g_1\,\g_2\,\g_3]]=
+    [[\bm{e}_1\,\bm{e}_2\,\bm{e}_3]]
     \left[\begin{array}{ccc} a & -a & 0\\ \frac{a\,x^{2}}{\sqrt{x^{1}\,x^{2}}} & \frac{a\,x^{1}}{\sqrt{x^{1}\,x^{2}}} & 0\\ 0 & 0 & 1 \end{array}\right]
 $$
+
+这里双中括号是指的按照矩阵规则计算，下同。
 
 容易发现这是一个正交坐标系。则有：
 $A\av{1}^2 = \frac{a^2(x^1+x^2)}{x^1}, A\av{2}^2 = \frac{a^2(x^1+x^2)}{x^2}, A\av{3} =1$
@@ -173,7 +176,8 @@ $A\av{1}^2 = \frac{a^2(x^1+x^2)}{x^1}, A\av{2}^2 = \frac{a^2(x^1+x^2)}{x^2}, A\a
 且$\sqrt{g}=\frac{aa(x^1+x^2)}{\sqrt{x^1x^2}}$
 
 $$
-    [\g^1,\g^2,\g^3]=[\bm{e}_1,\bm{e}_2,\bm{e}_3]
+    [[\g^1\,\g^2\,\g^3]]=
+    [[\bm{e}_1\,\bm{e}_2\,\bm{e}_3]]
     \left[\begin{array}{ccc} \frac{x^{1}}{a\,\left(x^{2}+x^{1}\right)} & -\frac{x^{2}}{a\,\left(x^{2}+x^{1}\right)} & 0\\ \frac{\sqrt{x^{1}}\,\sqrt{x^{2}}}{a\,\left(x^{2}+x^{1}\right)} & \frac{\sqrt{x^{1}}\,\sqrt{x^{2}}}{a\,\left(x^{2}+x^{1}\right)} & 0\\ 0 & 0 & 1 \end{array}\right]
 $$
 
@@ -282,7 +286,7 @@ $$
         \end{matrix}
         \right|                                              \\
         = & \frac{\sqrt{x^1x^2}}{aa(x^1+x^2)}
-        [\g_1,\g_2,\g_3]
+        [[\g_1\,\g_2\,\g_3]]
         diag\left(
         u^3_{,2}-u^2_{,3}\frac{a^2(x^1+x^2)}{x^2},\,
         u^1_{,3}\frac{a^2(x^1+x^2)}{x^1}-u^3_{,1},\, \right. \\
@@ -292,7 +296,7 @@ $$
         u^1_{,2}\frac{a^2(x^1+x^2)}{x^1}-u^1\frac{a^2}{x^1}
         \right)                                              \\
         = & \frac{\sqrt{x^1x^2}}{aa(x^1+x^2)}
-        [\bm{e}_1,\bm{e}_2,\bm{e}_3]
+        [[\bm{e}_1\,\bm{e}_2\,\bm{e}_3]]
         \left[\begin{array}{ccc} a & -a & 0\\ \frac{a\,x^{2}}{\sqrt{x^{1}\,x^{2}}} & \frac{a\,x^{1}}{\sqrt{x^{1}\,x^{2}}} & 0\\ 0 & 0 & 1 \end{array}\right]              \\
           & diag\left(
         u^3_{,2}-u^2_{,3}\frac{a^2(x^1+x^2)}{x^2},\,
@@ -306,6 +310,7 @@ $$
     \label{eq:curlu}
 \end{equation}
 
+这里双中括号是指的按照矩阵规则计算。
 
 最下面的矩阵形式中，$diag$代表将元素作为对角元素生成对角阵。
 
