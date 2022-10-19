@@ -3,3 +3,8 @@
 *.gz
 *.aux
 *.log
+*.out
+*.png
+*.zip
+*.txt
+*.toc

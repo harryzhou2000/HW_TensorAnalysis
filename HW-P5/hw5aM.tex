@@ -1,0 +1,171 @@
+%!TEX program = xelatex
+\documentclass[UTF8,zihao=5]{ctexart} %ctex包的article
+
+
+\usepackage[hidelinks]{hyperref}%超链接，自动加到目录里面
+
+
+
+\title{{\bfseries 第4次作业}}
+\author{周涵宇 2022310984}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}%纸张大小和页边距
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}%office风格的行间距
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Source Sans Pro}
+\setmonofont{Latin Modern Mono}
+% \setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKmainfont{SimSun}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+\setCJKmonofont{楷体}[AutoFakeBold=true]
+
+% \usepackage{indentfirst} %不工作 怎样调整ctex的段首缩进大小呢
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0pt} %改为0pt即可去掉页眉下面的横线
+\renewcommand{\footrulewidth}{0pt} %改为0pt即可去掉页脚上面的横线
+\setcounter{page}{1}
+
+
+% \usepackage{bm}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+\usepackage{enumitem}
+
+% \usepackage{titlesec} % it subverts the ctex titles
+\usepackage{titletoc}
+
+
+% titles in toc:
+\titlecontents{section}
+              [2cm]
+              {\ttfamily\zihao{-4}\bfseries}%
+              {\contentslabel{4em}}%
+              {}%
+              {\titlerule*[0.5pc]{-}\contentspage\hspace*{1cm}}
+
+\titlecontents{subsection}
+              [3cm]
+              {\rmfamily\mdseries\zihao{5}}%
+              {\contentslabel{4em}}%
+              {}%
+              {\titlerule*[0.5pc]{-}\contentspage\hspace*{1cm}}
+
+\titlecontents{subsubsection}
+              [4cm]
+              {\sffamily\bfseries\zihao{5}}%
+              {\contentslabel{4em}}%
+              {}%
+              {\titlerule*[0.5pc]{-}\contentspage\hspace*{1cm}}
+\renewcommand*\contentsname{\hfill \sffamily\bfseries 木鹿 \hfill}
+
+\ctexset{
+    section={   
+        % name={前面,后面},
+        number={\arabic{section}},
+        format=\ttfamily\raggedright\zihao{-4}\bfseries,%小四，左对齐，mono字体，加粗
+        indent= {0.5em} %缩进
+    },
+    subsection={   
+        % name={另一个前面,另一个后面},
+        number={\arabic{subsection}}, %如果只用一个数字而非1.1
+        format=\rmfamily\raggedright\mdseries\zihao{5},%正体字体，不加粗，main字体，五号字
+        indent = {40pt}, %缩进
+        aftername = \hspace{7em} %名字和标题间插入字符（此处是空白）
+    },
+    subsubsection={   
+        % name={另一个前面,另一个后面},
+        % number={\arabic{subsubsection}}, %默认的 1.1.1
+        format=\sffamily\raggedright\bfseries\zihao{5},%无衬线字体，加粗，sans字体，五号字
+        indent = {5em}, %缩进
+        aftername = \hspace{50pt},  %名字和标题间插入字符（此处是空白）
+        beforeskip=1ex,
+        afterskip=1ex
+    }
+}
+
+
+
+%part、section、subsection、subsubsection、paragraph、subparagraph
+
+\begin{document}
+
+\maketitle
+\begin{center}
+    \rmfamily
+    \tableofcontents\setcounter{page}{0}
+\end{center}
+\thispagestyle{empty}
+
+\newpage
+
+
+\section{SECTION 节}
+
+一个
+
+\subsection{SUBSECTION 小节}
+
+示例
+
+\subsubsection{SUBSUBSECTION 小节节}
+
+一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆
+一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆
+一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆
+一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆一大堆
+
+一个列表：
+\begin{itemize}
+    \item asef
+    \item[b] asdf
+    \item[***] aaa
+\end{itemize}
+
+一个有序列表：
+\begin{enumerate}
+    \item asef
+    \item[\%\%] asdf
+    \item aaa
+\end{enumerate}
+
+一个嵌套列表：
+\begin{enumerate}[itemindent=2em] %缩进
+    \item asef \par asaf 东西东西东西东西东西东西东西东西东西东西东西东西东西东西东西东西东西东西东西东西东西东西东西东西，
+          F不是不是不是不是不是不是不是不是不是不是不是不是不是不是不是
+          \begin{itemize}[itemindent=2em]  %缩进
+              \item lalala
+              \item mamama
+          \end{itemize}
+    \item asdf
+    \item aaa
+\end{enumerate}
+
+\section{SECTION}
+
+\subsection{SUBSECTION}
+
+\subsubsection{SUBSUBSECTION}
+
+\paragraph{PARA}
+
+\subparagraph{SUBPARA}
+
+
+\end{document}
