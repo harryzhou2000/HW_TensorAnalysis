@@ -1,0 +1,261 @@
+%!TEX program = xelatex
+\documentclass[UTF8,zihao=5]{ctexart}
+
+
+\title{{\bfseries 第6次作业}}
+\author{周涵宇 2022310984}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+% \setmonofont{JetBrains Mono}
+\setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+
+% \usepackage{bm}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+
+\newcommand{\bm}[1]{{\mathbf{#1}}}
+
+\newcommand{\trans}[0]{^\mathrm{T}}
+\newcommand{\tran}[1]{#1^\mathrm{T}}
+\newcommand{\hermi}[0]{^\mathrm{H}}
+\newcommand{\conj}[1]{\overline{#1}}
+
+\newcommand*{\av}[1]{\left\langle{#1}\right\rangle}
+
+\newcommand*{\avld}[1]{\frac{\overline{D}#1}{Dt}}
+
+\newcommand*{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand*{\pdcd}[3]
+{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+
+
+\begin{document}
+
+\maketitle
+
+\subsection*{6.1}
+
+坐标$\xi_i$的基函数就是$\bm{e}^i$，柱坐标$x^i$的基函数设为$\bm{g}_i$，
+记变形后的直角坐标是$x_i$，则有：
+$$
+    \bm{g}_j=\bm{e}_i\pd{x_i}{x^j}
+$$
+给出基函数的具体形式：
+
+$$
+    [[\bm{g}_1,\bm{g}_2,\bm{g}_3]]=[[\bm{e}_1,\bm{e}_2,\bm{e}_3]]
+    \begin{bmatrix}
+        \cos{x^2} & -x^1\sin{x^2} & 0 \\
+        \sin{x^2} & x^1\cos{x^2}  & 0 \\
+        0         & 0             & 1 \\
+    \end{bmatrix}
+$$
+其中双括号代表按照矩阵运算进行展开，最后一项矩阵就是
+$\left[\pd{x_i}{x^j}\right]_{ij}$。
+
+同时给出逆变基：
+$$
+    [[\bm{g}^1,\bm{g}^2,\bm{g}^3]]=[[\bm{e}_1,\bm{e}_2,\bm{e}_3]]
+    \begin{bmatrix}
+        \cos{x^2}              & \sin{x^2}             & 0 \\
+        -\frac{\sin{x^2}}{x^1} & \frac{\cos{x^2}}{x^1} & 0 \\
+        0                      & 0                     & 1 \\
+    \end{bmatrix}
+$$
+最后一项矩阵就是
+$\left[\pd{x^i}{x_j}\right]_{ij}$。
+
+考虑变形梯度张量：
+$$
+    \bm{F}=\pd{\bm{x}}{\bm{\xi}}
+    =
+    \pd{x^i}{\xi_A}\bm{g}_i\bm{e}_A
+$$
+大写的上下标用来表示在变形前（Lagrange）的基矢量和分量，但是转换为
+变形后场的直角分量时仍然这么写，特殊说明。
+
+其中坐标的偏导数是：
+$$
+    \pd{x^i}{\xi_A}=\begin{bmatrix}
+        1 & 0             & 0 \\
+        0 & \frac{1}{r_0} & 0 \\
+        0 & 0             & 1 \\
+    \end{bmatrix}^{iA}
+$$
+这个矩阵是混合坐标（直角-柱坐标）形式的变形梯度分量。
+如果写作直角坐标分量形式，则有（忽略上下标区别）：
+$$
+    \bm{F}=\pd{x^i}{\xi_A}\bm{e_k}\pd{x_k}{x^i}\bm{e}_A
+    =\left[
+        \pd{x_k}{x^i}\pd{x^i}{\xi_A}
+        \right]_{kA}\bm{e_k}\bm{e}_A
+$$
+直角坐标分量的矩阵是：
+$$
+    \left[
+        \pd{x_k}{x^i}\pd{x^i}{\xi_A}
+        \right]_{kA}=
+    \left[
+        \pd{x_k}{\xi_A}
+        \right]_{kA}=\begin{bmatrix}
+        \cos{x^2} & -\frac{x^1\sin{x^2}}{r_0} & 0 \\
+        \sin{x^2} & \frac{x^1\cos{x^2}}{r_0}  & 0 \\
+        0         & 0                         & 1 \\
+    \end{bmatrix}_{kA}
+$$
+
+考虑$\bm{F}^{-1}=(F^{-1})_{Aj}\bm{e}^{A}\bm{g}^{j}$：
+$$
+    \delta^i_j\bm{g}_i\bm{g}^j=\bm{I}=\bm{F}\cdot\bm{F}^{-1}
+    =\pd{x^i}{\xi_A}(F^{-1})_{Bj}\bm{g}_i\bm{e}_A\cdot\bm{e}^{B}\bm{g}^{j}
+    =\pd{x^i}{\xi_A}(F^{-1})_{Aj}\bm{g}_i\bm{g}^{j}
+$$
+
+则根据分量关系解得：
+$$
+    [(F^{-1})_{Aj}]=\begin{bmatrix}
+        1 & 0   & 0 \\
+        0 & r_0 & 0 \\
+        0 & 0   & 1 \\
+    \end{bmatrix}_{Aj}
+$$
+这是从柱坐标到直角坐标的变形梯度混合分量。求解直角坐标下的分量，直接从直角坐标展开
+$\bm{F}^{-1}=(^CF^{-1})_{Aj}\bm{e}^{A}\bm{e}^{j}$出发：
+$$
+    \delta^i_j\bm{e}_i\bm{e}^j=\bm{I}=\bm{F}\cdot\bm{F}^{-1}
+    =\pd{x_i}{\xi_A}(^CF^{-1})_{Bj}\bm{e}_i\bm{e}_A\cdot\bm{e}^{B}\bm{e}^{j}
+    =\pd{x^i}{\xi_A}(^CF^{-1})_{Aj}\bm{e}_i\bm{e}^{j}
+$$
+
+则可以解得：
+$$
+    [(^CF^{-1})_{Aj}]=
+    \begin{bmatrix}
+        \cos{x^2}                 & \sin{x^2}                & 0 \\
+        -\frac{r_0\sin{x^2}}{x^1} & \frac{r_0\cos{x^2}}{x^1} & 0 \\
+        0                         & 0                        & 1 \\
+    \end{bmatrix}
+$$
+这就是直角坐标下的逆变形梯度张量的分量。
+再求转置则有：
+$$
+    \bm{F}^{-T}=(^CF^{-1})_{Aj}\bm{e}^{j}\bm{e}^{A}
+    =(F^{-1})_{Aj}\bm{g}^{j}\bm{e}^{A}
+$$
+
+方便起见在直角坐标下求$\bm{U},\bm{V}$，也就是求直角分量满足：
+$$
+    \bm{U}=U_{AB}\bm{e}_A\bm{e}_B,\ \ \bm{V}=V_{ij}\bm{e}_i\bm{e}_j
+$$
+
+根据极分解计算方法，有$\bm{F}^T\bm{F}=\bm{C}=\bm{U}^2$
+考虑直角分量
+$$
+    \bm{C}=C_{AB}\bm{e}_A\bm{e}_B=\pd{x_k}{\xi_A}\pd{x_k}{\xi_B}\bm{e}_A\bm{e}_B
+$$
+可得
+$$
+    [C_{AB}]=\begin{bmatrix}
+        1 & 0                     & 0 \\
+        0 & \frac{x^1x^1}{r_0r_0} & 0 \\
+        0 & 0                     & 1 \\
+    \end{bmatrix}
+$$
+直接可见特征值和特征向量，明显有特征向量为$\bm{N}_A=\bm{e}_A$，则有：
+$$
+    [U_{AB}]=\begin{bmatrix}
+        1 & 0               & 0 \\
+        0 & \frac{x^1}{r_0} & 0 \\
+        0 & 0               & 1 \\
+    \end{bmatrix}_{AB}
+$$
+注意这是直角坐标的分量。
+
+又根据$\bm{F}\bm{F}^{T}=\bm{c}=\bm{V}^2$，
+$$
+    \bm{c}=c_{ij}\bm{e}_i\bm{e}_j=\pd{x_i}{\xi_A}\pd{x_j}{\xi_A}\bm{e}_i\bm{e}_j
+$$
+计算得：
+$$
+    c_{ij}=\begin{bmatrix}
+        \cos^2{x^2} + \frac{x^1x^1}{r_0r_0}\sin^2{x^2}         &
+        \left(1-\frac{x^1x^1}{r_0r_0}\right)\cos{x^2}\sin{x^2} & 0     \\
+        \left(1-\frac{x^1x^1}{r_0r_0}\right)\cos{x^2}\sin{x^2} &
+        \sin^2{x^2} + \frac{x^1x^1}{r_0r_0}\cos^2{x^2}         & 0     \\
+        0                                                      & 0 & 1 \\
+    \end{bmatrix}_{ij}
+$$
+
+可知，其中特征值为$[\lambda_1^2,\lambda_2^2,\lambda_3^2]=[1,\frac{x^1x^1}{r_0r_0},1]$，
+特征向量为
+$$
+    \begin{aligned}
+        \bm{n}_1 & =-\sin{x^2}\bm{e}_1 + \cos{x^2}\bm{e}_2 \\
+        \bm{n}_2 & = \cos{x^2}\bm{e}_1 + \sin{x^2}\bm{e}_2 \\
+        \bm{n}_3 & = \bm{e}_3                              \\
+    \end{aligned}
+$$
+
+则$\bm{V}=\lambda_1\bm{n}_1\bm{n}_1 + \lambda_2\bm{n}_2\bm{n}_2 + \lambda_3\bm{n}_3\bm{n}_3$
+可得分量为：
+$$
+    [V_{ij}]=\begin{bmatrix}
+        1 + \frac{x^1-r_0}{r_0}\sin^2{x^2}               &
+        -\frac{x^1-r_0}{r_0}\sin{x^2}\cos{x^2}           & 0     \\
+        -\frac{x^1-r_0}{r_0}\sin{x^2}\cos{x^2}           &
+        \frac{x^1}{r_0} - \frac{x^1-r_0}{r_0}\sin^2{x^2} & 0     \\
+        0                                                & 0 & 1
+    \end{bmatrix}_{ij}
+$$
+这是$\bm{V}$的直角分量。
+
+\subsection*{6.2}
+根据文献，对于对称的应力和应变，可以将其分别表示成6维向量，由对角部分和非对角部分组成，
+存在约束，等价于$\bm{S}$存在大于零维的化零空间，
+也就是说是对称矩阵$[s_{ij}]$存大于零维在化零空间，此时由于约束存在，
+刚度在这个约束的空间（也就是化零空间）内是无穷大，因此不存在有限刚度。
+
+当然，根据展开的6维矩阵形式，也方便证明柔度矩阵非奇异与存在刚度矩阵是等价的。
+因为若存在，对于任意的$\varepsilon_i=s_{ij}\sigma_j$，
+都有$\sigma_i=c_{ij}\varepsilon_j$，展开的应力、应变向量是任意向量（因为
+各分量独立）。因此，$[s_{ij}]$与$[c_{ij}]$互逆。如果非奇异则其逆就是刚度矩阵，
+如果奇异则由于不可逆而没有刚度矩阵。
+
+对本题给出的$s_{ij}$进行高斯消元或者QR分解都容易发现其化零空间的维数是1，也就是奇异，
+化零空间（特征值为0的特征空间）由向量
+$$
+    (\sigma_0)_i=\left[\begin{array}{c} -\frac{63}{38} \\
+            -\frac{28}{19}     \\ -\frac{21}{38}\\
+            \frac{9}{38}       \\ \frac{105}{38}\\ 1\end{array}\right]_i
+$$
+张成，也就是说对应的应力（按照论文展开）（及其倍数）：
+$$
+    [(\sigma_0)_{ij}]=
+    \frac{1}{38}\begin{bmatrix}
+        -63         & 38\sqrt{2} & 105\sqrt{2} \\
+        38\sqrt{2}  & -56        & 9\sqrt{2}    \\
+        105\sqrt{2} & 9\sqrt{2}  & -21         \\
+    \end{bmatrix}
+$$
+下，应变是0。
+因此不存在刚度矩阵。
+
+也就是说，（根据论文）上述本构存在约束$(\sigma_0)_{ij}\varepsilon_{ij}=0$，
+这导致了柔度的奇异性。
+
+
+
+\end{document}

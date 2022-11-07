@@ -1,0 +1,138 @@
+%!TEX program = xelatex
+\documentclass[UTF8,zihao=5]{ctexart}
+
+
+\title{{\bfseries 第7次作业}}
+\author{周涵宇 2022310984}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+% \setmonofont{JetBrains Mono}
+\setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+
+% \usepackage{bm}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+
+\newcommand{\bm}[1]{{\mathbf{#1}}}
+
+\newcommand{\trans}[0]{^\mathrm{T}}
+\newcommand{\tran}[1]{#1^\mathrm{T}}
+\newcommand{\hermi}[0]{^\mathrm{H}}
+\newcommand{\conj}[1]{\overline{#1}}
+
+\newcommand*{\av}[1]{\left\langle{#1}\right\rangle}
+
+\newcommand*{\avld}[1]{\frac{\overline{D}#1}{Dt}}
+
+\newcommand*{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand*{\pdcd}[3]
+{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+
+
+\begin{document}
+
+\maketitle
+
+\subsection*{7.1}
+
+根据微分形式的定义，有
+$$
+    \bm{G}'(F)*d\bm{F}=d\bm{G}
+$$
+其中$d\bm{F}$是趋近于0的任意张量，即$d\bm{F}=h\bm{H},h\rightarrow 0,\forall \bm{H}$，
+而$d\bm{G}=\bm{G}(\bm{F}+d\bm{F})-\bm{G}(\bm{F})\rightarrow 0$。
+
+因此，对于复合函数有：
+$$
+    \frac{d}{d\bm{T}}\bm{G}(\bm{F}(\bm{T}))*d\bm{T}
+    =d\bm{G}(\bm{F}(\bm{T}))=\bm{G}'(\bm{F})*d\bm{F}(\bm{T})
+    =\bm{G}'(\bm{F})*\bm{F}'(\bm{T})*d\bm{T}
+$$
+这对任何的$\bm{dT}=h\bm{Y},\  \forall\bm{Y},\  h\rightarrow 0$成立，因此可得
+$$
+    \frac{d}{d\bm{T}}\bm{G}(\bm{F}(\bm{T}))
+    =\bm{G}'(\bm{F})*\bm{F}'(\bm{T})
+$$
+
+\subsection*{7.2}
+$f'$是一个三阶张量，分量为$f'(\bm{P})_{ijk}=\pd{f(\bm{P})}{p_{ijk}}$，
+则明显其非零的分量包括：
+$$
+    \begin{aligned}
+        f'(\bm{P})_{111}&=2P_{111}                         \\
+        f'(\bm{P})_{222}&=4P_{222}                         \\
+        f'(\bm{P})_{123}&=f'(\bm{P})_{132}=P_{123}+P_{132} \\
+        f'(\bm{P})_{313}&=f'(\bm{P})_{331}=P_{313}+P_{331} \\
+    \end{aligned}
+$$
+这是对称的形式，由于$P$的对称性，还有其他等价的非对称表达式。
+
+
+\subsection*{7.3} 
+
+对于$\bm{B} \in \mathbb{R}^{n\times n}$，
+不妨将某个基下面的一种混合分量记为$B^i_{\cdot j}$，其矩阵记为$[B]$，
+明显，$\det(\bm{B})=\det([B])$。
+
+考虑矩阵行列式按某一行或者某一列展开，则明显有：
+$$
+\pd{\det([B])}{B^i_{\cdot j}}=(-1)^{i+j}R_{ij}
+$$
+其中有$R_{ij}$是矩阵$[B]$的余子式，也就是去掉$i$行、$j$列后的行列式。
+明显有[$\pd{\det([B])}{B^i_{\cdot j}}]=[B^*]\trans$，也就是这个偏导数矩阵就是
+伴随矩阵的转置。
+
+线性代数的结论给出：$[B^*][B]=[I]\det([B])$，因此有：
+$$
+\pd{\det(\bm{B})}{B^i_{\cdot k}}B^j_{\cdot k}=\delta_i^j\det(\bm{B})
+$$
+也就是
+\begin{equation}
+    \pd{\det(\bm{B})}{\bm{B}}\bm{B}\trans=\bm{I}\det(\bm{B})
+    \label{eq:mid1}
+\end{equation}
+
+根据Hamilton-Caylay定理，有：
+
+\begin{equation}
+    \det(\bm{B})\bm{I}=I_n\bm{I}=\sum_{i=1}^n{(-1)^{n-1}I_{n-i}\bm{B}^n}
+    \label{eq:HC}
+\end{equation}
+
+其中$I_0=1$，$I_1,I_2,\dots I_n$是特征多项式的系数，也就是主不变量。
+将\eqref{eq:HC}转置后代入\eqref{eq:mid1}，则有：
+
+\begin{equation}
+    \pd{\det(\bm{B})}{\bm{B}}\cdot\bm{B}\trans=\sum_{i=1}^n{(-1)^{n-1}I_{n-i}(\bm{B}\trans)^n}
+\end{equation}
+
+对于非奇异的$\bm{B}$，两端右点积$\bm{B}^{-\mathrm{T}}$，即有
+\begin{equation}
+    \pd{\det(\bm{B})}{\bm{B}}=\sum_{i=1}^n{(-1)^{n-1}I_{n-i}(\bm{B}\trans)^{n-1}}
+    \label{eq:result}
+\end{equation}
+
+又由于，在$\mathbb{R}^{n\times n}$中，奇异二阶张量的邻域一定有非奇异二阶张量，而
+根据行列式函数的无穷阶连续可导性质，取非奇异数列$\bm{B}_k$趋近于每个奇异的二阶张量都有\eqref{eq:result}，
+因此本式对所有$\mathbb{R}^{n\times n}$的二阶张量都成立。
+
+特别地，对三维情况有：
+
+$$
+\pd{\det(\bm{B})}{\bm{B}}=I_2\bm{I}-I_1\bm{B}\trans+(\bm{B}\trans)^2
+$$
+
+\end{document}
