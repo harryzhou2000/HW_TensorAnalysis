@@ -1,0 +1,319 @@
+%!TEX program = xelatex
+\documentclass[UTF8,zihao=5]{ctexart}
+
+
+\title{{\bfseries 第8次作业}}
+\author{周涵宇 2022310984}
+\date{}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\usepackage[
+UseMSWordMultipleLineSpacing,
+MSWordLineSpacingMultiple=1.5
+]{zhlineskip}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+% \setmonofont{JetBrains Mono}
+\setCJKmainfont{仿宋}[AutoFakeBold=true]
+\setCJKsansfont{黑体}[AutoFakeBold=true]
+
+\usepackage{bm}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+
+% \newcommand{\bm}[1]{{\mathbf{#1}}}
+
+\newcommand{\trans}[0]{^\mathrm{T}}
+\newcommand{\tran}[1]{#1^\mathrm{T}}
+\newcommand{\hermi}[0]{^\mathrm{H}}
+\newcommand{\conj}[1]{\overline{#1}}
+
+\newcommand*{\av}[1]{\left\langle{#1}\right\rangle}
+
+\newcommand*{\avld}[1]{\frac{\overline{D}#1}{Dt}}
+
+\newcommand*{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand*{\pdcd}[3]
+{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+
+
+\begin{document}
+
+\maketitle
+
+\subsection*{8.1}
+
+对系统采用虚位移法，则对位置进行变分。
+
+本题中记号的$i,j,k$等指标都为$1,2$范围变化，而非三维，采用爱因斯坦求和。
+
+记原曲面在三维欧氏空间的位置矢量$\bm{r}$，
+变分的位移
+$\delta\bm{r}=\zeta \bm{n} + \xi^i \bm{g}_i$，
+其中$\xi^1,\xi^2,\zeta$是变分的小量，为曲面坐标的函数。
+那么能量变分为：
+
+$$
+    \delta E
+    =
+    \gamma_{LV}\int_{\Sigma_{LV}}{\delta dA}
+    +
+    (\gamma_{SL}-\gamma_{SV})
+    \int_{\Sigma_{SL}}{\delta dA}
+    +
+    \int_{\Omega_{L}}{P\delta dV}
+    +
+    \tau \int_{\partial\Sigma_{LV}}{\delta ds}
+$$
+
+其中，在两个曲面的交界处，坐标系和法向并不相同，但是变分的位置矢量
+是相同的矢量。
+
+考虑
+$$
+    \begin{aligned}
+        \delta\bm{g}_i
+         & =\delta\pd{\bm{r}}{x^i}
+        =\pd{}{x^i}(\zeta \bm{n} + \xi^j \bm{g}_j) \\
+         & =\zeta_{,i}\bm{n} + \xi^j_{,i}\bm{g}_j
+        + \zeta \bm{n}_{,i} + \xi^j \bm{g}_{j,i}   \\
+         & =\zeta_{,i}\bm{n} + \xi^j_{,i}\bm{g}_j
+        -\zeta b_{ij}\bm{g}^j +
+        \xi^j \Gamma_{ij,k}\bm{g}^k + \xi^j b_{ij}\bm{n}
+    \end{aligned}
+$$
+因此度量系数变分为：
+$$
+    \begin{aligned}
+        \delta g_{ij}
+         & = \delta\bm{g}_i\cdot\bm{g}_j + \delta\bm{g}_j\cdot\bm{g}_i \\
+         & = \xi^k_{,i}g_{kj}
+        -\zeta b_{ij} +
+        \xi^k \Gamma_{ik,j} +
+        \xi^k_{,j}g_{ki}
+        -\zeta b_{ji} +
+        \xi^k \Gamma_{jk,i}                                            \\
+         & = -2\zeta b_{ij}
+        + (\xi^k_{,i}+ \xi^m \Gamma_{im}^k)g_{kj}
+        + (\xi^k_{,j}+ \xi^m \Gamma_{jm}^k)g_{ki}                      \\
+         & =
+        -2\zeta b_{ij}
+        + \xi^k_{;i}g_{kj}
+        + \xi^k_{;j}g_{ki}                                             \\
+    \end{aligned}
+$$
+考虑计算面元的变分，首先计算度量系数行列式的变分。
+根据行列式的导数结论以及度量系数的对称性，
+以及已知$g^{ij}g_{jk}=\delta^i_k$
+$$
+    \begin{aligned}
+        \delta g & =
+        g g^{ij}\delta g_{ij}                \\
+                 & =
+        -2g\zeta b_{ij}g^{ij} + 2g\xi^k_{;k} \\
+                 & =
+        -4gH\zeta + 2g\xi^k_{;k}
+    \end{aligned}
+$$
+其中$2H=b^i_{\cdot i}$是平均曲率。则面元的变分是
+$$
+    \delta dA = (\delta\sqrt{g})dx^1dx^2
+    =\frac{1}{2\sqrt{g}}\delta g dx^1dx^2=
+    (-2H\zeta + \xi^k_{;k})dA
+$$
+
+接下来考虑体积变分，根据体积元，有
+% $$
+%     \begin{aligned}
+%         \delta dV & =
+%         \delta (\frac{1}{3}\bm{r}\cdot\bm{n}dA) \\
+%                   & =
+%         \frac{1}{3}dx^1dx^2\left(
+%             \delta \bm{r}\cdot \bm{n}\sqrt{g}
+%             +
+%             \delta \bm{n}\cdot \bm{r}\sqrt{g}
+%             +
+%             \delta\sqrt{g}\bm{r}\cdot\bm{n}
+%         \right)\\
+%         &=
+%         \frac{1}{3}\left(
+%             \zeta dA
+%             +
+%             \delta \bm{n}\cdot \bm{r}dA
+%             +
+%             \bm{r}\cdot\bm{n} \delta dA
+%         \right)
+%     \end{aligned}
+% $$
+%! 锥形体积元有附加项，此处没有推导
+$$
+    \delta dV  = \bm{n}\cdot \delta \bm{r} dA =  \zeta dA
+$$
+
+考虑曲面上的曲线元的变分，对于欧氏空间中的一般曲线有：
+$$
+    \delta ds =
+    (\frac{d}{ds}(\delta \bm{r} \cdot \bm{t})
+    -
+    \kappa\delta\bm{r} \cdot  \bm{n}_c)ds
+$$
+
+当变分只在曲面内时，则：
+$$
+    \delta ds =
+    (\frac{d}{ds}(\delta \bm{r} \cdot \bm{t})
+    -
+    \kappa_g\delta\bm{r} \cdot  \bm{m})ds
+$$
+%! 此处应当有形式化推导
+上式对于环线第一项积分为0。
+
+其中$\bm{m}=\bm{t}\times\bm{n}$是切平面内的曲线法向，$\bm{t}$是切向。
+
+综上，使变分在$\Sigma_{SL}$没有法向分量，则有
+
+$$
+    \delta E
+    =
+    \gamma_{LV}\int_{\Sigma_{LV}}{(-2H\zeta + \xi^k_{;k})dA}
+    +
+    (\gamma_{SL}-\gamma_{SV})
+    \int_{\Sigma_{SL}}{(\xi^k_{;k})dA}
+    +
+    \int_{\Sigma_{LV}}{\Delta P \zeta dA}
+    -
+    \tau \int_{\partial\Sigma_{L}}{\kappa_g\delta\bm{r} \cdot \bm{m}ds}
+$$
+
+注意到曲面上（也就是黎曼空间内）的散度积分定理（对于仅有面内分量的张量）：
+%! 推导
+$$
+    \int_\Sigma{\xi^k_{;k}dA}=\int_{\partial\Sigma}
+    {\hat{\delta\bm{r}}\cdot \bm{l} ds}
+    =\int_{\partial\Sigma}
+    {\delta\bm{r}\cdot \bm{l} ds}
+$$
+其中$l$是单位向量，其位于切平面内且与边界曲线的切向量垂直，对于
+单连通曲面定义为向外。
+其中$\hat{\delta\bm{r}}=\xi^i\bm{g}_i$是变分向量
+$\delta\bm{r}$在切平面内的投影。由于法向分量和$\bm{l}$垂直，
+即不影响环上的积分结果。
+
+考虑到变分中边界线的面内法向$\bm{m}=-\bm{l}_{SL}$
+（因为定义$\bm{m}$朝内，也就是边界线的曲率为正时液滴外凸）。
+
+
+则上式可化简为：
+
+$$
+    \delta E
+    =
+    \int_{\Sigma_{LV}}{\zeta(-2\gamma_{LV}H + \Delta P) dA}
+    +
+    \int_{\partial\Sigma_{SL}}{\left[
+            (\gamma_{SL}-\gamma_{SV})\bm{l}_{SL}
+            +
+            \gamma_{LV}\bm{l}_{LV}
+            +
+            \tau\kappa_g \bm{l}_{SL}
+            \right]\cdot \delta\bm{r}
+        ds}
+$$
+
+考虑到由于变分不离开固体面（也就是在边界切向量和$\bm{l}_{SL}$的平面内。
+定义两个面边缘的法向向量$\bm{l}_{SL},\bm{l}_{LV}$夹角
+为$\theta$，也就是液滴内界面切平面的夹角，根据射影几何有关系：
+$$
+    \delta \bm{r}\cdot \bm{l}_{LV} = \cos\theta \delta\bm{r}\cdot\bm{l}_{SL}
+$$
+也就是说$\delta\bm{r}$在固体面切空间内，上式变成：
+
+$$
+    \delta E
+    =
+    \int_{\Sigma_{LV}}{\zeta(-2\gamma_{LV}H + \Delta P) dA}
+    +
+    \int_{\partial\Sigma_{SL}}{\left[
+            (\gamma_{SL}-\gamma_{SV})
+            +
+            \gamma_{LV}\cos \theta
+            +
+            \tau\kappa_g
+            \right]\bm{l}_{SL}\cdot \delta\bm{r}
+        ds}
+$$
+根据能量变分是0，以及变分量$\delta \bm{r}$的任意性，则两部分积分分别有：
+
+$$
+    \Delta P = 2H\gamma_{LV}
+$$
+$$
+    \cos \theta = \frac{\gamma_{SV}-\gamma_{SL}}{\gamma_{LV}} - \frac{\tau\kappa_g}{\gamma_{LV}}
+$$
+
+\subsection*{8.2}
+
+根据Young-Laplace方程可知平衡为：
+
+$$
+    2H=\frac{\rho gz}{\gamma}
+$$
+
+记$l_c=\sqrt{\frac{\gamma}{\rho g}}$，且根据拉伸直曲面的曲率可知：
+
+$$
+    \frac{d^2x}{dz^2}\left[1+\left(\frac{dx}{dz}\right)^2\right]^{-3/2} = \frac{z}{l_c^2}
+$$
+
+归一化为$\xi = x/l_c, w = z/l_c$，记$\frac{d\xi}{dw}=\xi', \frac{d^2\xi}{dw^2}=\xi''$
+
+则解
+
+$$
+    \xi'' \left[1+\left(\xi'\right)^2\right]^{-3/2} = w
+$$
+
+根据$\xi(0)=+\infty$积分可得
+
+$$
+    \xi = c + \ln\frac{2 + \sqrt{4-w^2}}{w} - \sqrt{4-w^2}
+$$
+
+以及
+
+$$
+    \xi' = \frac{w^2-2}{w\sqrt{4-w^2}}
+$$
+
+可见$w=2$的深度时液面切平面是水平的，再深就没有解了；
+同时$w=\sqrt{2}$时是竖直的，为最左端，因此记最左端为$\xi_0$，
+最下端极限位置为$\xi_0+\lambda_{max}$，有$\lambda_{max}=\sqrt{2}-\ln(\sqrt{2}+1)$。
+
+则
+$$
+    \xi = \xi_0 + \lambda_{max} + \ln\frac{2 + \sqrt{4-w^2}}{w} - \sqrt{4-w^2}
+$$
+
+在考虑圆柱外形的联系，如图，在归一化的坐标系应用几何关系有：
+$$
+    \begin{aligned}
+        \xi' & =-\cot(\phi-\alpha)   \\
+        h    & = w + r + r\cos\alpha \\
+        \xi  & =  r\sin\alpha
+    \end{aligned}
+$$
+给定圆柱尺寸和物性，上面的方程中$r,\cos\phi$是给定的，
+$h,\alpha$都未知，同时接触点的$w$是未知的，常数$\xi_0$是未知的。
+
+因此共三个方程，四个未知数，
+可任选一个为自变量，如圆柱深度$h$，在每个位置求解非线性方程组，得到其他三个值，即可知道
+页面和圆柱的具体关系。如果给定圆柱受到液体的合力大小，可解出一个确定的位置。
+
+同时可知，不管圆柱有多深，没有与圆柱接触的部分的液面，形状与圆柱位置无关，只与无量纲长度$l_c$有关。
+
+\end{document}
